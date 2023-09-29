@@ -41,53 +41,8 @@ https://www.tooplate.com/view/2127-little-fashion
 
         <main>
 
-            <nav class="navbar navbar-expand-lg">
-                <div class="container">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+            @include('navbar')
 
-                    <a class="navbar-brand" href="index.blade.php">
-                        <strong><span>Little</span> Fashion</strong>
-                    </a>
-
-                    <div class="d-lg-none">
-                        <a href="sign-in.blade.php" class="bi-person custom-icon me-3"></a>
-
-                        <a href="product-detail.blade.php" class="bi-bag custom-icon"></a>
-                    </div>
-
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav mx-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.blade.php">Home</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="about.blade.php">Story</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link active" href="products.html">Products</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="faq.blade.php">FAQs</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact.blade.php">Contact</a>
-                            </li>
-                        </ul>
-
-                        <div class="d-none d-lg-block">
-                            <a href="sign-in.blade.php" class="bi-person custom-icon me-3"></a>
-
-                            <a href="product-detail.blade.php" class="bi-bag custom-icon"></a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
 
             <header class="site-header section-padding d-flex justify-content-center align-items-center">
                 <div class="container">
@@ -271,51 +226,8 @@ https://www.tooplate.com/view/2127-little-fashion
 
         </main>
 
-        <footer class="site-footer">
-            <div class="container">
-                <div class="row">
+        @include('footer')
 
-                    <div class="col-lg-3 col-10 me-auto mb-4">
-                        <h4 class="text-white mb-3"><a href="index.blade.php">Little</a> Fashion</h4>
-                        <p class="copyright-text text-muted mt-lg-5 mb-4 mb-lg-0">Copyright © 2022 <strong>Little Fashion</strong></p>
-                        <br>
-                        <p class="copyright-text">Designed by <a href="https://www.tooplate.com/" target="_blank">Tooplate</a></p>
-                    </div>
-
-                    <div class="col-lg-5 col-8">
-                        <h5 class="text-white mb-3">Sitemap</h5>
-
-                        <ul class="footer-menu d-flex flex-wrap">
-                            <li class="footer-menu-item"><a href="about.blade.php" class="footer-menu-link">Story</a></li>
-
-                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">Products</a></li>
-
-                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">Privacy policy</a></li>
-
-                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">FAQs</a></li>
-
-                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">Contact</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-4">
-                        <h5 class="text-white mb-3">Social</h5>
-
-                        <ul class="social-icon">
-
-                            <li><a href="#" class="social-icon-link bi-youtube"></a></li>
-
-                            <li><a href="#" class="social-icon-link bi-whatsapp"></a></li>
-
-                            <li><a href="#" class="social-icon-link bi-instagram"></a></li>
-
-                            <li><a href="#" class="social-icon-link bi-skype"></a></li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-        </footer>
 
         <!-- JAVASCRIPT FILES -->
         <script src="js/jquery.min.js"></script>
