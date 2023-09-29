@@ -5,6 +5,7 @@
         </button>
 
         <a class="navbar-brand" href="">
+            <img src="favicon.png" class="img-fluid" alt=""width="60" height="50">
             <strong><span>Sustaina</span> Swap</strong>
         </a>
 
@@ -13,27 +14,32 @@
 
             <a href="product-detail" class="bi-bag custom-icon"></a>
         </div>
+        @php
+            $currentPage = isset($currentPage) ? $currentPage : '';
+        @endphp
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="\">Home</a>
+                    <a class="nav-link{{ $currentPage === 'home' ? ' active' : '' }}" href="/">Home</a>
+                </li>
+                <!-- Répétez ce modèle pour les autres liens de la navbar -->
+
+
+                <li class="nav-item">
+                    <a class="nav-link{{ $currentPage === 'about' ? ' active' : '' }}" href="about">Story</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="about">Story</a>
+                    <a class="nav-link{{ $currentPage === 'products' ? ' active' : '' }}" href="products">Products</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="products">Products</a>
+                    <a class="nav-link{{ $currentPage === 'faq' ? ' active' : '' }}" href="faq">FAQs</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="faq">FAQs</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="contact">Contact</a>
+                    <a class="nav-link{{ $currentPage === 'contact' ? ' active' : '' }}" href="contact">Contact</a>
                 </li>
             </ul>
 
