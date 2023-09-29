@@ -14,26 +14,26 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('Template component/index');
 });
 Route::get('/about', function () {
-    return view('about');
+    return view('Template component/about');
 });
 Route::get('/contact', function () {
-    return view('contact');
+    return view('Template component/contact');
 });
 Route::get('/faq', function () {
-    return view('faq');
+    return view('Template component/faq');
 });
 Route::get('/product-detail', function () {
-    return view('product-detail');
+    return view('Template component/product-detail');
 });
 Route::get('/products', function () {
-    return view('products');
+    return view('Template component/products');
 });
 Route::get('/sign-in', function () {
-    return view('sign-in');
+    return view('Sign/sign-in');
 });
 Route::get('/sign-up', function () {
-    return view('sign-up');
+    return view('Sign/sign-up');
 });

@@ -71,7 +71,7 @@
                     <div class="product-info d-flex">
                         <div>
                             <h5 class="product-title mb-0">
-                                <a href="product-detail.blade.php" class="product-title-link">Juice Drinks</a>
+                                <a href="../product-detail.blade.php" class="product-title-link">Juice Drinks</a>
                             </h5>
 
                             <p class="product-p">Nature made another world</p>
