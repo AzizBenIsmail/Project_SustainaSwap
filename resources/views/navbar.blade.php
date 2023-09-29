@@ -5,7 +5,7 @@
         </button>
 
         <a class="navbar-brand" href="">
-            <strong><span>Little</span> Fashion</strong>
+            <strong><span>Sustaina</span> Swap</strong>
         </a>
 
         <div class="d-lg-none">
