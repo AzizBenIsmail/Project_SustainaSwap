@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
+            $table->string('picture')->nullable(false);
+            $table->string('title',12)->nullable(false);
+            $table->string('description',100)->nullable();
+            $table->string('category')->nullable(false);
+            $table->integer('duration')->unsigned()->min(1)->max(7);
+            $table->string('state')->nullable(false);
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }
@@ -28,4 +35,7 @@ return new class extends Migration
     {
         Schema::dropIfExists('items');
     }
+
+
+
 };

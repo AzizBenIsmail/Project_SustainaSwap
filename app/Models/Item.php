@@ -7,5 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'picture',
+        'title',
+        'description',
+        'category',
+        'duration',
+        'state',
+        'user_id',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
