@@ -4,7 +4,7 @@
 
 <div class="col-lg-4 col-12 mb-3">
     <div class="product-thumb">
-        <a href="product-detail.blade.php">
+        <a href="product-detail">
             <img src="images/product/evan-mcdougall-qnh1odlqOmk-unsplash.jpeg" class="img-fluid product-image" alt="">
         </a>
 
@@ -13,67 +13,19 @@
 
             <a href="#" class="bi-heart-fill product-icon"></a>
         </div>
-
+        @foreach ($items as $item)
         <div class="product-info d-flex">
             <div>
                 <h5 class="product-title mb-0">
-                    <a href="product-detail.blade.php" class="product-title-link">Tree pot</a>
+                    <a href="product-detail.blade.php" class="product-title-link">{{ $item->title }}</a>
                 </h5>
 
-                <p class="product-p">Original package design from house</p>
+                <p class="product-p">{{ $item->category }}</p>
             </div>
 
-            <small class="product-price text-muted ms-auto">$25</small>
+            <small class="product-price text-muted ms-auto">{{ $item->state }}</small>
         </div>
+        @endforeach
     </div>
 </div>
 
-<div class="col-lg-4 col-12 mb-3">
-    <div class="product-thumb">
-        <a href="product-detail.blade.php">
-            <img src="images/product/jordan-nix-CkCUvwMXAac-unsplash.jpeg" class="img-fluid product-image" alt="">
-        </a>
-
-        <div class="product-top d-flex">
-            <span class="product-alert">Discounted Price</span>
-
-            <a href="#" class="bi-heart-fill product-icon ms-auto"></a>
-        </div>
-
-        <div class="product-info d-flex">
-            <div>
-                <h5 class="product-title mb-0">
-                    <a href="product-detail.blade.php" class="product-title-link">Fashion set</a>
-                </h5>
-
-                <p class="product-p">Costume package</p>
-            </div>
-
-            <small class="product-price text-muted ms-auto">$35</small>
-        </div>
-    </div>
-</div>
-
-<div class="col-lg-4 col-12">
-    <div class="product-thumb">
-        <a href="product-detail.blade.php">
-            <img src="images/product/nature-zen-3Dn1BZZv3m8-unsplash.jpeg" class="img-fluid product-image" alt="">
-        </a>
-
-        <div class="product-top d-flex">
-            <a href="#" class="bi-heart-fill product-icon ms-auto"></a>
-        </div>
-
-        <div class="product-info d-flex">
-            <div>
-                <h5 class="product-title mb-0">
-                    <a href="product-detail.blade.php" class="product-title-link">Juice Drinks</a>
-                </h5>
-
-                <p class="product-p">Nature made another world</p>
-            </div>
-
-            <small class="product-price text-muted ms-auto">$45</small>
-        </div>
-    </div>
-</div>

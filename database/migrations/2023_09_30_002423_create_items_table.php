@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('title',12)->nullable(false);
             $table->string('description',100)->nullable();
             $table->string('category')->nullable(false);
-            $table->integer('duration')->unsigned()->min(1)->max(7);
             $table->string('state')->nullable(false);
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();

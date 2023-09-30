@@ -12,7 +12,6 @@ class Item extends Model
         'title',
         'description',
         'category',
-        'duration',
         'state',
         'user_id',
     ];
