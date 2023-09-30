@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,3 +38,11 @@ Route::get('/sign-in', function () {
 Route::get('/sign-up', function () {
     return view('Sign/sign-up');
 });
+
+Route::resource('items', Controllers\ItemController::class);
+Route::resource('Comment', Controllers\CommentController::class);
+Route::resource('Complaint', Controllers\ComplaintController::class);
+Route::resource('Conversation', Controllers\ConversationController::class);
+Route::resource('Message', Controllers\MessageController::class);
+Route::resource('Trade', Controllers\TradeController::class);
+Route::resource('Post', Controllers\PostController::class);
