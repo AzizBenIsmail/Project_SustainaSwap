@@ -8,7 +8,7 @@
 
 <main>
 
-    @include('basic component.navbar', ['currentPage' => 'Template component.about'])
+    @include('basic component.navbar', ['currentPage' => 'about'])
 
     @include('About component.cover_picture')
 
