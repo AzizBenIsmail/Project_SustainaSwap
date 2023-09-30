@@ -4,11 +4,10 @@
 </div>
 
 @foreach ($items as $item)
-
-    <div class="col-lg-4 col-12 mb-3">e
+    <div class="col-lg-4 col-12 mb-3">
         <div class="product-thumb">
             <a href="{{ route('items.show', $item->id) }}">
-                <img src="{{ asset('uploads/' . $item->picture) }}" class="img-fluid product-image" alt="">
+                <img src="{{ asset('uploads/' . $item->picture) }}" alt="" width="300" height="200">
             </a>
 
             <div class="product-top d-flex">
@@ -19,7 +18,7 @@
             <div class="product-info d-flex">
                 <div>
                     <h5 class="product-title mb-0">
-                        <a href="product-detail" class="product-title-link">{{ $item->title }}</a>
+                        <a href="{{ route('items.show', $item->id) }}" class="product-title-link">{{ $item->title }}</a>
                     </h5>
 
                     <p class="product-p">{{ $item->category }}</p>

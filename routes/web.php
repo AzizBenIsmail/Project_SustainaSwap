@@ -17,7 +17,7 @@ Route::get('/faq', function () {
     return view('Template component/faq');
 });
 Route::get('/product-detail', function () {
-    return view('Products component/product-detail');
+    return view('Template component/product-detail');
 });
 Route::get('/sign-in', function () {
     return view('Sign/sign-in');

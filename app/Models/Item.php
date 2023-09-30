@@ -14,6 +14,7 @@ class Item extends Model
         'category',
         'state',
         'user_id',
+        'timestamps',
     ];
 
     public function user()

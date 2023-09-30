@@ -5,7 +5,7 @@
         </button>
 
         <a class="navbar-brand" href="">
-            <img src="{{ asset("favicon.png")}}" class="img-fluid" alt=""width="60" height="50">
+            <img src="{{ asset("favicon.png")}}" class="img-fluid" alt="" width="60" height="50">
             <strong><span>Sustaina</span> Swap</strong>
         </a>
 
@@ -31,7 +31,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link{{ $currentPage === 'products' ? ' active' : '' }}" href="products">Products</a>
+                    <a class="nav-link{{ $currentPage === 'products' ? ' active' : '' }}" href="items">Products</a>
                 </li>
 
                 <li class="nav-item">

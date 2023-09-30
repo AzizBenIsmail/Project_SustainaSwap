@@ -42,7 +42,6 @@ class ItemController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'category' => 'required|string|max:255',
-            'duration' => 'required|integer|min:1|max:7',
             'state' => 'required|string|max:255',
         ]);
 
@@ -60,7 +59,6 @@ class ItemController extends Controller
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'category' => $request->input('category'),
-            'duration' => $request->input('duration'),
             'state' => $request->input('state'),
 //            'user_id' => auth()->user()->id, // Vous devrez ajuster cette partie en fonction de votre authentification
             'user_id'=> 1,
@@ -80,7 +78,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        return view('Products component/product-detail', compact('item'));
+        return view('Products component/Item_detail', compact('item'));
     }
 
     /**
