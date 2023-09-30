@@ -5,7 +5,7 @@
         </button>
 
         <a class="navbar-brand" href="">
-            <img src="favicon.png" class="img-fluid" alt=""width="60" height="50">
+            <img src="{{ asset("favicon.png")}}" class="img-fluid" alt=""width="60" height="50">
             <strong><span>Sustaina</span> Swap</strong>
         </a>
 
