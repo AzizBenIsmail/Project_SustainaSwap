@@ -28,7 +28,7 @@
         <div class="container">
             <div class="row">
 
-                @include('Products component.New_Arrivals')
+                @include('Products component.New_Item')
 
                 @include('Products component.Popular')
 

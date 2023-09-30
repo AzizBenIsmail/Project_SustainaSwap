@@ -30,7 +30,8 @@
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Supprimer</button>
-                    </form>                </td>
+                    </form>
+                </td>
             </tr>
         @endforeach
         </tbody>

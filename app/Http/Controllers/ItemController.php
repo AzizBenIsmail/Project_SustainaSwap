@@ -16,7 +16,7 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::all();
-        return view('items.index', compact('items'));
+        return view('Template component/products', compact('items'));
     }
 
     /**
@@ -80,7 +80,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        return view('items.show', compact('item'));
+        return view('Products component/product-detail', compact('item'));
     }
 
     /**
@@ -101,25 +101,35 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Item $item)
+    public function update(Request $request, $id)
     {
-        // Valider les données du formulaire
         $request->validate([
-            'picture' => 'required',
-            'title' => 'required|max:12',
-            'description' => 'max:100',
-            'category' => 'required',
-            'duration' => 'required|integer|min:1|max:7',
-            'state' => 'required',
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'category' => 'required|string|max:255',
+            'state' => 'required|string|max:255',
         ]);
 
-        // Mettre à jour les données de l'élément
-        $item->update($request->all());
+        $item = Item::findOrFail($id);
 
-        // Rediriger vers la liste des éléments
-        return redirect()->route('items.index')
-            ->with('success', 'Élément mis à jour avec succès.');
+        if ($request->hasFile('picture')) {
+            $image = $request->file('picture');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads'), $imageName);
+            $item->picture = $imageName;
+        }
+
+        $item->title = $request->input('title');
+        $item->description = $request->input('description');
+        $item->category = $request->input('category');
+        $item->state = $request->input('state');
+
+        $item->save();
+
+        return redirect()->route('items.index')->with('success', 'Élément modifié avec succès.');
     }
+
 
     /**
      * Remove the specified resource from storage.
