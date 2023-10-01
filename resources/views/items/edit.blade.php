@@ -27,12 +27,21 @@
                     </div>
                     <div class="form-group mt-3">
                         <label for="category">Catégorie :</label>
-                        <input type="text" name="category" class="form-control" value="{{ $item->category }}" required>
+                        <select name="category" class="form-control" required>
+                            <option value="Bricolage" {{ $item->category === 'Bricolage' ? 'selected' : '' }}>Bricolage</option>
+                            <option value="Jardinage" {{ $item->category === 'Jardinage' ? 'selected' : '' }}>Jardinage</option>
+                            <option value="Peinture" {{ $item->category === 'Peinture' ? 'selected' : '' }}>Peinture</option>
+                        </select>
                     </div>
                     <div class="form-group mt-3">
                         <label for="state">State :</label>
-                        <input type="text" name="state" class="form-control" value="{{ $item->state }}" required>
+                        <select name="state" class="form-control" required>
+                            <option value="Good" {{ $item->state === 'Good' ? 'selected' : '' }}>Good</option>
+                            <option value="Bad" {{ $item->state === 'Bad' ? 'selected' : '' }}>Bad</option>
+                            <option value="Medium" {{ $item->state === 'Medium' ? 'selected' : '' }}>Medium</option>
+                        </select>
                     </div>
+
                     <div class="form-group mt-3">
                         <label for="picture">Image actuelle :</label>
                         <img src="{{ asset('uploads/' . $item->picture) }}" alt="Current Image" class="img-thumbnail" width="250" height="250">
