@@ -34,10 +34,10 @@
                     </div>
                     <div class="form-group mt-3">
                         <label for="picture">Picture :</label>
-                        <input type="file" name="picture" class="form-control-file" required>
+                        <input type="file" name="picture" class="form-control" required>
                     </div>
                     <div >
-                        <button type="submit" class="btn btn-primary mt-3">Add New Item</button>
+                        <button type="submit" class="btn btn-primary mt-5">Add New Item</button>
                     </div>
                 </form>
             </div>

@@ -1,37 +1,60 @@
-@extends('layouts.app')
+<!doctype html>
+<html lang="en">
 
-@section('content')
-    <h1>Modifier l'élément</h1>
+@include('basic component.head')
 
-    <form method="POST" action="{{ route('items.update', $item->id) }}" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
+<body>
 
-        <div class="form-group">
-            <label for="picture">Image :</label>
-            <input type="file" name="picture" class="form-control-file">
+<main>
+
+    @include('basic component.navbar')
+
+    <div class="container mt-5 ">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-8 mt-3">
+                <h1 class="text-center mt-5">Update Item</h1>
+
+                <form method="POST" action="{{ route('items.update', $item->id) }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="form-group mt-3">
+                        <label for="title">Title :</label>
+                        <input type="text" name="title" class="form-control" value="{{ $item->title }}" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="description">Description :</label>
+                        <input name="description" class="form-control" value="{{ $item->description }}" >
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="category">Catégorie :</label>
+                        <input type="text" name="category" class="form-control" value="{{ $item->category }}" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="state">State :</label>
+                        <input type="text" name="state" class="form-control" value="{{ $item->state }}" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="picture">Image actuelle :</label>
+                        <img src="{{ asset('uploads/' . $item->picture) }}" alt="Current Image" class="img-thumbnail" width="250" height="250">
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="picture">Nouvelle image :</label>
+                        <input type="file" name="picture" class="form-control">
+                    </div>
+
+                    <div >
+                        <button type="submit" class="btn btn-primary mt-5">Update Item</button>
+                    </div>
+                </form>
+            </div>
+            <div class=" mt-3"></div>
+            <div class=" mt-3"></div>
         </div>
+    </div>
+</main>
 
-        <div class="form-group">
-            <label for="title">Titre :</label>
-            <input type="text" name="title" class="form-control" value="{{ $item->title }}" required>
-        </div>
+@include('basic component.footer')
+@include('basic component.JAVASCRIPT_FILES')
 
-        <div class="form-group">
-            <label for="description">Description :</label>
-            <textarea name="description" class="form-control">{{ $item->description }}</textarea>
-        </div>
-
-        <div class="form-group">
-            <label for="category">Catégorie :</label>
-            <input type="text" name="category" class="form-control" value="{{ $item->category }}" required>
-        </div>
-
-        <div class="form-group">
-            <label for="state">État :</label>
-            <input type="text" name="state" class="form-control" value="{{ $item->state }}" required>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Modifier</button>
-    </form>
-@endsection
+</body>
+</html>

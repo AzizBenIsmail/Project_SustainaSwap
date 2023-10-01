@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="product-cart-thumb row">
-                        <a href="{{ route('items.edit', $item->id) }}" class="btn btn-warning">Modifier</a>
+                        <a href="{{ route('items.edit', $item->id) }}" class="btn btn-warning" >Modifier</a>
                         <form href="{{ route('items.destroy', $item->id) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
