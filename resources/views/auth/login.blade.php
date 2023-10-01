@@ -19,7 +19,7 @@
 
                 <div class="col-lg-8 mx-auto col-12">
 
-                    <h1 class="hero-title text-center mb-5">Sign In</h1>
+                    <h1 class="hero-title text-center mb-5">Log In</h1>
 
                     <div class="row">
                         <div class="col-lg-8 col-11 mx-auto">
@@ -53,9 +53,13 @@
                                     Sign in
                                 </button>
 
-                                <p class="text-center">Don’t have an account? <a href="sign-up">Create One</a>
+                                <p class="text-center">Forgot your password?
+                                    <a href="{{ route('password.request') }}">Reset Password</a>
                                 </p>
-
+                                                    <div class="div-separator w-50 m-auto my-5"><span>or</span></div>
+                                <p class="text-center">Don’t have an account?
+                                    <a href="{{ route('register') }}">Create One</a>
+                                </p>
                             </form>
                         </div>
                     </div>
