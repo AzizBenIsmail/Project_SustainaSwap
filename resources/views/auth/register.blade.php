@@ -19,7 +19,7 @@
 
                 <div class="col-lg-8 mx-auto col-12">
 
-                    <h1 class="hero-title text-center mb-5">Sign Up</h1>
+                    <h1 class="hero-title text-center mb-5">Register</h1>
 
 {{--                    <div class="social-login d-flex flex-column w-50 m-auto">--}}
 
@@ -98,7 +98,7 @@
                                     Create account
                                 </button>
 
-                                <p class="text-center">Already have an account? Please <a href="sign-in">Sign
+                                <p class="text-center">Already have an account? Please <a href="{{ route('login') }}">Sign
                                         In</a></p>
 
                             </form>
