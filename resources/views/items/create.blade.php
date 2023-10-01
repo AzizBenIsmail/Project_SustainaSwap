@@ -26,8 +26,13 @@
                     </div>
                     <div class="form-group mt-3">
                         <label for="category">Catégorie :</label>
-                        <input type="text" name="category" class="form-control" required>
+                        <select name="category" class="form-control" required>
+                            <option value="Bricolage">Bricolage</option>
+                            <option value="Jardinage">Jardinage</option>
+                            <option value="Peinture">Peinture</option>
+                        </select>
                     </div>
+
                     <div class="form-group mt-3">
                         <label for="state">State :</label>
                         <select name="state" class="form-control" required>
