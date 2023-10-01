@@ -34,3 +34,7 @@ Route::resource('Conversation', Controllers\ConversationController::class);
 Route::resource('Message', Controllers\MessageController::class);
 Route::resource('Trade', Controllers\TradeController::class);
 Route::resource('Post', Controllers\PostController::class);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
