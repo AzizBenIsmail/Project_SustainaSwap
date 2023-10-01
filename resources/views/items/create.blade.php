@@ -30,8 +30,13 @@
                     </div>
                     <div class="form-group mt-3">
                         <label for="state">State :</label>
-                        <input type="text" name="state" class="form-control" required>
+                        <select name="state" class="form-control" required>
+                            <option value="Good">Good</option>
+                            <option value="Bad">Bad</option>
+                            <option value="Medium">Medium</option>
+                        </select>
                     </div>
+
                     <div class="form-group mt-3">
                         <label for="picture">Picture :</label>
                         <input type="file" name="picture" class="form-control" required>
