@@ -44,9 +44,21 @@
             </ul>
 
             <div class="d-none d-lg-block">
-                <a href="sign-in" class="bi-person custom-icon me-3"></a>
+                @if(auth()->check())
+                    <a href="{{ route('home') }}" class="bi-person custom-icon"></a>
+                    <a href="{{ route('logout') }}"   onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();"
+                    class="bi-door-open custom-icon">
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="bi-person custom-icon"></a>
+                @endif
 
-                <a href="product-detail" class="bi-bag custom-icon"></a>
+{{--                <a href="product-detail" class="bi-bag custom-icon"></a>--}}
+
             </div>
         </div>
     </div>
