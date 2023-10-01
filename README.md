@@ -7,6 +7,19 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Instalation guide
+
+### Please execute these instructions in the order given to install this project on your computer:
+- I carefully tested them in sequence to ensure that they work.
+
+1. git clone https://github.com/SustainaSwap/SustainaSwap_Laravel9
+2. cd SustainaSwap_Laravel9
+3. npm install && npm run dev
+4. php artisan db:create ( It will create that database name that exists in the .env file)
+5. php artisan migrate --seed
+6. php artisan optimize
+7. php artisan serve
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
