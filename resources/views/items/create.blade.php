@@ -25,11 +25,11 @@
                         <textarea name="description" class="form-control"></textarea>
                     </div>
                     <div class="form-group mt-3">
-                        <label for="category">Catégorie :</label>
+                        <label for="category">Category :</label>
                         <select name="category" class="form-control" required>
                             <option value="Bricolage">Bricolage</option>
-                            <option value="Jardinage">Jardinage</option>
-                            <option value="Peinture">Peinture</option>
+                            <option value="Jardinage">Gardening</option>
+                            <option value="Peinture">Paint</option>
                         </select>
                     </div>
 
