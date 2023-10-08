@@ -23,18 +23,19 @@
 
                     <p class="product-p">{{ $item->category }}</p>
                 </div>
-
-                <small class="product-price text-muted ms-auto">{{ $item->state }}</small> . condition
+                <div>
+                    <small class="product-price text-muted ms-auto">{{ $item->state }}</small> . condition
+                </div>
             </div>
 
+            <a href="{{ route('items.show', $item->id) }}" class="btn btn-info">Afficher</a>
+            <a href="{{ route('items.edit', $item->id) }}" class="btn btn-warning">Modifier</a>
+            <form action="{{ route('items.destroy', $item->id) }}" method="POST" style="display: inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Supprimer</button>
+            </form>
         </div>
-        <a href="{{ route('items.show', $item->id) }}" class="btn btn-info">Afficher</a>
-        <a href="{{ route('items.edit', $item->id) }}" class="btn btn-warning">Modifier</a>
-        <form action="{{ route('items.destroy', $item->id) }}" method="POST" style="display: inline;">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger">Supprimer</button>
-        </form>
     </div>
 @endforeach
 

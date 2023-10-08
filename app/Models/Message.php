@@ -7,5 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
-    use HasFactory;
+    // use HasFactory;
+    protected $fillable = ['name', 'is_group'];
+
+    
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps();
+    }
+
 }
