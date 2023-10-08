@@ -45,7 +45,9 @@
 
                         <small class="product-price text-muted ms-auto mt-auto mb-5"> {{ $item->state }}</small>
                     </div>
-
+                    <small class="product-price text-muted ms-auto">
+                        Owner : {{ $item->user->name }}
+                    </small>
                     <div class="product-description">
 
                         <strong class="d-block mt-4 mb-2">Description</strong>

@@ -52,6 +52,8 @@ Route::get('/comments/create', [Controllers\CommentController::class, 'create'])
 Route::post('/comments', [Controllers\CommentController::class, 'store'])->name('comments.store');
 
 
+Route::resource('/trades', Controllers\TradeController::class);
+Route::resource('Post', Controllers\PostController::class);
 
 Auth::routes();
 

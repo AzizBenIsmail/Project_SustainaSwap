@@ -7,5 +7,29 @@ use Illuminate\Database\Eloquent\Model;
 
 class Trade extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        
+        'owner',
+        'offeredItem',
+        'requestedItem',
+        'proposalDate',
+        'status',
+        'timestamps',
+        
+    ];
+
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function offeredItem()
+{
+    return $this->belongsTo(Item::class, 'offeredItem');
+}
+
+public function requestedItem()
+{
+    return $this->belongsTo(Item::class, 'requestedItem');
+}
 }

@@ -24,7 +24,20 @@ class ConversationController extends Controller
      */
     public function create()
     {
-        //
+        $lenderUserId = user_id; // Lender
+        $borrowerUserId = user_id; // Borrower
+
+        $conversation = Conversation::create([
+            'name' => 'Borrowing a Hammer from Neighbor A',
+            'is_group' => false, // It's a one-on-one conversation
+        ]);
+
+        // Attach the users to the conversation
+        $conversation->users()->attach([$lenderUserId, $borrowerUserId]);
+
+        // You can perform additional actions here if needed
+
+        return redirect()->route('conversations.index'); // Redirect to the conversation index page
     }
 
     /**
