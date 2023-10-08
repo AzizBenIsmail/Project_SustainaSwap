@@ -38,7 +38,7 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validation de l'image
+            'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'category' => 'required|string|max:255',
@@ -50,8 +50,7 @@ class ItemController extends Controller
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('uploads'), $imageName);
         } else {
-            // Gérez le cas où aucune image n'est téléchargée
-            $imageName = ''; // Vous pouvez définir une valeur par défaut ou générer une erreur
+            $imageName = '';
         }
 
         $item = new Item([
@@ -60,8 +59,8 @@ class ItemController extends Controller
             'description' => $request->input('description'),
             'category' => $request->input('category'),
             'state' => $request->input('state'),
-//            'user_id' => auth()->user()->id, // Vous devrez ajuster cette partie en fonction de votre authentification
-            'user_id'=> 1,
+            'user_id' => auth()->user()->id,
+//            'user_id'=> 1,
         ]);
 
         $item->save();
@@ -137,10 +136,8 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        // Supprimer l'élément de la base de données
         $item->delete();
 
-        // Rediriger vers la liste des éléments
         return redirect()->route('items.index')
             ->with('success', 'Élément supprimé avec succès.');
     }
