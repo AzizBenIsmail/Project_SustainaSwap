@@ -32,7 +32,7 @@ Route::resource('Comment', Controllers\CommentController::class);
 Route::resource('Complaint', Controllers\ComplaintController::class);
 Route::resource('Conversation', Controllers\ConversationController::class);
 Route::resource('Message', Controllers\MessageController::class);
-Route::resource('Trade', Controllers\TradeController::class);
+Route::resource('/trades', Controllers\TradeController::class);
 Route::resource('Post', Controllers\PostController::class);
 
 Auth::routes();
