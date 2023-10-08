@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
@@ -26,7 +27,8 @@ class CommentController extends Controller
      */
     public function create()
     {
-        return view('comments.create');
+        $posts = Post::all();
+        return view('comments.create', compact('posts'));
     }
 
     /**
@@ -44,8 +46,8 @@ class CommentController extends Controller
 
         $comment = new Comment;
         $comment->text = $request->input('text');
-        $comment->user_id = Auth::id(); // Assuming you're using authentication
-        $comment->post_id = $request->input('post_id');
+        $comment->user_id = Auth::id() ?: 1;
+        $comment->post_id = $request->input('post_id') ?: 1;
         $comment->save();
 
         return redirect()->route('comments.index')->with('success', 'Comment created successfully!');

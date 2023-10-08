@@ -42,15 +42,15 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust image validation rules as needed
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
         ]);
 
         $post = new Post;
         $post->title = $request->input('title');
         $post->content = $request->input('content');
-        $post->user_id = Auth::id(); // Assuming you're using authentication
+        $post->user_id = Auth::id() ?: 1;
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('uploads', 'public'); // Store the image
+            $imagePath = $request->file('image')->store('uploads', 'public'); 
             $post->image_url = $imagePath;
         }
         $post->save();
@@ -93,13 +93,13 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust image validation rules as needed
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
         ]);
 
         $post->title = $request->input('title');
         $post->content = $request->input('content');
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('uploads', 'public'); // Store the updated image
+            $imagePath = $request->file('image')->store('uploads', 'public'); 
             $post->image_url = $imagePath;
         }
         $post->save();

@@ -1,6 +1,7 @@
 @extends('layouts.app') <!-- Assuming you have a layout file, adjust as needed -->
-
 @section('content')
+@include('basic component.head')
+@include('basic component.navbar')
 <div class="container">
     <h1>Posts</h1>
     

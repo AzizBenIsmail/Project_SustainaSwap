@@ -33,7 +33,25 @@ Route::resource('Complaint', Controllers\ComplaintController::class);
 Route::resource('Conversation', Controllers\ConversationController::class);
 Route::resource('Message', Controllers\MessageController::class);
 Route::resource('Trade', Controllers\TradeController::class);
-Route::resource('Post', Controllers\PostController::class);
+
+
+Route::resource('posts', \App\Http\Controllers\PostController::class)->names([
+    'index' => 'posts.index',
+]);
+Route::get('/posts/create', [Controllers\PostController::class, 'create'])->name('posts.create');
+Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts.store');
+
+
+Route::resource('/comments', \App\Http\Controllers\CommentController::class)->names([
+    'index' => 'comments.index',
+]);
+// Show the comment creation form
+Route::get('/comments/create', [Controllers\CommentController::class, 'create'])->name('comments.create');
+
+// Store the new comment
+Route::post('/comments', [Controllers\CommentController::class, 'store'])->name('comments.store');
+
+
 
 Auth::routes();
 
