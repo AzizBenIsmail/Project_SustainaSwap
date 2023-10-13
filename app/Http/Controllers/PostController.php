@@ -17,8 +17,12 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::withCount('comments')->get();
-       return view('posts.index', compact('posts'));
-        }
+        $posts->load(['comments' => function ($query) {
+            $query->orderBy('created_at', 'desc');
+        }]);
+        
+        return view('posts.index', compact('posts'));
+    }
 
     /**
      * Show the form for creating a new resource.

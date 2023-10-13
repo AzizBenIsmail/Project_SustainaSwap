@@ -1,19 +1,15 @@
 @extends('posts.create') <!-- Assuming you have a layout file, adjust as needed -->
 @section('posts')
 
-<div class="container">
+<div class="container" style="width: 55%;">
     @foreach($posts as $post)
-    <div class="card mb-3">
+    <div class="card mb-3" style="background-color: #F0F8FF;">
        
-        @if($post->image_url)
-        <div class="text-center">
-            <img src="{{ asset('storage/' . $post->image_url) }}" class="img-fluid" alt="Post Image">
-        </div>
-        @endif
-        <div class="card-body">
+
+        <div class="card-body" >
             <div class="row">
-                <div class="col-md-10">
-                    <h5 class="card-title">{{ $post->title }}</h5>
+                <div class="col-md-10" >
+                    <h5 class="card-title" style="color: #00345E;">{{ $post->title }}</h5>
                 </div>
                 @if ($post->user->id == 1)
 
@@ -26,12 +22,20 @@
                 @endif
             </div>
             <a href="/post/{{$post->id}}">
-            <p class="card-text">{{ $post->content }}</p>
+            <p class="card-text"  style="color: black;">{{ $post->content }}</p>
         </div>
+        @if($post->image_url)
+        <div class="text-center mb-3"  >
+            <img src="{{ asset('storage/' . $post->image_url) }}" class="img-fluid" alt="Post Image">
+        </div>
+        @endif
         <div class="card-footer">
             <div class="row">
                 <div class="col-md-5">
-                    <small class="text-muted">Posted by: {{ $post->user->name }} on {{ $post->created_at->format('M d, Y') }}</small>
+                    <small class="" style="color: #FF4400;">
+                        Posted by: {{ $post->user->name }} on {{ $post->created_at->format('M d, Y') }}
+                    </small>
+                    
                 </div>
                 <div class="col-md-7">
                     <a href="#commentsCollapse-{{ $post->id }}" data-toggle="collapse"><small>Comments: {{ $post->comments_count }}</small></a>
@@ -44,15 +48,16 @@
                     $comments = $post->comments->take(-3)->reverse();
                     $remainingCommentsCount = $post->comments_count - count($comments);
                 @endphp
-        
+
                 @foreach ($comments as $comment)
                 <hr>
-                <div class="row mb-2">
+                <div class="row mb-1">
                     <div class="card-body">
                         <small class="card-text">{{ $comment->text }}</small>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted">Commented by: {{ $comment->user->name }} on {{ $comment->created_at->format('M d, Y') }}</small>
+                        <small style="color: #FF4400;">Commented by: {{ $comment->user->name }} on {{ $comment->created_at->format('M d, Y H:i:s') }}
+                        </small>
                     </div>
                 </div>
                 @endforeach
@@ -63,7 +68,26 @@
                     <a href="#">View {{ $remainingCommentsCount }} more comments</a>
                 </div>
                 @endif
+                <hr>
+                <div class="container">
+                
+                    <form action="{{ route('comments.storePost') }}" method="POST">
+                        @csrf
+                
+                        <div class="form-group">
+                            <textarea class="form-control" id="text" name="text" rows="4" required></textarea>
+                        </div>
+                
+                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+    
+                
+                        <button type="submit" class="btn btn-primary mt-1" style="background-color: #FC6F00; width: 100%; border: none;">Comment</button>
+
+
+                    </form>
+                </div>
             </div>
+
         </div>
         
         

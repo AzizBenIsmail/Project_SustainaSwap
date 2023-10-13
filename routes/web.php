@@ -49,8 +49,9 @@ Route::resource('/comments', \App\Http\Controllers\CommentController::class)->na
 // Show the comment creation form
 Route::get('/comments/create', [Controllers\CommentController::class, 'create'])->name('comments.create');
 
-// Store the new comment
+Route::resource('comments', Controllers\CommentController::class);
 Route::post('/comments', [Controllers\CommentController::class, 'store'])->name('comments.store');
+Route::post('/commentPost', [Controllers\CommentController::class, 'storePost'])->name('comments.storePost');
 
 
 Route::resource('/trades', Controllers\TradeController::class);

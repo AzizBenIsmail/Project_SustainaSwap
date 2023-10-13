@@ -105,4 +105,26 @@ class CommentController extends Controller
         $comment->delete();
         return redirect()->route('comments.index')->with('success', 'Comment deleted successfully!');
     }
+
+        /**
+     * Store a newly created comment in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storePost(Request $request)
+    {
+        $request->validate([
+            'text' => 'required|string',
+            'post_id' => 'required|exists:posts,id',
+        ]);
+
+        $comment = new Comment;
+        $comment->text = $request->input('text');
+        $comment->user_id = Auth::id() ?: 1;
+        $comment->post_id = $request->input('post_id') ?: 1;
+        $comment->save();
+
+        return redirect()->route('posts.index')->with('success', 'Comment created successfully!');
+    }
 }
