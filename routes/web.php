@@ -39,9 +39,9 @@ Route::resource('Trade', Controllers\TradeController::class);
 Route::resource('posts', \App\Http\Controllers\PostController::class)->names([
     'index' => 'posts.index',
 ]);
-Route::get('/posts/create', [Controllers\PostController::class, 'create'])->name('posts.create');
-Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts.store');
-
+//Route::get('/posts/create', [Controllers\PostController::class, 'create'])->name('posts.create');
+//Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts.store');
+Route::get('/post/{post}', [Controllers\PostController::class, 'show'])->name('posts.show');
 
 Route::resource('/comments', \App\Http\Controllers\CommentController::class)->names([
     'index' => 'comments.index',

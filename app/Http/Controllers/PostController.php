@@ -16,8 +16,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        return view('posts.index', compact('posts'));
+        $posts = Post::withCount('comments')->get();
+       return view('posts.index', compact('posts'));
         }
 
     /**
@@ -55,6 +55,7 @@ class PostController extends Controller
         }
         $post->save();
 
+        session()->flash('success',' Post added successfully.');
         return redirect()->route('posts.index')->with('success', 'Post created successfully!');
     }
 
@@ -64,10 +65,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        return view('posts.show', compact('post'));
-
+    
+        if ($post) {
+            return view('posts.show', compact('post'));
+        } else {
+            return abort(404);
+        }
     }
 
     /**
@@ -76,8 +81,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
+
         return view('posts.edit', compact('post'));
     }
 
@@ -118,4 +124,6 @@ class PostController extends Controller
         $post->delete();
         return redirect()->route('posts.index')->with('success', 'Post deleted successfully!');
     }
+    
+    
 }
