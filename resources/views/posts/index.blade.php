@@ -2,7 +2,6 @@
 @section('posts')
 
 <div class="container">
-    @yield('add')
     @foreach($posts as $post)
     <div class="card mb-3">
        
@@ -28,14 +27,45 @@
             </div>
             <a href="/post/{{$post->id}}">
             <p class="card-text">{{ $post->content }}</p>
-           
         </div>
         <div class="card-footer">
             <div class="row">
-            <div class="col-md-10"><small class="text-muted">Posted by: {{ $post->user->name }} on {{ $post->created_at->format('M d, Y') }}</small></div>
-            <div class="col-md-2"><small>Comments: {{ $post->comments_count }}</small></div>
+                <div class="col-md-5">
+                    <small class="text-muted">Posted by: {{ $post->user->name }} on {{ $post->created_at->format('M d, Y') }}</small>
+                </div>
+                <div class="col-md-7">
+                    <a href="#commentsCollapse-{{ $post->id }}" data-toggle="collapse"><small>Comments: {{ $post->comments_count }}</small></a>
+                </div>
+            </div>
+            
+            <!-- Collapsible Comments Section -->
+            <div id="commentsCollapse-{{ $post->id }}" class="collapse">
+                @php
+                    $comments = $post->comments->take(-3)->reverse();
+                    $remainingCommentsCount = $post->comments_count - count($comments);
+                @endphp
+        
+                @foreach ($comments as $comment)
+                <hr>
+                <div class="row mb-2">
+                    <div class="card-body">
+                        <small class="card-text">{{ $comment->text }}</small>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Commented by: {{ $comment->user->name }} on {{ $comment->created_at->format('M d, Y') }}</small>
+                    </div>
+                </div>
+                @endforeach
+        
+                @if ($remainingCommentsCount > 0)
+                <hr>
+                <div class="text-center">
+                    <a href="#">View {{ $remainingCommentsCount }} more comments</a>
+                </div>
+                @endif
+            </div>
         </div>
-        </div>
+        
         
         
     </a>
