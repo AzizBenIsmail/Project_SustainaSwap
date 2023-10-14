@@ -3,21 +3,21 @@
 
 <div class="container" style="width: 55%;">
     @foreach($posts as $post)
-    <div class="card mb-3" style="background-color: #F0F8FF;">
+    <div class="card mb-4" style="background-color: #F0F8FF;">
        
 
         <div class="card-body" >
             <div class="row">
-                <div class="col-md-10" >
+                <div class="col-md-9" >
                     <h5 class="card-title" style="color: #00345E;">{{ $post->title }}</h5>
                 </div>
                 @if ($post->user->id == 1)
 
                 <div class="col-md-1">
-                    <a href="{{ route('posts.edit', ['post' => $post]) }}" class="btn btn-info text-white py-1">edit</a>
+                    <a href="{{ route('posts.edit', ['post' => $post]) }}" class="btn btn-info text-white py-1 px-4">edit</a>
                 </div>
-                <div class="col-md-1">
-                    <a  class="btn btn-danger text-white py-1" onclick="handleDelete({{$post->id}})">delete</a>
+                <div class="col-md-2">
+                    <a  class="btn btn-danger text-white py-1 px-3 mx-4" onclick="handleDelete({{$post->id}})">delete</a>
                 </div>
                 @endif
             </div>
@@ -29,12 +29,14 @@
             <img src="{{ asset('storage/' . $post->image_url) }}" class="img-fluid" alt="Post Image">
         </div>
         @endif
-        <div class="card-footer">
+        <div class="card-footer px-2">
             <div class="row">
                 <div class="col-md-5">
-                    <small class="" style="color: #FF4400;">
-                        Posted by: {{ $post->user->name }} on {{ $post->created_at->format('M d, Y') }}
+                    <small class="" style="color: #00345E;">
+                        Posted by:  <span style="color: #FF4400;">{{ $post->user->name }}</span> on <span style="color: #FF4400;">{{ $post->created_at->format('M d, Y H:i:s')}}</span>
                     </small>
+
+                    
                     
                 </div>
                 <div class="col-md-7">
@@ -45,18 +47,18 @@
             <!-- Collapsible Comments Section -->
             <div id="commentsCollapse-{{ $post->id }}" class="collapse">
                 @php
-                    $comments = $post->comments->take(-3)->reverse();
+                    $comments = $post->comments->take(-2)->reverse();
                     $remainingCommentsCount = $post->comments_count - count($comments);
                 @endphp
 
                 @foreach ($comments as $comment)
                 <hr>
-                <div class="row mb-1">
-                    <div class="card-body">
+                <div class="row mb-1 px-2">
+                    <div class="card-body" style="background-color: white;">
                         <small class="card-text">{{ $comment->text }}</small>
                     </div>
                     <div class="card-footer">
-                        <small style="color: #FF4400;">Commented by: {{ $comment->user->name }} on {{ $comment->created_at->format('M d, Y H:i:s') }}
+                        <small style="color: #00345E;">Commented by: <span style="color: #FF4400;">{{ $comment->user->name }}</span> on  <span style="color: #FF4400;">{{ $comment->created_at->format('M d, Y H:i:s') }}</span>
                         </small>
                     </div>
                 </div>
@@ -65,7 +67,7 @@
                 @if ($remainingCommentsCount > 0)
                 <hr>
                 <div class="text-center">
-                    <a href="#">View {{ $remainingCommentsCount }} more comments</a>
+                    <a href="/post/{{$post->id}}">View {{ $remainingCommentsCount }} more comments</a>
                 </div>
                 @endif
                 <hr>

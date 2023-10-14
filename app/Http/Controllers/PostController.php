@@ -73,6 +73,9 @@ class PostController extends Controller
     {
     
         if ($post) {
+            $post->load(['comments' => function ($query) {
+                $query->orderBy('created_at', 'desc');
+            }]);
             return view('posts.show', compact('post'));
         } else {
             return abort(404);

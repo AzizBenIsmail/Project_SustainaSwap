@@ -3,7 +3,7 @@
 @section('content')
 @include('basic component.head')
 @include('basic component.navbar')
-<div class="container mt-3 py-5 mb-4" style="background-color: #F0F8FF;width: 54%;">
+<div class="container mt-5 py-2 mb-2" style="background-color: #F0F8FF;width: 54%;">
     @if (session()->has('success'))
     <div class="mt-4 alert alert-success">
         {{session()->get('success')}}
