@@ -61,6 +61,7 @@ class CommentController extends Controller
      */
     public function show(Comment $comment)
     {
+        
         return view('comments.show', compact('comment'));
     }
 
@@ -91,9 +92,29 @@ class CommentController extends Controller
         $comment->text = $request->input('text');
         $comment->save();
 
-        return redirect()->route('comments.index')->with('success', 'Comment updated successfully!');
+        return redirect()->route('posts.index')->with('success', 'Comment updated successfully!');
     }
 
+
+
+        /**
+     * Update the specified comment in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Comment  $comment
+     * @return \Illuminate\Http\Response
+     */
+    public function updateToPost(Request $request, Comment $comment)
+    {
+        $request->validate([
+            'text' => 'required|string',
+        ]);
+
+        $comment->text = $request->input('text');
+        $comment->save();
+
+        return redirect()->route('posts.index')->with('success', 'Comment updated successfully!');
+    }
     /**
      * Remove the specified comment from storage.
      *
@@ -104,6 +125,25 @@ class CommentController extends Controller
     {
         $comment->delete();
         return redirect()->route('comments.index')->with('success', 'Comment deleted successfully!');
+    }
+
+
+
+        /**
+     * Remove the specified comment from storage.
+     *
+     * @param  \App\Models\Comment  $comment
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Comment $comment)
+    {
+        try {
+            $comment->forceDelete();
+            return redirect()->route('posts.index')->with('success', 'Comment deleted successfully!');
+        } catch (\Exception $e) {
+            logger()->error($e);
+            return redirect()->back()->with('error', 'Failed to delete the comment.');
+        }
     }
 
         /**

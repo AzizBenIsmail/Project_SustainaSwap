@@ -53,9 +53,22 @@
 
                 @foreach ($comments as $comment)
                 <hr>
-                <div class="row mb-1 px-2">
-                    <div class="card-body" style="background-color: white;">
-                        <small class="card-text">{{ $comment->text }}</small>
+                <div class="row mb-1 ">
+                    <div class="card-body row"">
+                        <small class="card-text col-md-9">{{ $comment->text }}</small>
+                        @if ($comment->user->id == 1)
+
+                        <div class="col-md-1">
+                            <a href="{{ route('comments.edit', ['comment' => $comment]) }}" class="btn btn-info text-white py-1 px-4">edit</a>
+                        </div>
+                        <div class="col-md-2">
+                            <form action="{{ route('comments.delete', $comment->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger text-white py-1 px-3 mx-4" onclick="return confirm('Are you sure you want to delete this?')">Delete</button>
+                            </form>
+                        </div>
+                        @endif
                     </div>
                     <div class="card-footer">
                         <small style="color: #00345E;">Commented by: <span style="color: #FF4400;">{{ $comment->user->name }}</span> on  <span style="color: #FF4400;">{{ $comment->created_at->format('M d, Y H:i:s') }}</span>
@@ -140,6 +153,7 @@ form.action='/posts/'+id
 $('#deleteModel').modal('show'); 
 
 }
+
 
       </script>
 

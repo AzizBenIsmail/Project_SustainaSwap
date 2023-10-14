@@ -16,7 +16,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::withCount('comments')->get();
+        $posts = Post::withCount('comments')
+        ->orderBy('created_at', 'desc') // Order by created_at in descending order
+        ->get();
+
         $posts->load(['comments' => function ($query) {
             $query->orderBy('created_at', 'desc');
         }]);
