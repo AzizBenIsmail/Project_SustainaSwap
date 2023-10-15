@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Item;
 use Illuminate\Http\Request;
 
@@ -26,8 +27,8 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('items.create');
-    }
+        $categories = Category::all();
+        return view('items.create', compact('categories'));    }
 
     /**
      * Store a newly created resource in storage.
@@ -41,7 +42,6 @@ class ItemController extends Controller
             'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'category' => 'required|string|max:255',
             'state' => 'required|string|max:255',
         ]);
 
@@ -57,7 +57,7 @@ class ItemController extends Controller
             'picture' => $imageName,
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'category' => $request->input('category'),
+            'category_id' => $request->input('category'),
             'state' => $request->input('state'),
             'user_id' => auth()->user()->id,
 //            'user_id'=> 1,
@@ -88,7 +88,8 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        return view('items.edit', compact('item'));
+        $categories = Category::all();
+        return view('items.edit', compact('item','categories'));
     }
 
     /**
@@ -104,7 +105,6 @@ class ItemController extends Controller
             'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'category' => 'required|string|max:255',
             'state' => 'required|string|max:255',
         ]);
 
@@ -119,7 +119,7 @@ class ItemController extends Controller
 
         $item->title = $request->input('title');
         $item->description = $request->input('description');
-        $item->category = $request->input('category');
+        $item->category_id = $request->input('category');
         $item->state = $request->input('state');
 
         $item->save();

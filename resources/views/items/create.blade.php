@@ -27,11 +27,12 @@
                     <div class="form-group mt-3">
                         <label for="category">Category :</label>
                         <select name="category" class="form-control" required>
-                            <option value="Bricolage">Bricolage</option>
-                            <option value="Jardinage">Gardening</option>
-                            <option value="Peinture">Paint</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
                         </select>
                     </div>
+
 
                     <div class="form-group mt-3">
                         <label for="state">State :</label>

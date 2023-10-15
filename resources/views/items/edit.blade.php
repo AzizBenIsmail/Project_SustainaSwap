@@ -26,11 +26,11 @@
                         <input name="description" class="form-control" value="{{ $item->description }}" >
                     </div>
                     <div class="form-group mt-3">
-                        <label for="category">Catégorie :</label>
+                        <label for="category">Category :</label>
                         <select name="category" class="form-control" required>
-                            <option value="Bricolage" {{ $item->category === 'Bricolage' ? 'selected' : '' }}>Bricolage</option>
-                            <option value="Jardinage" {{ $item->category === 'Jardinage' ? 'selected' : '' }}>Jardinage</option>
-                            <option value="Peinture" {{ $item->category === 'Peinture' ? 'selected' : '' }}>Peinture</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group mt-3">

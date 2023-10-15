@@ -11,14 +11,19 @@ class Item extends Model
         'picture',
         'title',
         'description',
-        'category',
+        'category_id',
         'state',
         'user_id',
-        'timestamps',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
+//    public function category()
+//    {
+//        return $this->belongsTo(Category::class);
+//    }
+
 }

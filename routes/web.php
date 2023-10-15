@@ -57,6 +57,7 @@ Route::delete('/commentDelete/{comment}', [Controllers\CommentController::class,
 
 Route::resource('/trades', Controllers\TradeController::class);
 Route::resource('Post', Controllers\PostController::class);
+Route::resource('/categories', Controllers\CategoryController::class);
 
 Auth::routes();
 
