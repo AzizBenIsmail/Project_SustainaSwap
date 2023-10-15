@@ -77,7 +77,8 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        return view('Products component/Item_detail', compact('item'));
+        $category = Category::find($item->category_id); // Utilisez une flèche (->) pour accéder à la propriété.
+        return view('Products component/Item_detail', compact('item', 'category'));
     }
 
     /**
