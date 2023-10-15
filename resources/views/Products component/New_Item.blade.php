@@ -21,7 +21,7 @@
                         <a href="{{ route('items.show', $item->id) }}" class="product-title-link">{{ $item->title }}</a>
                     </h5>
 
-{{--                    <p class="product-p">{{ $item->category->name }}</p>--}}
+                    <p class="product-p">{{ $item->category_id }}</p>
                 </div>
                 <div>
                     <small class="product-price text-muted ms-auto">{{ $item->state }}</small> . condition

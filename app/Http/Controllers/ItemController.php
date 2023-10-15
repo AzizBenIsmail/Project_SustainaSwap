@@ -16,7 +16,14 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::all();
+        $itemss = Item::all();
+        $items = [];
+
+        foreach ($itemss as $item) {
+            $category = Category::find($item->category_id);
+            $item->category_id = $category->name;
+            $items[] = $item;
+        }
         return view('Template component/products', compact('items'));
     }
 
@@ -28,12 +35,13 @@ class ItemController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('items.create', compact('categories'));    }
+        return view('items.create', compact('categories'));
+    }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -72,7 +80,7 @@ class ItemController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Item  $item
+     * @param \App\Models\Item $item
      * @return \Illuminate\Http\Response
      */
     public function show(Item $item)
@@ -84,20 +92,20 @@ class ItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Item  $item
+     * @param \App\Models\Item $item
      * @return \Illuminate\Http\Response
      */
     public function edit(Item $item)
     {
         $categories = Category::all();
-        return view('items.edit', compact('item','categories'));
+        return view('items.edit', compact('item', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Item  $item
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Item $item
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -132,7 +140,7 @@ class ItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Item  $item
+     * @param \App\Models\Item $item
      * @return \Illuminate\Http\Response
      */
     public function destroy(Item $item)

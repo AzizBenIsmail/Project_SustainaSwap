@@ -45,14 +45,17 @@
 
                         <small class="product-price text-muted ms-auto mt-auto mb-5"> {{ $item->state }}</small>
                     </div>
-                    <small class="product-price text-muted ms-auto">
+                    <small class="product-price text-muted ms-auto mt-4 mb-2">
                         Owner : {{ $item->user->name }}
+                    </small>
+                    <br>
+                    <small class="product-price text-muted ms-auto mt-4 mb-2">
+                        category : {{ $category->name }}
                     </small>
                     <div class="product-description">
 
-                        <strong class="d-block mt-4 mb-2">Description</strong>
+                        <strong class="d-block mt-4 mb-2">Description : {{ $item->description }}</strong>
 
-                        <p class="lead mb-5">{{ $item->description }}</p>
                     </div>
 
                     <div class="product-cart-thumb row">
