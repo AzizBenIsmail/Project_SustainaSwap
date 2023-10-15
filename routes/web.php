@@ -30,11 +30,16 @@ Route::get('/sign-up', function () {
 //Route::resource('/products',Controllers\ItemController::class);
 Route::resource('/items', Controllers\ItemController::class);
 Route::resource('Comment', Controllers\CommentController::class);
-Route::resource('Complaint', Controllers\ComplaintController::class);
+//Route::resource('Complaint', Controllers\ComplaintsController::class);
 Route::resource('Conversation', Controllers\ConversationController::class);
 Route::resource('Message', Controllers\MessageController::class);
 Route::resource('Trade', Controllers\TradeController::class);
 
+//Complaints routes
+Route::get('/admin/complaints', [Controllers\ComplaintsController::class, 'index'])->name('complaints.index');
+Route::post('/admin/complaints', [Controllers\ComplaintsController::class, 'store'])->name('complaints.store');
+Route::put('/admin/complaints/{complaint}', [Controllers\ComplaintsController::class, 'update'])->name('complaints.update');
+Route::delete('/admin/complaints/{complaintId}', [Controllers\ComplaintsController::class, 'destroy'])->name('complaints.delete');
 
 Route::resource('posts', \App\Http\Controllers\PostController::class)->names([
     'index' => 'posts.index',
@@ -53,6 +58,7 @@ Route::resource('comments', Controllers\CommentController::class);
 Route::post('/comments', [Controllers\CommentController::class, 'store'])->name('comments.store');
 Route::post('/commentPost', [Controllers\CommentController::class, 'storePost'])->name('comments.storePost');
 Route::delete('/commentDelete/{comment}', [Controllers\CommentController::class, 'delete'])->name('comments.delete');
+Route::delete('/commentDelete/{comment}', [Controllers\CommentController::class, 'delete'])->name('comments.delete');
 
 
 Route::resource('/trades', Controllers\TradeController::class);
@@ -62,3 +68,5 @@ Route::resource('/categories', Controllers\CategoryController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/admin/dashboard', [Controllers\AdminController::class,'index'])->name('admin-dashboard');;
