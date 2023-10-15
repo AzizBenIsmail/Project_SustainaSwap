@@ -135,5 +135,60 @@ class PostController extends Controller
         return redirect()->route('posts.index')->with('success', 'Post deleted successfully!');
     }
     
+
+///////////////////backoffice
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+public function allPost()
+{
+
+    $posts = Post::withCount('comments')
+    ->orderBy('created_at', 'desc') // Order by created_at in descending order
+    ->get();
+    return view('posts.backOffice.index', compact('posts'));
+}
     
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyAdmin(Post $post)
+    {
+        $post->delete();
+        return redirect()->route('posts.allPost')->with('success', 'Post deleted successfully!');
+    }
+
+
+        /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateAdmin(Request $request, Post $post)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+        ]);
+
+        $post->title = $request->input('title');
+        $post->content = $request->input('content');
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('uploads', 'public'); 
+            $post->image_url = $imagePath;
+        }
+        $post->save();
+
+        return redirect()->route('posts.backOffice.index')->with('success', 'Post updated successfully!');
+    }
+
 }

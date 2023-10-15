@@ -35,6 +35,7 @@ Route::resource('Conversation', Controllers\ConversationController::class);
 Route::resource('Message', Controllers\MessageController::class);
 Route::resource('Trade', Controllers\TradeController::class);
 
+Route::get('/admin/post', [Controllers\PostController::class, 'allPost'])->name('posts.allPost');
 
 Route::resource('posts', \App\Http\Controllers\PostController::class)->names([
     'index' => 'posts.index',
@@ -42,6 +43,7 @@ Route::resource('posts', \App\Http\Controllers\PostController::class)->names([
 //Route::get('/posts/create', [Controllers\PostController::class, 'create'])->name('posts.create');
 //Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts.store');
 Route::get('/post/{post}', [Controllers\PostController::class, 'show'])->name('posts.show');
+Route::delete('/admin/posts/{post}',[Controllers\PostController::class, 'destroyAdmin'])->name('posts.destroyAdmin');
 
 Route::resource('/comments', \App\Http\Controllers\CommentController::class)->names([
     'index' => 'comments.index',
