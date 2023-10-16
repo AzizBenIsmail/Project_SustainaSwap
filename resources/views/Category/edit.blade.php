@@ -1,16 +1,15 @@
-<!doctype html>
-<html lang="en">
+@extends('layouts.admin')
+@section('content')
 
-@include('basic component.head')
+    <h1>Item management</h1>
 
-<body>
 
-<main>
-
-    @include('basic component.navbar')
-    <div class="container mt-5 ">
-        <div class="row justify-content-center mt-5">
-            <div class="col-md-8 mt-3">
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <div class="container ">
+        <div class="row justify-content-center">
+            <div class="">
                 <h1>Modifier la Catégorie : {{ $category->name }}</h1>
 
                 <form action="{{ route('categories.update', $category->id) }}" method="POST">
@@ -27,9 +26,27 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Mettre à jour</button>
                 </form>
-</main>
-@include('basic component.footer')
-@include('basic component.JAVASCRIPT_FILES')
+            </div>
 
-</body>
-</html>
+        </div>
+    </div>
+    <form id="delete-post-form" method="POST" style="display: none;">
+        @csrf
+        @method('DELETE')
+    </form>
+
+    <script>
+        document.addEventListener('click', function (e) {
+            if (e.target && e.target.classList.contains('delete-post')) {
+                e.preventDefault();
+                const postId = e.target.getAttribute('data-post-id');
+                if (confirm('Are you sure you want to delete this post?')) {
+                    const deleteForm = document.getElementById('delete-post-form');
+                    deleteForm.action = `/admin/posts/${postId}`;
+                    deleteForm.submit();
+                }
+            }
+        });
+    </script>
+@endsection
+

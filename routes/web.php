@@ -29,6 +29,8 @@ Route::get('/sign-up', function () {
 
 //Route::resource('/products',Controllers\ItemController::class);
 Route::resource('/items', Controllers\ItemController::class);
+Route::resource('/admin/itemsAdmin', Controllers\ItemAdminController::class);
+
 Route::resource('Comment', Controllers\CommentController::class);
 Route::resource('Complaint', Controllers\ComplaintController::class);
 Route::resource('Conversation', Controllers\ConversationController::class);
@@ -60,7 +62,7 @@ Route::get('/admin/comment', [Controllers\CommentController::class, 'allComment'
 
 Route::resource('/trades', Controllers\TradeController::class);
 Route::resource('Post', Controllers\PostController::class);
-Route::resource('/categories', Controllers\CategoryController::class);
+Route::resource('admin/categories', Controllers\CategoryController::class);
 
 Auth::routes();
 

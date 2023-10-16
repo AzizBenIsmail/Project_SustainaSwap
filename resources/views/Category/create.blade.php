@@ -1,13 +1,13 @@
-<!doctype html>
-<html lang="en">
+@extends('layouts.admin')
+@section('content')
 
-@include('basic component.head')
+    <h1>Item management</h1>
 
-<body>
 
-<main>
-
-    @include('basic component.navbar')
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Basic Datatable</h5>
+            <div class="table-responsive">
     <div class="container mt-5 ">
         <div class="row justify-content-center mt-5">
             <div class="col-md-8 mt-3">
@@ -30,9 +30,14 @@
             <div class=" mt-3"></div>
         </div>
     </div>
-</main>
-@include('basic component.footer')
-@include('basic component.JAVASCRIPT_FILES')
+            </div>
 
-</body>
-</html>
+        </div>
+    </div>
+    <form id="delete-post-form" method="POST" style="display: none;">
+        @csrf
+        @method('DELETE')
+    </form>
+
+@endsection
+
