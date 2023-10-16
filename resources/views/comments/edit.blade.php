@@ -17,7 +17,7 @@
             <textarea class="form-control" id="text" name="text" rows="4" required>{{ $comment->text }}</textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" class="btn btn-primary mt-1" style="background-color: #FC6F00; width: 100%; border: none;">Update</button>
     </form>
 </div>
 @endsection

@@ -11,7 +11,7 @@
                 <div class="col-md-9" >
                     <h5 class="card-title" style="color: #00345E;">{{ $post->title }}</h5>
                 </div>
-                @if ($post->user->id == 1)
+                @if (auth()->check() && $post->user->id == auth()->user()->id)
 
                 <div class="col-md-1">
                     <a href="{{ route('posts.edit', ['post' => $post]) }}" class="btn btn-info text-white py-1 px-4">edit</a>
@@ -56,7 +56,8 @@
                 <div class="row mb-1 ">
                     <div class="card-body row"">
                         <small class="card-text col-md-9">{{ $comment->text }}</small>
-                        @if ($comment->user->id == 1)
+
+                        @if (auth()->check() && $comment->user->id == auth()->user()->id)
 
                         <div class="col-md-1">
                             <a href="{{ route('comments.edit', ['comment' => $comment]) }}" class="btn btn-info text-white py-1 px-4">edit</a>

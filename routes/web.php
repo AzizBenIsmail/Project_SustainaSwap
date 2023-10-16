@@ -55,6 +55,7 @@ Route::resource('comments', Controllers\CommentController::class);
 Route::post('/comments', [Controllers\CommentController::class, 'store'])->name('comments.store');
 Route::post('/commentPost', [Controllers\CommentController::class, 'storePost'])->name('comments.storePost');
 Route::delete('/commentDelete/{comment}', [Controllers\CommentController::class, 'delete'])->name('comments.delete');
+Route::get('/admin/comment', [Controllers\CommentController::class, 'allComment'])->name('comments.allComment');
 
 
 Route::resource('/trades', Controllers\TradeController::class);

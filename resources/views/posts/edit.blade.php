@@ -37,7 +37,7 @@
             <input type="file" class="form-control" id="image" name="image">
         </div>
         <div class="center justify">
-            <button type="submit" class="btn btn-primary mb-5 px-5">Update Post</button>
+            <button type="submit" class="btn btn-primary mt-1" style="background-color: #FC6F00; width: 100%; border: none;">Update Post</button>
         </div>
     </form>
 </div>
