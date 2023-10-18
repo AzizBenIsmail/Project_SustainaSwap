@@ -11,9 +11,10 @@
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Image</th>
-                        <th>Titre</th>
-                        <th>Catégorie</th>
+                        <th>Picture</th>
+                        <th>title</th>
+                        <th>owner</th>
+                        <th>category</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -25,10 +26,11 @@
                                 <img src="{{ asset('uploads/' . $item->picture) }}" alt="Image de l'élément" width="100">
                             </td>
                             <td>{{ $item->title }}</td>
-                            <td>{{ $item->category_id }}</td>
+                            <td>{{ $item->user->name }}</td>
+                            <td>{{ $item->category->name }}</td>
                             <td>
-                                <a href="{{ route('itemsAdmin.show', $item->id) }}" class="btn btn-info">Afficher</a>
-                                <a href="{{ route('itemsAdmin.edit', $item->id) }}" class="btn btn-warning">Modifier</a>
+{{--                                <a href="{{ route('itemsAdmin.show', $item->id) }}" class="btn btn-info">Afficher</a>--}}
+                                <a href="{{ route('itemsAdmin.edit', ['id' => $item->id]) }}" class="btn btn-info">Modifier</a>
                                 <form action="{{ route('itemsAdmin.destroy', $item->id) }}" method="POST" style="display: inline;">
                                     @csrf
                                     @method('DELETE')

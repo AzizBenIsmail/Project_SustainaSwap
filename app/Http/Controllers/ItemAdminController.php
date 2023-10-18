@@ -16,14 +16,7 @@ class ItemAdminController extends Controller
      */
     public function index()
     {
-        $itemss = Item::all();
-        $items = [];
-
-        foreach ($itemss as $item) {
-            $category = Category::find($item->category_id);
-            $item->category_id = $category->name;
-            $items[] = $item;
-        }
+        $items = Item::all();
         return view('items/backOffice/index', compact('items'));
     }
 
@@ -60,12 +53,12 @@ class ItemAdminController extends Controller
         } else {
             $imageName = '';
         }
-
+        $category = Category::find($request->input('category'));
         $item = new Item([
             'picture' => $imageName,
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'category_id' => $request->input('category'),
+            'category_id' => $category->id,
             'state' => $request->input('state'),
             'user_id' => auth()->user()->id,
 //            'user_id'=> 1,
@@ -94,8 +87,9 @@ class ItemAdminController extends Controller
      * @param \App\Models\Item $item
      * @return \Illuminate\Http\Response
      */
-    public function edit(Item $item)
+    public function edit($id)
     {
+        $item = Item::find($id);
         $categories = Category::all();
         return view('items/backOffice/edit', compact('item', 'categories'));
     }
@@ -104,7 +98,7 @@ class ItemAdminController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param \App\Models\Item $item
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -124,10 +118,11 @@ class ItemAdminController extends Controller
             $image->move(public_path('uploads'), $imageName);
             $item->picture = $imageName;
         }
+        $category = Category::find($request->input('category'));
 
         $item->title = $request->input('title');
         $item->description = $request->input('description');
-        $item->category_id = $request->input('category');
+        $item->category_id = $category->id;
         $item->state = $request->input('state');
 
         $item->save();
@@ -141,11 +136,19 @@ class ItemAdminController extends Controller
      * @param \App\Models\Item $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Item $item)
+    public function destroy($id)
     {
+        $item = Item::find($id);
+
+        if (!$item) {
+            return redirect()->route('itemsAdmin.index')->with('error', 'Élément non trouvé.');
+        }
+
+        // Assurez-vous que l'élément est lié à l'utilisateur ou implémentez la logique de vérification appropriée.
+
         $item->delete();
 
-        return redirect()->route('itemsAdmin.index')
-            ->with('success', 'Élément supprimé avec succès.');
+        return redirect()->route('itemsAdmin.index')->with('success', 'Élément supprimé avec succès.');
     }
+
 }

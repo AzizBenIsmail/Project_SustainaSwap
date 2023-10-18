@@ -31,9 +31,6 @@
     </div>
     </div>
     </div>
-    <form id="delete-post-form" method="POST" style="display: none;">
-        @csrf
-        @method('DELETE')
-    </form>
+
 
 @endsection

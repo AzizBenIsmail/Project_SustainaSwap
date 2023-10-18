@@ -29,7 +29,7 @@
                         <label for="category">Category :</label>
                         <select name="category" class="form-control" required>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                <option value="{{ $category->id }}" >{{ $category->name }}</option>
                             @endforeach
                         </select>
                     </div>

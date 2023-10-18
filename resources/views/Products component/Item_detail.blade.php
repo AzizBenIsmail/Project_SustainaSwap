@@ -50,7 +50,7 @@
                     </small>
                     <br>
                     <small class="product-price text-muted ms-auto mt-4 mb-2">
-                        category : {{ $category->name }}
+                        category : {{ $item->category->name }}
                     </small>
                     <div class="product-description">
 

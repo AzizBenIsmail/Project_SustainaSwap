@@ -16,14 +16,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $itemss = Item::all();
-        $items = [];
-
-        foreach ($itemss as $item) {
-            $category = Category::find($item->category_id);
-            $item->category_id = $category->name;
-            $items[] = $item;
-        }
+        $items = Item::all();
         return view('Template component/products', compact('items'));
     }
 
@@ -60,12 +53,13 @@ class ItemController extends Controller
         } else {
             $imageName = '';
         }
-
+        $category = Category::find($request->input('category'));
         $item = new Item([
             'picture' => $imageName,
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'category_id' => $request->input('category'),
+
+            'category_id' => $category->id,
             'state' => $request->input('state'),
             'user_id' => auth()->user()->id,
 //            'user_id'=> 1,
@@ -85,8 +79,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        $category = Category::find($item->category_id); // Utilisez une flèche (->) pour accéder à la propriété.
-        return view('Products component/Item_detail', compact('item', 'category'));
+        return view('Products component/Item_detail', compact('item'));
     }
 
     /**
@@ -125,10 +118,11 @@ class ItemController extends Controller
             $image->move(public_path('uploads'), $imageName);
             $item->picture = $imageName;
         }
+        $category = Category::find($request->input('category'));
 
         $item->title = $request->input('title');
         $item->description = $request->input('description');
-        $item->category_id = $request->input('category');
+        $item->category_id = $category->id;
         $item->state = $request->input('state');
 
         $item->save();

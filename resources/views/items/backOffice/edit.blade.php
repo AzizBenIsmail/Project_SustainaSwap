@@ -6,7 +6,7 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-8 mt-3">
 
-                <form method="POST" action="{{ route('itemsAdmin.update', $item->id) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('itemsAdmin.update', ['id' => $item->id]) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="form-group mt-3">
