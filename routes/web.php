@@ -46,6 +46,9 @@ Route::resource('Message', Controllers\MessageController::class);
 Route::resource('Trade', Controllers\TradeController::class);
 
 Route::get('/admin/post', [Controllers\PostController::class, 'allPost'])->name('posts.allPost');
+Route::post('/admin/post', [Controllers\PostController::class, 'storeToAdmin'])->name('posts.storeToAdmin');
+Route::get('/admin/post/{post}/edit', [Controllers\PostController::class, 'editToAdmin'])->name('posts.editToAdmin');
+Route::put('/admin/post/{post}', [Controllers\PostController::class, 'updateToAdmin'])->name('posts.updateToAdmin');
 
 Route::resource('posts', \App\Http\Controllers\PostController::class)->names([
     'index' => 'posts.index',
