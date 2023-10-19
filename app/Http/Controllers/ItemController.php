@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -16,10 +17,31 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::all();
-        return view('Template component/products', compact('items'));
+        // Vérifiez si un utilisateur est authentifié
+        if (Auth::check()) {
+            // Obtenez l'utilisateur actuellement authentifié
+            $user = Auth::user();
+
+            // Maintenant, vous pouvez utiliser $user pour filtrer les éléments de l'utilisateur connecté.
+            $items = Item::where('user_id', $user->id)->paginate(4);
+
+            return view('Template component/products', compact('items'));
+        }
+
+        // Gérez le cas où aucun utilisateur n'est authentifié, par exemple, redirigez vers la page de connexion.
+        return redirect()->route('login');
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexmain()
+    {
+        $items = Item::paginate(4); // 12 éléments par page
+        return view('Template component/index', compact('items'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -80,6 +102,19 @@ class ItemController extends Controller
     public function show(Item $item)
     {
         return view('Products component/Item_detail', compact('item'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param \App\Models\Item $item
+     * @return \Illuminate\Http\Response
+     */
+    public function showmain($id)
+    {
+        $item = Item::find($id);
+         // Si l'élément est trouvé, affichez-le dans une vue
+            return view('Products component/Item_detailmain', compact('item'));
     }
 
     /**

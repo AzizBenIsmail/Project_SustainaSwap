@@ -5,9 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('Template component/index');
-});
+Route::get('/', [Controllers\ItemController::class, 'indexmain']);
 Route::get('/about', function () {
     return view('Template component/about');
 });
@@ -27,10 +25,11 @@ Route::get('/sign-up', function () {
     return view('Sign/sign-up');
 });
 
+Route::get('/showmain/{id}', [Controllers\ItemController::class, 'showmain'])->name('showmain');
 //Route::resource('/products',Controllers\ItemController::class);
+
 Route::resource('/items', Controllers\ItemController::class);
 Route::resource('/admin/itemsAdmin', Controllers\ItemAdminController::class);
-
 Route::get('/admin/itemsAdmin', [Controllers\ItemAdminController::class, 'index'])->name('itemsAdmin.index');
 Route::get('/admin/itemsAdmin/create', [Controllers\ItemAdminController::class, 'create'])->name('itemsAdmin.create');
 Route::post('/admin/itemsAdmin', [Controllers\ItemAdminController::class, 'store'])->name('itemsAdmin.store');

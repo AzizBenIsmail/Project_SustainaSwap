@@ -58,22 +58,23 @@
 
                     </div>
 
-                    <div class="product-cart-thumb row">
-                        <a href="{{ route('items.edit', $item->id) }}" class="btn btn-warning" >Modifier</a>
-                        <form href="{{ route('items.destroy', $item->id) }}" method="POST" style="display: inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Supprimer</button>
-                        </form>
-                    </div>
-
                 </div>
 
             </div>
         </div>
     </section>
 
+    <section class="related-product section-padding border-top">
+        <div class="container">
+            <div class="row">
 
+                <div class="col-12">
+                    <h3 class="mb-5">You might also like</h3>
+                </div>
+
+            </div>
+        </div>
+    </section>
 
 </main>
 
