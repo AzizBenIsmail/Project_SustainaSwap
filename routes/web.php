@@ -42,6 +42,13 @@ Route::get('/admin/itemsAdmin/{id}/edit', [Controllers\ItemAdminController::clas
 Route::put('/admin/itemsAdmin/{id}', 'ItemAdminController@update')->name('itemsAdmin.update');
 Route::delete('/admin/itemsAdmin/{id}', 'ItemAdminController@destroy')->name('itemsAdmin.destroy');
 
+
+Route::resource('/admin/tradesAdmin', App\Http\Controllers\AdminTradeController::class);
+Route::get('/admin/tradesAdmin', [Controllers\AdminTradeController::class, 'index'])->name('tradesAdmin.index');
+Route::get('/admin/tradesAdmin/{id}', [Controllers\AdminTradeController::class, 'show'])->name('tradesAdmin.show');
+Route::delete('/admin/tradesAdmin/{id}', 'TradeAdminController@destroy')->name('tradesAdmin.destroy');
+
+
 Route::resource('Comment', Controllers\CommentController::class);
 Route::resource('Complaint', Controllers\ComplaintController::class);
 Route::resource('Conversation', Controllers\ConversationController::class);
