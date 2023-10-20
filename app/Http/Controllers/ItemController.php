@@ -35,11 +35,22 @@ class ItemController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function indexmain()
+    public function indexmain(Request $request)
     {
-        $items = Item::paginate(4); // 12 éléments par page
+        $search = $request->input('search');
+
+        $query = Item::query();
+
+        if (!empty($search)) {
+            $query->where('title', 'like', '%' . $search . '%')
+                ->orWhere('description', 'like', '%' . $search . '%');
+        }
+
+        $items = $query->paginate(3);
+
         return view('Template component/index', compact('items'));
     }
     /**

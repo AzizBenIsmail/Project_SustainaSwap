@@ -86,7 +86,7 @@ class CategoryController extends Controller
             'name' => 'required|string|max:15',
             'description' => 'nullable|string|max:255',
         ]);
-        
+
         $category = Category::find($id);
         $category->name = $request->input('name');
         $category->description = $request->input('description');

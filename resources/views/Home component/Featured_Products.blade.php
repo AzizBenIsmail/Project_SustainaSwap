@@ -5,7 +5,14 @@
             <div class="col-12 text-center">
                 <h2 class="mb-5">Featured Products</h2>
             </div>
-
+            <form action="{{ route('indexmain') }}" method="GET">
+                <div class="input-group mb-3">
+                    <input type="text" name="search" class="form-control" placeholder="Rechercher un produit...">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Rechercher</button>
+                    </div>
+                </div>
+            </form>
             @foreach ($items as $item)
                 <div class="col-lg-3 col-12 mb-3">
                     <div class="product-thumb">

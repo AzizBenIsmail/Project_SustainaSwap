@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', [Controllers\ItemController::class, 'indexmain']);
+Route::get('/', [Controllers\ItemController::class, 'indexmain'])->name('indexmain');
 Route::get('/about', function () {
     return view('Template component/about');
 });
