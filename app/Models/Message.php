@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Message extends Model
 {
     // use HasFactory;
-    protected $fillable = ['name', 'is_group'];
+    protected $fillable = ['user_id', 'message'];
+
 
     
     public function users()

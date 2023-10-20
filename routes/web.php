@@ -3,7 +3,7 @@
 use App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PusherController;
 
 Route::get('/', function () {
     return view('Template component/index');
@@ -26,6 +26,10 @@ Route::get('/sign-in', function () {
 Route::get('/sign-up', function () {
     return view('Sign/sign-up');
 });
+
+Route::get('/chat', 'App\Http\Controllers\PusherController@index');
+Route::post('/broadcast', 'App\Http\Controllers\PusherController@broadcast');
+Route::post('/receive', 'App\Http\Controllers\PusherController@receive');
 
 //Route::resource('/products',Controllers\ItemController::class);
 Route::resource('/items', Controllers\ItemController::class);
