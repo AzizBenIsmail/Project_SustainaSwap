@@ -44,7 +44,6 @@ Route::resource('Complaint', Controllers\ComplaintController::class);
 Route::resource('Conversation', Controllers\ConversationController::class);
 Route::resource('Message', Controllers\MessageController::class);
 Route::resource('Trade', Controllers\TradeController::class);
-
 Route::get('/admin/post', [Controllers\PostController::class, 'allPost'])->name('posts.allPost');
 
 Route::resource('posts', \App\Http\Controllers\PostController::class)->names([
@@ -67,11 +66,10 @@ Route::post('/commentPost', [Controllers\CommentController::class, 'storePost'])
 Route::delete('/commentDelete/{comment}', [Controllers\CommentController::class, 'delete'])->name('comments.delete');
 Route::get('/admin/comment', [Controllers\CommentController::class, 'allComment'])->name('comments.allComment');
 
-
 Route::resource('/trades', Controllers\TradeController::class);
+Route::get('/trades/search/{search}', 'App\Http\Controllers\TradeController@search')->name('trades.search');
 Route::resource('Post', Controllers\PostController::class);
 Route::resource('admin/categories', Controllers\CategoryController::class);
-
+Route::resource('avis', Controllers\AvisController::class);
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
