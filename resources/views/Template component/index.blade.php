@@ -16,9 +16,9 @@
 
     @include("Home component.cover_picture")
 
-    @include("Home component.Get_started")
+{{--    @include("Home component.Get_started")--}}
 
-    @include('Home component.Retail_shop')
+{{--    @include('Home component.Retail_shop')--}}
 
     @include('Home component.Featured_Products')
 
