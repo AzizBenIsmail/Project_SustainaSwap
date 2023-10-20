@@ -37,6 +37,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:15',
+            'description' => 'nullable|string|max:255',
+        ]);
+
         $category = new Category();
         $category->name = $request->input('name');
         $category->description = $request->input('description');
@@ -77,6 +82,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required|string|max:15',
+            'description' => 'nullable|string|max:255',
+        ]);
+        
         $category = Category::find($id);
         $category->name = $request->input('name');
         $category->description = $request->input('description');

@@ -18,6 +18,9 @@
                     <div class="form-group">
                         <label for="name">Catégorie</label>
                         <input type="text" name="name" class="form-control" required>
+                        @error('name')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>

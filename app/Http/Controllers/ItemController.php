@@ -63,8 +63,8 @@ class ItemController extends Controller
     {
         $request->validate([
             'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'title' => 'required|string|max:15',
+            'description' => 'nullable|string|max:255',
             'state' => 'required|string|max:255',
         ]);
 
@@ -140,7 +140,7 @@ class ItemController extends Controller
     {
         $request->validate([
             'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:15',
             'description' => 'nullable|string',
             'state' => 'required|string|max:255',
         ]);

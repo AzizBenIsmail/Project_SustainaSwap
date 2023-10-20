@@ -20,6 +20,9 @@
                     <div class="form-group mt-3">
                         <label for="title">Title :</label>
                         <input type="text" name="title" class="form-control" value="{{ $item->title }}" required>
+                        @error('title')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group mt-3">
                         <label for="description">Description :</label>
@@ -45,6 +48,9 @@
                     <div class="form-group mt-3">
                         <label for="picture">Image actuelle :</label>
                         <img src="{{ asset('uploads/' . $item->picture) }}" alt="Current Image" class="img-thumbnail" width="250" height="250">
+                        @error('picture')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group mt-3">
                         <label for="picture">Nouvelle image :</label>
