@@ -10,6 +10,9 @@
                     <div class="form-group mt-3">
                         <label for="title">Title :</label>
                         <input type="text" name="title" class="form-control" required>
+                        @error('title')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group mt-3">
                         <label for="description">Description :</label>
@@ -37,6 +40,9 @@
                     <div class="form-group mt-3">
                         <label for="picture">Picture :</label>
                         <input type="file" name="picture" class="form-control" required>
+                        @error('picture')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div >
                         <button type="submit" class="btn btn-primary mt-5">Add New Item</button>

@@ -5,9 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PusherController;
 
-Route::get('/', function () {
-    return view('Template component/index');
-});
+Route::get('/', [Controllers\ItemController::class, 'indexmain'])->name('indexmain');
 Route::get('/about', function () {
     return view('Template component/about');
 });
@@ -31,10 +29,11 @@ Route::get('/chat', 'App\Http\Controllers\PusherController@index');
 Route::post('/broadcast', 'App\Http\Controllers\PusherController@broadcast');
 Route::post('/receive', 'App\Http\Controllers\PusherController@receive');
 
+Route::get('/showmain/{id}', [Controllers\ItemController::class, 'showmain'])->name('showmain');
 //Route::resource('/products',Controllers\ItemController::class);
+
 Route::resource('/items', Controllers\ItemController::class);
 Route::resource('/admin/itemsAdmin', Controllers\ItemAdminController::class);
-
 Route::get('/admin/itemsAdmin', [Controllers\ItemAdminController::class, 'index'])->name('itemsAdmin.index');
 Route::get('/admin/itemsAdmin/create', [Controllers\ItemAdminController::class, 'create'])->name('itemsAdmin.create');
 Route::post('/admin/itemsAdmin', [Controllers\ItemAdminController::class, 'store'])->name('itemsAdmin.store');
@@ -50,6 +49,9 @@ Route::resource('Message', Controllers\MessageController::class);
 Route::resource('Trade', Controllers\TradeController::class);
 
 Route::get('/admin/post', [Controllers\PostController::class, 'allPost'])->name('posts.allPost');
+Route::post('/admin/post', [Controllers\PostController::class, 'storeToAdmin'])->name('posts.storeToAdmin');
+Route::get('/admin/post/{post}/edit', [Controllers\PostController::class, 'editToAdmin'])->name('posts.editToAdmin');
+Route::put('/admin/post/{post}', [Controllers\PostController::class, 'updateToAdmin'])->name('posts.updateToAdmin');
 
 Route::resource('posts', \App\Http\Controllers\PostController::class)->names([
     'index' => 'posts.index',

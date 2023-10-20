@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -16,9 +17,61 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::all();
-        return view('Template component/products', compact('items'));
+        // Vérifiez si un utilisateur est authentifié
+        if (Auth::check()) {
+            // Obtenez l'utilisateur actuellement authentifié
+            $user = Auth::user();
+
+            // Maintenant, vous pouvez utiliser $user pour filtrer les éléments de l'utilisateur connecté.
+            $items = Item::where('user_id', $user->id)->paginate(4);
+
+            return view('Template component/products', compact('items'));
+        }
+
+        // Gérez le cas où aucun utilisateur n'est authentifié, par exemple, redirigez vers la page de connexion.
+        return redirect()->route('login');
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function indexmain(Request $request)
+    {
+        $search = $request->input('search');
+        $sort = $request->input('sort', 'name');
+        $categoryId = $request->input('category');
+
+        $query = Item::query();
+
+        if (!empty($search)) {
+            $query->where('title', 'like', '%' . $search . '%')
+                ->orWhere('description', 'like', '%' . $search . '%');
+        }
+
+        if ($categoryId) {
+            // Filtrer par catégorie si une catégorie est sélectionnée
+            $query->where('category_id', $categoryId);
+        }
+
+        if ($sort == 'name') {
+            $query->orderBy('title', 'asc');
+        } elseif ($sort == 'state') {
+            $query->orderByState();
+        } elseif ($sort == 'category') {
+            $query->join('categories', 'items.category_id', '=', 'categories.id')
+                ->orderBy('categories.name', 'asc');
+        }
+
+        $items = $query->paginate(4);
+
+        $categories = Category::all();
+
+        return view('Template component/index', compact('items', 'categories'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -41,8 +94,8 @@ class ItemController extends Controller
     {
         $request->validate([
             'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'title' => 'required|string|max:15',
+            'description' => 'nullable|string|max:255',
             'state' => 'required|string|max:255',
         ]);
 
@@ -83,6 +136,19 @@ class ItemController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param \App\Models\Item $item
+     * @return \Illuminate\Http\Response
+     */
+    public function showmain($id)
+    {
+        $item = Item::find($id);
+         // Si l'élément est trouvé, affichez-le dans une vue
+            return view('Products component/Item_detailmain', compact('item'));
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param \App\Models\Item $item
@@ -105,7 +171,7 @@ class ItemController extends Controller
     {
         $request->validate([
             'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:15',
             'description' => 'nullable|string',
             'state' => 'required|string|max:255',
         ]);
