@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Commands\\dbcreate' => $baseDir . '/app/Console/Commands/dbcreate.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+    'App\\Events\\MessageDeletedEvent' => $baseDir . '/app/Events/MessageDeletedEvent.php',
     'App\\Events\\PusherBroadcast' => $baseDir . '/app/Events/PusherBroadcast.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\AdminController' => $baseDir . '/app/Http/Controllers/AdminController.php',
@@ -40,6 +41,7 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\ValidateSignature' => $baseDir . '/app/Http/Middleware/ValidateSignature.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Listeners\\BroadcastMessageDeleted' => $baseDir . '/app/Listeners/BroadcastMessageDeleted.php',
     'App\\Models\\Avis' => $baseDir . '/app/Models/Avis.php',
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
     'App\\Models\\Comment' => $baseDir . '/app/Models/Comment.php',
@@ -2706,6 +2708,7 @@ return array(
     'League\\Flysystem\\PathTraversalDetected' => $vendorDir . '/league/flysystem/src/PathTraversalDetected.php',
     'League\\Flysystem\\PortableVisibilityGuard' => $vendorDir . '/league/flysystem/src/PortableVisibilityGuard.php',
     'League\\Flysystem\\ProxyArrayAccessToProperties' => $vendorDir . '/league/flysystem/src/ProxyArrayAccessToProperties.php',
+    'League\\Flysystem\\ResolveIdenticalPathConflict' => $vendorDir . '/league/flysystem/src/ResolveIdenticalPathConflict.php',
     'League\\Flysystem\\StorageAttributes' => $vendorDir . '/league/flysystem/src/StorageAttributes.php',
     'League\\Flysystem\\SymbolicLinkEncountered' => $vendorDir . '/league/flysystem/src/SymbolicLinkEncountered.php',
     'League\\Flysystem\\UnableToCheckDirectoryExistence' => $vendorDir . '/league/flysystem/src/UnableToCheckDirectoryExistence.php',
