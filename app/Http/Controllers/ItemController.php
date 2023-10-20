@@ -49,7 +49,7 @@ class ItemController extends Controller
                 ->orWhere('description', 'like', '%' . $search . '%');
         }
 
-        $items = $query->paginate(3);
+        $items = $query->paginate(4);
 
         return view('Template component/index', compact('items'));
     }
