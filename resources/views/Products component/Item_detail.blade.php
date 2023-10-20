@@ -83,7 +83,8 @@
         </div>
     </section>
 
-   
+
+
 </main>
 
 @include('basic component.footer')

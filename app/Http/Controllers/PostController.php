@@ -191,4 +191,74 @@ public function allPost()
         return redirect()->route('posts.backOffice.index')->with('success', 'Post updated successfully!');
     }
 
+
+
+        /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeToAdmin(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+        ]);
+
+        $post = new Post;
+        $post->title = $request->input('title');
+        $post->content = $request->input('content');
+        $post->user_id = Auth::id() ?: 1;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('uploads', 'public'); 
+            $post->image_url = $imagePath;
+        }
+        $post->save();
+
+        session()->flash('success',' Post added successfully.');
+        return redirect()->route('posts.allPost')->with('success', 'Post created successfully!');
+    }
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editToAdmin(Post $post)
+    {
+
+        return view('posts.backOffice.edit', compact('post'));
+    }
+    
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateToAdmin(Request $request, Post $post)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+        ]);
+
+        $post->title = $request->input('title');
+        $post->content = $request->input('content');
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('uploads', 'public'); 
+            $post->image_url = $imagePath;
+        }
+        $post->save();
+
+        return redirect()->route('posts.allPost')->with('success', 'Post updated successfully!');
+    }
+
 }
