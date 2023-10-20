@@ -41,6 +41,8 @@ class ItemController extends Controller
     public function indexmain(Request $request)
     {
         $search = $request->input('search');
+        $sort = $request->input('sort', 'name');
+        $categoryId = $request->input('category');
 
         $query = Item::query();
 
@@ -49,10 +51,28 @@ class ItemController extends Controller
                 ->orWhere('description', 'like', '%' . $search . '%');
         }
 
+        if ($categoryId) {
+            // Filtrer par catégorie si une catégorie est sélectionnée
+            $query->where('category_id', $categoryId);
+        }
+
+        if ($sort == 'name') {
+            $query->orderBy('title', 'asc');
+        } elseif ($sort == 'state') {
+            $query->orderByState();
+        } elseif ($sort == 'category') {
+            $query->join('categories', 'items.category_id', '=', 'categories.id')
+                ->orderBy('categories.name', 'asc');
+        }
+
         $items = $query->paginate(4);
 
-        return view('Template component/index', compact('items'));
+        $categories = Category::all();
+
+        return view('Template component/index', compact('items', 'categories'));
     }
+
+
     /**
      * Show the form for creating a new resource.
      *
