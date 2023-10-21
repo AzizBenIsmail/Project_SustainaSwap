@@ -50,7 +50,7 @@ Route::post('/admin/itemsAdmin', [Controllers\ItemAdminController::class, 'store
 Route::resource('/admin/tradesAdmin', App\Http\Controllers\AdminTradeController::class);
 Route::get('/admin/tradesAdmin', [Controllers\AdminTradeController::class, 'index'])->name('tradesAdmin.index');
 //Route::get('/admin/tradesAdmin/{id}', [Controllers\AdminTradeController::class, 'show'])->name('tradesAdmin.show');
-//Route::delete('/admin/tradesAdmin/{id}', 'TradeAdminController@destroy')->name('tradesAdmin.destroy');
+//Route::delete('/admin/tradesAdmin/{id}', 'TradeAdminController@destroy')->name('tradesAdmin.destroy');sus
 
 
 Route::resource('Comment', Controllers\CommentController::class);
@@ -80,6 +80,14 @@ Route::get('/complaints', [Controllers\ComplaintsController::class, 'index'])->n
 Route::post('/complaints', [Controllers\ComplaintsController::class, 'store'])->name('complaints.store');
 Route::put('/complaints/{complaint}', [Controllers\ComplaintsController::class, 'update'])->name('complaints.update');
 Route::delete('/complaints/{complaintId}', [Controllers\ComplaintsController::class, 'destroy'])->name('complaints.delete');
+
+//Users Management
+    Route::get('users/all',[Controllers\AdminController::class,'getAll'])->name('users.get-all');
+//    Route::post('users/all',[Controllers\AdminController::class,'getAll'])->name('users.create');
+    Route::post('users/{user}/grantAdminPrivileges',[Controllers\AdminController::class,'grantAdminPrivileges'])->name('users.grant-admin-privileges');
+    Route::post('users/{userId}/revokeAdminPrivileges',[Controllers\AdminController::class,'revokeAdminPrivileges'])->name('users.revoke-admin-privileges');
+    Route::delete('users/{userId}/deleteUser',[Controllers\AdminController::class,'deleteUser'])->name('users.delete-user');
+
 });
 ### End Admin Routes ###
 
@@ -103,8 +111,8 @@ Route::delete('/commentDelete/{comment}', [Controllers\CommentController::class,
 Route::get('/admin/comment', [Controllers\CommentController::class, 'allComment'])->name('comments.allComment');
 
 
-Route::resource('/trades', Controllers\TradeController::class);
-Route::get('/trades/search/{search}', 'App\Http\Controllers\TradeController@search')->name('trades.search');
+//Route::resource('/trades', Controllers\TradeController::class);
+//Route::get('/trades/search/{search}', 'App\Http\Controllers\TradeController@search')->name('trades.search');
 Route::resource('Post', Controllers\PostController::class);
 Route::resource('admin/categories', Controllers\CategoryController::class);
 Route::resource('avis', Controllers\AvisController::class);
