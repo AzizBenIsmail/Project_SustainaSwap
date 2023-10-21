@@ -29,7 +29,7 @@ Route::get('/sign-up', function () {
 });
 ### End Guest Routes ###
 
-Route::get('/chat', 'App\Http\Controllers\PusherController@index');
+Route::get('/chat', 'App\Http\Controllers\PusherController@index')->name('chatIndex');
 Route::post('/broadcast', 'App\Http\Controllers\PusherController@broadcast');
 Route::post('/receive', 'App\Http\Controllers\PusherController@receive');
 Route::get('/chat/{message}/delete', [Controllers\PusherController::class, 'destroy'])->name('pusher.index');
