@@ -17,6 +17,8 @@
 </head>
 
 <body>
+@include('basic component.navbar')
+
 <div class="chat">
 
   <!-- Header -->
