@@ -126,6 +126,20 @@ class TradeController extends Controller
         return view('trades.search', compact('trades'));
     }
     
-
+    public function calendar()
+    {
+        $trades = Trade::all();
+    
+        $events = [];
+         foreach ($trades as $trade) {
+            $events[] = [
+                'title' => $trade->requestedItem->title, // You might want to use a different field here
+                'start' => $trade->tradeStartDate,
+                'end' => $trade->tradeEndDate,
+            ];
+        } 
+    
+        return view('trades.calendar', compact('events'));
+    }
 
 }

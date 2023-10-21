@@ -81,6 +81,10 @@ Route::get('/admin/comment', [Controllers\CommentController::class, 'allComment'
 
 Route::resource('/trades', Controllers\TradeController::class);
 Route::get('/trades/search/{search}', 'App\Http\Controllers\TradeController@search')->name('trades.search');
+Route::get('/trades', [Controllers\TradeController::class, 'calendar'])->name('trades.calendar');
+
+
+
 Route::resource('Post', Controllers\PostController::class);
 Route::resource('admin/categories', Controllers\CategoryController::class);
 Route::resource('avis', Controllers\AvisController::class);

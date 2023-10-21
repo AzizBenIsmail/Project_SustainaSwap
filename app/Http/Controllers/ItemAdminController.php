@@ -40,16 +40,16 @@ class TradeController extends Controller
     {
         // Validation and storage logic for creating a new trade
 
-        return redirect()->route('trades.index')->with('success', 'Trade created successfully.');
+        return redirect()->route('itemsAdmin.index')->with('success', 'Élément créé avec succès.');
     }
 
     /**
-     * Display the specified trade.
+     * Display the specified resource.
      *
-     * @param int $id
+     * @param \App\Models\Item $item
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Item $item)
     {
         $trade = Trade::findOrFail($id);
 
@@ -59,46 +59,73 @@ class TradeController extends Controller
     }
 
     /**
-     * Show the form for editing the specified trade.
+     * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param \App\Models\Item $item
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $trade = Trade::findOrFail($id);
-
-        // You may need to load associated data (user, items, avis, etc.) as needed
-
-        return view('trades/backOffice/edit', compact('trade'));
+        $item = Item::find($id);
+        $categories = Category::all();
+        return view('items/backOffice/edit', compact('item', 'categories'));
     }
 
     /**
-     * Update the specified trade in storage.
+     * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param \App\Models\Item $item
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        // Validation and storage logic for updating the trade
+        $request->validate([
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'title' => 'required|string|max:15',
+            'description' => 'nullable|string',
+            'state' => 'required|string|max:255',
+        ]);
 
-        return redirect()->route('trades.index')->with('success', 'Trade updated successfully.');
+        $item = Item::findOrFail($id);
+
+        if ($request->hasFile('picture')) {
+            $image = $request->file('picture');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads'), $imageName);
+            $item->picture = $imageName;
+        }
+        $category = Category::find($request->input('category'));
+
+        $item->title = $request->input('title');
+        $item->description = $request->input('description');
+        $item->category_id = $category->id;
+        $item->state = $request->input('state');
+
+        $item->save();
+
+        return redirect()->route('itemsAdmin.index')->with('success', 'Élément modifié avec succès.');
     }
 
     /**
-     * Remove the specified trade from storage.
+     * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param \App\Models\Item $item
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $trade = Trade::findOrFail($id);
+        $item = Item::find($id);
 
-        // Implement logic for deleting a trade
+        if (!$item) {
+            return redirect()->route('itemsAdmin.index')->with('error', 'Élément non trouvé.');
+        }
 
-        return redirect()->route('trades.index')->with('success', 'Trade deleted successfully.');
+        // Assurez-vous que l'élément est lié à l'utilisateur ou implémentez la logique de vérification appropriée.
+
+        $item->delete();
+
+        return redirect()->route('itemsAdmin.index')->with('success', 'Élément supprimé avec succès.');
     }
+
 }
