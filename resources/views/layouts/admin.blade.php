@@ -20,6 +20,8 @@
     <link href="{{ asset('back_office/assets/libs/flot/css/float-chart.css')}}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{ asset('back_office/dist/css/style.min.css')}}" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -72,21 +74,21 @@
         <!-- ============================================================== -->
         <!-- Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
-        <div class="page-breadcrumb">
-            <div class="row">
-                <div class="col-12 d-flex no-block align-items-center">
-                    <h4 class="page-title">Dashboard</h4>
-                    <div class="ms-auto text-end">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Library</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
+{{--        <div class="page-breadcrumb">--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-12 d-flex no-block align-items-center">--}}
+{{--                    <h4 class="page-title">Dashboard</h4>--}}
+{{--                    <div class="ms-auto text-end">--}}
+{{--                        <nav aria-label="breadcrumb">--}}
+{{--                            <ol class="breadcrumb">--}}
+{{--                                <li class="breadcrumb-item"><a href="#">Home</a></li>--}}
+{{--                                <li class="breadcrumb-item active" aria-current="page">Library</li>--}}
+{{--                            </ol>--}}
+{{--                        </nav>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
         <!-- ============================================================== -->
         <!-- End Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
@@ -142,6 +144,21 @@
 <script src="{{ asset('back_office//assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js')}}"></script>
 <script src="{{ asset('back_office//dist/js/pages/chart/chart-page-init.js')}}"></script>
 
+{{--<script src="{{ asset('js/app.js') }}" ></script>--}}
+
+<script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
+
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
+
+
+@yield('scripts')
 </body>
 
 </html>

@@ -98,5 +98,11 @@ public function deleteMessage(Request $request)
     }
 }
 
+public function destroy(Message $message)
+{
+    
+    $message->delete();
 
+    return redirect()->route('pusher.index')->with('success', 'Message supprimé avec succès.');
+}
 }

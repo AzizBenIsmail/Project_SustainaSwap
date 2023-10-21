@@ -26,6 +26,7 @@
       <p>{{ Auth::user()->name }}</p>
       <small>Online</small>
     </div>
+    
   </div>
   <!-- End Header -->
 
@@ -63,6 +64,10 @@
        $(document).scrollTop($(document).height());
      });
   });
+  function generateUniqueMessageID() {
+    // You can use a timestamp, a random string, or any method to generate a unique ID
+    return Date.now() + Math.random().toString(36).substring(7);
+}
 
   //Broadcast messages
   $("form").submit(function (event) {
@@ -77,6 +82,8 @@
       data:    {
         _token:  '{{csrf_token()}}',
         message: $("form #message").val(),
+        message_id: generateUniqueMessageID(), 
+       
       }
     }).done(function (res) {
       $(".messages > .message").last().after(res);
@@ -85,5 +92,6 @@
     });
   });
 
+ 
 </script>
 </html>
