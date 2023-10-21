@@ -6,7 +6,6 @@
 
     <div class="card">
         <div class="card-body">
-            <a href="{{ route('trades.create') }}" class="btn btn-primary">Add Trade</a>
             <div class="table-responsive">
                 <table class="table">
                     <thead>

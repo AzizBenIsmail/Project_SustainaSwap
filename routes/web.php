@@ -123,8 +123,15 @@ Route::delete('/commentDelete/{comment}', [Controllers\CommentController::class,
 
 
 
-Route::resource('/trades', Controllers\TradeController::class);
-Route::get('/trades/search/{search}', 'App\Http\Controllers\TradeController@search')->name('trades.search');
+// Routes pour TradeController
+Route::get('/trades', [Controllers\TradeController::class, 'index'])->name('trades.index');
+Route::get('/trades/create', [Controllers\TradeController::class, 'create'])->name('trades.create');
+Route::post('/trades', [Controllers\TradeController::class, 'store'])->name('trades.store');
+Route::get('/trades/{id}', [Controllers\TradeController::class, 'show'])->name('trades.show');
+Route::get('/trades/{id}/edit', [Controllers\TradeController::class, 'edit'])->name('trades.edit');
+Route::put('/trades/{id}', [Controllers\TradeController::class, 'update'])->name('trades.update');
+Route::delete('/trades/{id}', [Controllers\TradeController::class, 'destroy'])->name('trades.destroy');
+Route::get('/trades/search/{search}', [Controllers\TradeController::class, 'search'])->name('trades.search');
 Route::get('/calendar', [Controllers\TradeController::class, 'calendar'])->name('trades.calendar');
 
 
