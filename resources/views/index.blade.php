@@ -38,13 +38,51 @@
   <!-- End Footer -->
 
 </div>
-</main>
-
-@include('basic component.footer')
-
-
-@include('basic component.JAVASCRIPT_FILES')
-
-
 </body>
+
+<script>
+  const pusher  = new Pusher('{{config('broadcasting.connections.pusher.key')}}', {cluster: 'eu'});
+  const channel = pusher.subscribe('public');
+
+  //Receive messages
+  channel.bind('chat', function (data) {
+    $.post("/receive", {
+      _token:  '{{csrf_token()}}',
+      message: data.message,
+    })
+     .done(function (res) {
+       $(".messages > .message").last().after(res);
+       $(document).scrollTop($(document).height());
+     });
+  });
+  function generateUniqueMessageID() {
+    // You can use a timestamp, a random string, or any method to generate a unique ID
+    return Date.now() + Math.random().toString(36).substring(7);
+}
+
+  //Broadcast messages
+  $("form").submit(function (event) {
+    event.preventDefault();
+
+    $.ajax({
+      url:     "/broadcast",
+      method:  'POST',
+      headers: {
+        'X-Socket-Id': pusher.connection.socket_id
+      },
+      data:    {
+        _token:  '{{csrf_token()}}',
+        message: $("form #message").val(),
+        message_id: generateUniqueMessageID(),
+
+      }
+    }).done(function (res) {
+      $(".messages > .message").last().after(res);
+      $("form #message").val('');
+      $(document).scrollTop($(document).height());
+    });
+  });
+
+
+</script>
 </html>
