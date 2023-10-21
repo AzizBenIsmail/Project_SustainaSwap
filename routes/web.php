@@ -42,12 +42,18 @@ Route::get('/admin/itemsAdmin/{id}/edit', [Controllers\ItemAdminController::clas
 Route::put('/admin/itemsAdmin/{id}', 'ItemAdminController@update')->name('itemsAdmin.update');
 Route::delete('/admin/itemsAdmin/{id}', 'ItemAdminController@destroy')->name('itemsAdmin.destroy');
 
+
+Route::resource('/admin/tradesAdmin', App\Http\Controllers\AdminTradeController::class);
+Route::get('/admin/tradesAdmin', [Controllers\AdminTradeController::class, 'index'])->name('tradesAdmin.index');
+Route::get('/admin/tradesAdmin/{id}', [Controllers\AdminTradeController::class, 'show'])->name('tradesAdmin.show');
+Route::delete('/admin/tradesAdmin/{id}', 'TradeAdminController@destroy')->name('tradesAdmin.destroy');
+
+
 Route::resource('Comment', Controllers\CommentController::class);
 Route::resource('Complaint', Controllers\ComplaintController::class);
 Route::resource('Conversation', Controllers\ConversationController::class);
 Route::resource('Message', Controllers\MessageController::class);
 Route::resource('Trade', Controllers\TradeController::class);
-
 Route::get('/admin/post', [Controllers\PostController::class, 'allPost'])->name('posts.allPost');
 Route::post('/admin/post', [Controllers\PostController::class, 'storeToAdmin'])->name('posts.storeToAdmin');
 Route::get('/admin/post/{post}/edit', [Controllers\PostController::class, 'editToAdmin'])->name('posts.editToAdmin');
@@ -73,11 +79,10 @@ Route::post('/commentPost', [Controllers\CommentController::class, 'storePost'])
 Route::delete('/commentDelete/{comment}', [Controllers\CommentController::class, 'delete'])->name('comments.delete');
 Route::get('/admin/comment', [Controllers\CommentController::class, 'allComment'])->name('comments.allComment');
 
-
 Route::resource('/trades', Controllers\TradeController::class);
+Route::get('/trades/search/{search}', 'App\Http\Controllers\TradeController@search')->name('trades.search');
 Route::resource('Post', Controllers\PostController::class);
 Route::resource('admin/categories', Controllers\CategoryController::class);
-
+Route::resource('avis', Controllers\AvisController::class);
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

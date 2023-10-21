@@ -1,5 +1,4 @@
 <div class="col-12">
-    <h2 class="mb-5">New Item</h2>
     <a href="{{ route('items.create') }}" class="btn btn-primary">Add New Item</a>
 </div>
 

@@ -18,6 +18,7 @@
     <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/slick.css') }}">
     <link href="{{ asset('css/tooplate-little-fashion.css') }}" rel="stylesheet">
+    
 
 
 </head>

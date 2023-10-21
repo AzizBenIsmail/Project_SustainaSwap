@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Liste des éléments</h1>
+    <h1>Items List</h1>
     <a href="{{ route('items.create') }}" class="btn btn-primary">Créer un nouvel élément</a>
 
     <table class="table">

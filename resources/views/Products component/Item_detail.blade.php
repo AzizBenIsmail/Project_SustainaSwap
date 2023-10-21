@@ -16,8 +16,8 @@
 
                 <div class="col-lg-10 col-12">
                     <h1>
-                        <span class="d-block text-primary">We provide you</span>
-                        <span class="d-block text-dark">Fashionable Stuffs</span>
+                        <span class="d-block text-primary">Item</span>
+                        <span class="d-block text-dark">Details</span>
                     </h1>
                 </div>
             </div>
@@ -40,11 +40,15 @@
                         <div>
                             <h2 class="product-title mb-0">{{ $item->title }}</h2>
 
-                            <p class="product-p"> {{ $item->created_at->format('Y-m-d H:i:s') }}</p>
+                            <p class="product-p"> {{ $item->description }}</p>
                         </div>
 
-                        <small class="product-price text-muted ms-auto mt-auto mb-5"> {{ $item->state }}</small>
+                       
                     </div>
+                    <small class="product-price text-muted ms-auto mt-4 mb-2">
+                        Status : {{ $item->state }}
+                    </small>
+                    <br>
                     <small class="product-price text-muted ms-auto mt-4 mb-2">
                         Owner : {{ $item->user->name }}
                     </small>
@@ -54,17 +58,23 @@
                     </small>
                     <div class="product-description">
 
-                        <strong class="d-block mt-4 mb-2">Description : {{ $item->description }}</strong>
+                        
 
                     </div>
-
+                     <br>
                     <div class="product-cart-thumb row">
-                        <a href="{{ route('items.edit', $item->id) }}" class="btn btn-warning" >Modifier</a>
-                        <form href="{{ route('items.destroy', $item->id) }}" method="POST" style="display: inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Supprimer</button>
-                        </form>
+                        
+                    <a href="{{ route('trades.create', ['item_id' => $item->id]) }}" class="btn btn-primary" style="background-color: #FF7F50; color: #fff;">Propose Trade</a>
+                    <div class="mt-2">
+                        
+                            <a href="{{ route('items.edit', $item->id) }}"class="btn btn-warning">Edit</a>
+                            <form action="{{ route('items.destroy', $item->id) }}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Remove</button>
+                            </form>
+                        </div>
+                       
                     </div>
 
                 </div>
