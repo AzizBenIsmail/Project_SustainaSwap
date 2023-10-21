@@ -96,4 +96,6 @@
 
 
 </script>
+@include('basic component.footer')
+
 </html>
