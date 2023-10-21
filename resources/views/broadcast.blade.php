@@ -17,7 +17,6 @@
         @csrf
         @method('delete')
     <p>{{ $message}}</p>
-    <p>{{$message_id}}</p>
     <button type="submit" >🗑️</button>
 </form>
 </div>
