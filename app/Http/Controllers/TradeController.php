@@ -8,6 +8,8 @@ use App\Models\Trade;
 use App\Models\User;
 use App\Models\Item;
 use App\Models\Avis;
+use App\Events\TradeCreated;
+use Twilio\Rest\Client; // Import the Twilio Client
 
 class TradeController extends Controller
 {
@@ -19,9 +21,8 @@ class TradeController extends Controller
 
     public function create()
     {
-       
         $items = Item::all();
-        return view('trades.create', compact( 'items'));
+        return view('trades.create', compact('items'));
     }
 
     public function store(Request $request)
@@ -35,14 +36,11 @@ class TradeController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-      
-       
-        
         $ownerId = auth()->user()->id;
         $requestedItemId = $request->input('item_id');
         $status = $request->input('status', 'pending');
-      
-        Trade::create([
+
+        $trade = Trade::create([
             'tradeStartDate' => $request->input('tradeStartDate'),
             'tradeEndDate' => $request->input('tradeEndDate'),
             'status' => $status,
@@ -51,18 +49,19 @@ class TradeController extends Controller
             'requested_item_id' => 1,
         ]);
 
+        $this->sendSms($trade); // Call the sendSms method
         return redirect()->route('trades.index');
-    } 
+    }
+
     public function show($id)
     {
         $trade = Trade::findOrFail($id);
-    
+
         // Load the associated "Avis" records for the trade
         $trade->load('avis');
-    
+
         return view('trades.show', compact('trade'));
     }
-    
 
     public function edit($id)
     {
@@ -88,7 +87,6 @@ class TradeController extends Controller
         $trade->update($request->all());
         return redirect()->route('trades.index');
     }
- 
 
     public function destroy($id)
     {
@@ -96,50 +94,68 @@ class TradeController extends Controller
         $trade->delete();
         return redirect()->route('trades.index');
     }
-      /**
-     * Display a listing of the resource.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function search(Request $request)
     {
-      
         $search = $request->input('search');
-        
+
         $trades = Trade::where(function ($query) use ($search) {
             $query->where('tradeStartDate', 'like', '%' . $search . '%')
                 ->orWhere('tradeEndDate', 'like', '%' . $search . '%')
                 ->orWhere('status', 'like', '%' . $search . '%');
         })
-        ->orWhereHas('owner', function ($query) use ($search) {
-            $query->where('name', 'like', '%' . $search . '%');
-        })
-        ->orWhereHas('offeredItem', function ($query) use ($search) {
-            $query->where('title', 'like', '%' . $search . '%');
-        })
-        ->orWhereHas('requestedItem', function ($query) use ($search) {
-            $query->where('title', 'like', '%' . $search . '%');
-        })
-        ->get();
-       
+            ->orWhereHas('owner', function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            })
+            ->orWhereHas('offeredItem', function ($query) use ($search) {
+                $query->where('title', 'like', '%' . $search . '%');
+            })
+            ->orWhereHas('requestedItem', function ($query) use ($search) {
+                $query->where('title', 'like', '%' . $search . '%');
+            })
+            ->get();
+
         return view('trades.search', compact('trades'));
     }
-    
+
     public function calendar()
     {
         $trades = Trade::all();
-    
+
         $events = [];
-         foreach ($trades as $trade) {
+        foreach ($trades as $trade) {
             $events[] = [
                 'title' => $trade->requestedItem->title, // You might want to use a different field here
                 'start' => $trade->tradeStartDate,
                 'end' => $trade->tradeEndDate,
             ];
-        } 
-    
+        }
+
         return view('trades.calendar', compact('events'));
     }
 
+    public function sendSms(Trade $trade)
+    {
+        $account_sid = getenv('TWILIO_SID');
+        $auth_token = getenv('TWILIO_AUTH_TOKEN');
+        $twilio_number = getenv('TWILIO_PHONE_NUMBER');
+
+
+        $message = "Hello, a new trade has been created!\n";
+        $message .= "Proposed by: " . $trade->owner->name . "\n";
+        $message .= "Offered Item: " . $trade->offeredItem->title . "\n";
+        $message .= "For more information, please check the trade details.";
+        
+    
+
+        $client = new Client($account_sid, $auth_token);
+        $client->messages->create(
+            '+21652942447', // Recipient's phone number
+            [
+                'from' => $twilio_number, // Your Twilio number
+                'body' => $message
+            ]
+        );
+
+    }
 }
