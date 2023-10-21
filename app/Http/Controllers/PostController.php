@@ -51,20 +51,26 @@ class PostController extends Controller
             'content' => 'required|string',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
         ]);
-
+    
         $post = new Post;
         $post->title = $request->input('title');
         $post->content = $request->input('content');
         $post->user_id = Auth::id() ?: 1;
+    
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('uploads', 'public'); 
-            $post->image_url = $imagePath;
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads'), $imageName);
+            $post->image_url =$imageName;
         }
+    
         $post->save();
-
-        session()->flash('success',' Post added successfully.');
+    
+        session()->flash('success', 'Post added successfully.');
         return redirect()->route('posts.index')->with('success', 'Post created successfully!');
     }
+    
+    
 
     /**
      * Display the specified resource.
@@ -115,9 +121,12 @@ class PostController extends Controller
         $post->title = $request->input('title');
         $post->content = $request->input('content');
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('uploads', 'public'); 
-            $post->image_url = $imagePath;
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads'), $imageName);
+            $post->image_url =$imageName;
         }
+    
         $post->save();
 
         return redirect()->route('posts.index')->with('success', 'Post updated successfully!');
@@ -183,9 +192,12 @@ public function allPost()
         $post->title = $request->input('title');
         $post->content = $request->input('content');
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('uploads', 'public'); 
-            $post->image_url = $imagePath;
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads'), $imageName);
+            $post->image_url =$imageName;
         }
+    
         $post->save();
 
         return redirect()->route('posts.backOffice.index')->with('success', 'Post updated successfully!');
@@ -212,9 +224,12 @@ public function allPost()
         $post->content = $request->input('content');
         $post->user_id = Auth::id() ?: 1;
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('uploads', 'public'); 
-            $post->image_url = $imagePath;
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads'), $imageName);
+            $post->image_url =$imageName;
         }
+    
         $post->save();
 
         session()->flash('success',' Post added successfully.');
