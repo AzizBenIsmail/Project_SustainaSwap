@@ -49,6 +49,8 @@
   <!-- End Footer -->
 
 </div>
+@include('basic component.footer')
+
 </body>
 
 <script>
@@ -96,6 +98,5 @@
 
 
 </script>
-@include('basic component.footer')
 
 </html>
