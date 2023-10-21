@@ -66,7 +66,7 @@
                             </div>
                         </div>
 
-                            <a href="{{ route('/chat' ) }}" class="btn btn-primary" style="background-color: #FF7F50; color: #fff;">Chat</a>
+                            <a href="{{ route('chat') }}" class="btn btn-primary" style="background-color: #FF7F50; color: #fff;">Chat</a>
                         <a href="{{ route('showmain', $item->id) }}" class="btn btn-info">Show</a>
                     </div>
                 </div>
