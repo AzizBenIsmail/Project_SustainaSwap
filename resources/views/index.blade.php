@@ -1,13 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+<head>
+  <title>Chat Laravel Pusher | Edlin App</title>
+  <link rel="icon" href="https://assets.edlin.app/favicon/favicon.ico"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@include('basic component.head')
+  <!-- JavaScript -->
+  <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <!-- End JavaScript -->
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/style.css">
+  <!-- End CSS -->
+
+</head>
 
 <body>
-
-<main>
-
-    @include('basic component.navbar')
 <div class="chat">
 
   <!-- Header -->
