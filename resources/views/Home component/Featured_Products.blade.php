@@ -69,6 +69,7 @@
                             </div>
                         </div>
 
+                            <a href="{{ route('trades.create', ['item_id' => $item->id]) }}" class="btn btn-primary" style="background-color: #FF7F50; color: #fff;">Propose Trade</a>
                         <a href="{{ route('showmain', $item->id) }}" class="btn btn-info">Afficher</a>
                     </div>
                 </div>

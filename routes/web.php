@@ -117,7 +117,9 @@ Route::delete('/commentDelete/{comment}', [Controllers\CommentController::class,
 
 Route::resource('/trades', Controllers\TradeController::class);
 Route::get('/trades/search/{search}', 'App\Http\Controllers\TradeController@search')->name('trades.search');
-//Route::resource('Post', Controllers\PostController::class);
+Route::get('/calendar', [Controllers\TradeController::class, 'calendar'])->name('trades.calendar');
+
+
 Route::resource('admin/categories', Controllers\CategoryController::class);
 Route::resource('avis', Controllers\AvisController::class);
 Auth::routes();
