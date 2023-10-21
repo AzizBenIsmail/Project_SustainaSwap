@@ -36,8 +36,18 @@ Route::get('/chat/{message}/delete', [Controllers\PusherController::class, 'dest
 Route::get('/showmain/{id}', [Controllers\ItemController::class, 'showmain'])->name('showmain');
 //Route::resource('/products',Controllers\ItemController::class);
 
-Route::resource('/items', Controllers\ItemController::class);
-Route::resource('/admin/itemsAdmin', Controllers\ItemAdminController::class);
+//Route::resource('/items', Controllers\ItemController::class);
+Route::get('/items', [Controllers\ItemController::class, 'index'])->name('items.index');
+Route::get('/items/create', [Controllers\ItemController::class, 'create'])->name('items.create');
+Route::post('/items', [Controllers\ItemController::class,'store'])->name('items.store');
+Route::get('/items/{item}', [Controllers\ItemController::class,'show'])->name('items.show');
+Route::get('/items/{item}/edit', [Controllers\ItemController::class,'edit'])->name('items.edit');
+Route::put('/items/{item}', [Controllers\ItemController::class,'update'])->name('items.update');
+Route::delete('/items/{item}', [Controllers\ItemController::class,'destroy'])->name('items.destroy');
+Route::get('/items/main', [Controllers\ItemController::class,'indexmain'])->name('items.indexmain');
+Route::get('/items/{id}/showmain',[Controllers\ItemController::class,'showmain'])->name('items.showmain');
+
+//Route::resource('/admin/itemsAdmin', Controllers\ItemAdminController::class);
 Route::get('/admin/itemsAdmin', [Controllers\ItemAdminController::class, 'index'])->name('itemsAdmin.index');
 Route::get('/admin/itemsAdmin/create', [Controllers\ItemAdminController::class, 'create'])->name('itemsAdmin.create');
 Route::post('/admin/itemsAdmin', [Controllers\ItemAdminController::class, 'store'])->name('itemsAdmin.store');
@@ -45,8 +55,6 @@ Route::get('/admin/itemsAdmin/{id}', [Controllers\ItemAdminController::class, 's
 Route::get('/admin/itemsAdmin/{id}/edit', [Controllers\ItemAdminController::class, 'edit'])->name('itemsAdmin.edit');
 Route::put('/admin/itemsAdmin/{id}', 'ItemAdminController@update')->name('itemsAdmin.update');
 Route::delete('/admin/itemsAdmin/{id}', 'ItemAdminController@destroy')->name('itemsAdmin.destroy');
-
-
 Route::resource('/admin/tradesAdmin', App\Http\Controllers\AdminTradeController::class);
 Route::get('/admin/tradesAdmin', [Controllers\AdminTradeController::class, 'index'])->name('tradesAdmin.index');
 //Route::get('/admin/tradesAdmin/{id}', [Controllers\AdminTradeController::class, 'show'])->name('tradesAdmin.show');
