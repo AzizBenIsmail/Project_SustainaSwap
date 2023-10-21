@@ -2,8 +2,22 @@
 @section('posts')
 
 <div class="container" style="width: 55%;">
+
+    <div class="input-group my-3">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search by post title">
+        <div class="input-group-append">
+            <select id="filterSelect" class="form-select">
+                <option value="search">Search</option>
+                <option value="my-posts">My Posts</option>
+                <option value="oldest">Oldest</option>
+                <option value="newest">Newest</option>
+            </select>
+        </div>
+    </div>
+    
+
     @foreach($posts as $post)
-    <div class="card mb-4" style="background-color: #F0F8FF;">
+    <div class="card mb-4 post-card" style="background-color: #F0F8FF;" id="{{ $post->user->id }}">
        
 
         <div class="card-body" >
@@ -11,7 +25,7 @@
                 <div class="col-md-9" >
                     <h5 class="card-title" style="color: #00345E;">{{ $post->title }}</h5>
                 </div>
-                @if ($post->user->id == 1)
+                @if (auth()->check() && $post->user->id == auth()->user()->id)
 
                 <div class="col-md-1">
                     <a href="{{ route('posts.edit', ['post' => $post]) }}" class="btn btn-info text-white py-1 px-4">edit</a>
@@ -56,7 +70,8 @@
                 <div class="row mb-1 ">
                     <div class="card-body row"">
                         <small class="card-text col-md-9">{{ $comment->text }}</small>
-                        @if ($comment->user->id == 1)
+
+                        @if (auth()->check() && $comment->user->id == auth()->user()->id)
 
                         <div class="col-md-1">
                             <a href="{{ route('comments.edit', ['comment' => $comment]) }}" class="btn btn-info text-white py-1 px-4">edit</a>
@@ -146,6 +161,56 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
       
       <script>
+
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    const filterSelect = document.getElementById("filterSelect");
+const searchInput = document.getElementById("searchInput");
+const postCards = document.querySelectorAll(".post-card");
+
+filterSelect.addEventListener("change", handleFilter);
+searchInput.addEventListener("input", handleSearch);
+
+function handleFilter() {
+    const selectedFilter = filterSelect.value;
+
+    postCards.forEach(postCard => {
+        const postUserId = postCard.getAttribute("id");
+
+        if (selectedFilter === "my-posts") {
+            if (postUserId === "1") {
+                postCard.style.display = "block";
+            } else {
+                postCard.style.display = "none";
+            }
+        } else if (selectedFilter === "search") {
+            postCard.style.display = "block";
+        }
+    });
+}
+function handleSearch() {
+    
+    const searchValue = searchInput.value.toLowerCase();
+
+    postCards.forEach(postCard => {
+        const postTitle = postCard.querySelector(".card-title").textContent.toLowerCase();
+
+        if (postTitle.includes(searchValue) || searchValue === "") {
+            postCard.style.display = "block";
+            handleFilter();
+        } else {
+            postCard.style.display = "none";
+        }
+    });
+}
+
+});
+
+
+
+
+
 function handleDelete(id){
 
 var form=document.getElementById('deletePostForm')

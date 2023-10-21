@@ -21,9 +21,18 @@ class Item extends Model
         return $this->belongsTo(User::class);
     }
 
-//    public function category()
-//    {
-//        return $this->belongsTo(Category::class);
-//    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function scopeOrderByState($query)
+    {
+        return $query->orderByRaw("CASE
+        WHEN state = 'Good' THEN 1
+        WHEN state = 'Medium' THEN 2
+        WHEN state = 'Bad' THEN 3
+        ELSE 4
+    END");    }
 
 }

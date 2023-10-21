@@ -1,13 +1,13 @@
-<!doctype html>
-<html lang="en">
+@extends('layouts.admin')
+@section('content')
 
-@include('basic component.head')
+    <h1>Item management</h1>
 
-<body>
 
-<main>
-
-    @include('basic component.navbar')
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Basic Datatable</h5>
+            <div class="table-responsive">
     <div class="container mt-5 ">
         <div class="row justify-content-center mt-5">
             <div class="col-md-8 mt-3">
@@ -18,6 +18,9 @@
                     <div class="form-group">
                         <label for="name">Catégorie</label>
                         <input type="text" name="name" class="form-control" required>
+                        @error('name')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
@@ -30,9 +33,14 @@
             <div class=" mt-3"></div>
         </div>
     </div>
-</main>
-@include('basic component.footer')
-@include('basic component.JAVASCRIPT_FILES')
+            </div>
 
-</body>
-</html>
+        </div>
+    </div>
+    <form id="delete-post-form" method="POST" style="display: none;">
+        @csrf
+        @method('DELETE')
+    </form>
+
+@endsection
+

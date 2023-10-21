@@ -15,6 +15,13 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        Post::factory(5)->create();
+        Post::factory(16)->create([
+            'image_url' => $this->getImageUrl(),
+        ]);
+    }
+
+    private function getImageUrl()
+    {
+        return 'uploads/' . rand(1, 16) . '.png';
     }
 }

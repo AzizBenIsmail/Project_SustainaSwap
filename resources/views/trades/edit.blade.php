@@ -50,9 +50,6 @@
                         </select>
                     </div>
 
-                   
-
-
                         <button type="submit" class="btn btn-primary mt-5">Update Trade</button>
                     </div>
                 </form>

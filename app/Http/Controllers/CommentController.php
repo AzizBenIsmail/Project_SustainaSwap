@@ -167,4 +167,22 @@ class CommentController extends Controller
 
         return redirect()->route('posts.index')->with('success', 'Comment created successfully!');
     }
+
+
+
+    /////backoffice part
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function allComment()
+    {
+    
+        $comments = Comment::all();
+        return view('comments.backOffice.index', compact('comments'));
+    }
+        
+
 }

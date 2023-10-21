@@ -25,6 +25,9 @@
                 </li>
                 <!-- Répétez ce modèle pour les autres liens de la navbar -->
 
+                <li class="nav-item">
+                    <a class="nav-link{{ $currentPage === 'posts' ? ' active' : '' }}" href="posts">Posts</a>
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link{{ $currentPage === 'about' ? ' active' : '' }}" href="about">Story</a>
