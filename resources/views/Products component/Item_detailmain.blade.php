@@ -57,9 +57,9 @@
                         <strong class="d-block mt-4 mb-2">Description : {{ $item->description }}</strong>
 
                     </div>
+                    <a href="{{ route('trades.create', ['item_id' => $item->id]) }}" class="btn btn-primary" style="background-color: #FF7F50; color: #fff;">Propose Trade</a>
 
                 </div>
-                <a href="{{ route('trades.create', ['item_id' => $item->id]) }}" class="btn btn-primary" style="background-color: #FF7F50; color: #fff;">Propose Trade</a>
 
             </div>
         </div>
