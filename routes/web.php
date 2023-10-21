@@ -1,10 +1,9 @@
 <?php
-
 use App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-
+### Start Guest Routes ###
 Route::get('/', function () {
     return view('Template component/index');
 });
@@ -26,6 +25,7 @@ Route::get('/sign-in', function () {
 Route::get('/sign-up', function () {
     return view('Sign/sign-up');
 });
+### End Guest Routes ###
 
 //Route::resource('/products',Controllers\ItemController::class);
 Route::resource('/items', Controllers\ItemController::class);
@@ -35,18 +35,26 @@ Route::resource('Conversation', Controllers\ConversationController::class);
 Route::resource('Message', Controllers\MessageController::class);
 Route::resource('Trade', Controllers\TradeController::class);
 
+
+### Start Admin Routes ###
+// The Prefix is added after login based on user role - Auth LoginController
+Route::group(['prefix'=>'admin','middleware'=>['admin','auth']], function(){
+    //dashboard
+    Route::get('/', [Controllers\AdminController::class,'index'])->name('admin-dashboard');;
 //Complaints routes
-Route::get('/admin/complaints', [Controllers\ComplaintsController::class, 'index'])->name('complaints.index');
-Route::post('/admin/complaints', [Controllers\ComplaintsController::class, 'store'])->name('complaints.store');
-Route::put('/admin/complaints/{complaint}', [Controllers\ComplaintsController::class, 'update'])->name('complaints.update');
-Route::delete('/admin/complaints/{complaintId}', [Controllers\ComplaintsController::class, 'destroy'])->name('complaints.delete');
+Route::get('/complaints', [Controllers\ComplaintsController::class, 'index'])->name('complaints.index');
+Route::post('/complaints', [Controllers\ComplaintsController::class, 'store'])->name('complaints.store');
+Route::put('/complaints/{complaint}', [Controllers\ComplaintsController::class, 'update'])->name('complaints.update');
+Route::delete('/complaints/{complaintId}', [Controllers\ComplaintsController::class, 'destroy'])->name('complaints.delete');
+});
+### End Admin Routes ###
 
 Route::resource('posts', \App\Http\Controllers\PostController::class)->names([
     'index' => 'posts.index',
 ]);
 //Route::get('/posts/create', [Controllers\PostController::class, 'create'])->name('posts.create');
 //Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts.store');
-Route::get('/post/{post}', [Controllers\PostController::class, 'show'])->name('posts.show');
+//Route::get('/post/{post}', [Controllers\PostController::class, 'show'])->name('posts.show');
 
 Route::resource('/comments', \App\Http\Controllers\CommentController::class)->names([
     'index' => 'comments.index',
@@ -69,4 +77,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/admin/dashboard', [Controllers\AdminController::class,'index'])->name('admin-dashboard');;
+
