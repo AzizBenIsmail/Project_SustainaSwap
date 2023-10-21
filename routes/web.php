@@ -105,7 +105,7 @@ Route::get('/admin/comment', [Controllers\CommentController::class, 'allComment'
 
 Route::resource('/trades', Controllers\TradeController::class);
 Route::get('/trades/search/{search}', 'App\Http\Controllers\TradeController@search')->name('trades.search');
-Route::get('/trades', [Controllers\TradeController::class, 'calendar'])->name('trades.calendar');
+Route::get('/calendar', [Controllers\TradeController::class, 'calendar'])->name('trades.calendar');
 
 
 

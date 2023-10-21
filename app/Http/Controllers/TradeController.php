@@ -35,20 +35,20 @@ class TradeController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $queryString = $request->getQueryString();
-        dd($queryString);
+      
+       
         
         $ownerId = auth()->user()->id;
         $requestedItemId = $request->input('item_id');
         $status = $request->input('status', 'pending');
-        dd($request->input('item_id'),$itemId);
+      
         Trade::create([
             'tradeStartDate' => $request->input('tradeStartDate'),
             'tradeEndDate' => $request->input('tradeEndDate'),
             'status' => $status,
             'owner_id' => $ownerId,
             'offered_item_id' => $request->input('offered_item_id'),
-            'requested_item_id' => $request->input('item_id'),
+            'requested_item_id' => 1,
         ]);
 
         return redirect()->route('trades.index');
