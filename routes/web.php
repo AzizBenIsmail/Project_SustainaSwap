@@ -28,7 +28,7 @@ Route::get('/sign-up', function () {
 Route::get('/chat', 'App\Http\Controllers\PusherController@index');
 Route::post('/broadcast', 'App\Http\Controllers\PusherController@broadcast');
 Route::post('/receive', 'App\Http\Controllers\PusherController@receive');
-
+Route::get('/chat/{message}/delete', [Controllers\PusherController::class, 'destroy'])->name('pusher.index');
 Route::get('/showmain/{id}', [Controllers\ItemController::class, 'showmain'])->name('showmain');
 //Route::resource('/products',Controllers\ItemController::class);
 
