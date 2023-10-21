@@ -58,16 +58,13 @@ Route::resource('Comment', Controllers\CommentController::class);
 Route::resource('Conversation', Controllers\ConversationController::class);
 Route::resource('Message', Controllers\MessageController::class);
 Route::resource('Trade', Controllers\TradeController::class);
-Route::get('/admin/post', [Controllers\PostController::class, 'allPost'])->name('posts.allPost');
-Route::post('/admin/post', [Controllers\PostController::class, 'storeToAdmin'])->name('posts.storeToAdmin');
-//Route::get('/admin/post/{post}/edit', [Controllers\PostController::class, 'editToAdmin'])->name('posts.editToAdmin');
-//Route::put('/admin/post/{post}', [Controllers\PostController::class, 'updateToAdmin'])->name('posts.updateToAdmin');
 
-//Route::get('/posts/create', [Controllers\PostController::class, 'create'])->name('posts.create');
-//Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts.store');
 
-//Route::get('/post/{post}', [Controllers\PostController::class, 'show'])->name('posts.show');
-//Route::delete('/admin/posts/{post}',[Controllers\PostController::class, 'destroyAdmin'])->name('posts.destroyAdmin');
+Route::get('/posts/create', [Controllers\PostController::class, 'create'])->name('posts.create');
+Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts.store');
+
+Route::get('/post/{post}', [Controllers\PostController::class, 'show'])->name('posts.show');
+
 
 
 ### Start Admin Routes ###
@@ -80,6 +77,21 @@ Route::get('/complaints', [Controllers\ComplaintsController::class, 'index'])->n
 Route::post('/complaints', [Controllers\ComplaintsController::class, 'store'])->name('complaints.store');
 Route::put('/complaints/{complaint}', [Controllers\ComplaintsController::class, 'update'])->name('complaints.update');
 Route::delete('/complaints/{complaintId}', [Controllers\ComplaintsController::class, 'destroy'])->name('complaints.delete');
+
+
+Route::get('/post', [Controllers\PostController::class, 'allPost'])->name('posts.allPost');
+Route::post('/post', [Controllers\PostController::class, 'storeToAdmin'])->name('posts.storeToAdmin');
+Route::get('/post/{post}/edit', [Controllers\PostController::class, 'editToAdmin'])->name('posts.editToAdmin');
+Route::put('/post/{post}', [Controllers\PostController::class, 'updateToAdmin'])->name('posts.updateToAdmin');
+Route::delete('/posts/{post}',[Controllers\PostController::class, 'destroyAdmin'])->name('posts.destroyAdmin');
+
+Route::delete('/commentDelete/{comment}', [Controllers\CommentController::class, 'destroyByAdmin'])->name('comments.destroyByAdmin');
+Route::post('/comments', [Controllers\CommentController::class, 'storeFromAdmin'])->name('comments.storeFromAdmin');
+Route::get('/comment/{comment}/edit', [Controllers\CommentController::class, 'editFromAdmin'])->name('comments.editFromAdmin');
+Route::put('/comment/{comment}', [Controllers\CommentController::class, 'updateFromAdmin'])->name('comments.updateFromAdmin');
+Route::get('/comment', [Controllers\CommentController::class, 'allComment'])->name('comments.allComment');
+
+
 });
 ### End Admin Routes ###
 
@@ -87,9 +99,9 @@ Route::resource('posts', \App\Http\Controllers\PostController::class)->names([
     'index' => 'posts.index',
 ]);
 
-Route::resource('/comments', \App\Http\Controllers\CommentController::class)->names([
-    'index' => 'comments.index',
-]);
+// Route::resource('/comments', \App\Http\Controllers\CommentController::class)->names([
+//     'index' => 'comments.index',
+// ]);
 // Show the comment creation form
 Route::get('/comments/create', [Controllers\CommentController::class, 'create'])->name('comments.create');
 
@@ -100,12 +112,12 @@ Route::delete('/commentDelete/{comment}', [Controllers\CommentController::class,
 
 Route::delete('/commentDelete/{comment}', [Controllers\CommentController::class, 'delete'])->name('comments.delete');
 
-Route::get('/admin/comment', [Controllers\CommentController::class, 'allComment'])->name('comments.allComment');
+
 
 
 Route::resource('/trades', Controllers\TradeController::class);
 Route::get('/trades/search/{search}', 'App\Http\Controllers\TradeController@search')->name('trades.search');
-Route::resource('Post', Controllers\PostController::class);
+//Route::resource('Post', Controllers\PostController::class);
 Route::resource('admin/categories', Controllers\CategoryController::class);
 Route::resource('avis', Controllers\AvisController::class);
 Auth::routes();
