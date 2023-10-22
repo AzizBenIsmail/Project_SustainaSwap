@@ -8,6 +8,8 @@ use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class ItemController extends Controller
 {
@@ -218,32 +220,34 @@ class ItemController extends Controller
             ->with('success', 'Élément supprimé avec succès.');
     }
 
-    /**
-     * Download a PFE file.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function downloadPFE($id)
     {
         $item = Item::find($id);
 
         if (!$item) {
-            return redirect()->route('items.index')->with('error', 'PFE non trouvé.');
+            return redirect()->route('items.index')->with('error', 'Article non trouvé.');
         }
 
-        $pathToFile = public_path('uploads/' . $item->picture);
+        $pdfOptions = new Options();
+        $pdfOptions->set('isHtml5ParserEnabled', true);
+        $pdfOptions->set('isPhpEnabled', true);
+        $pdfOptions->set('isRemoteEnabled', true);
 
-        if (File::exists($pathToFile)) {
-            $headers = [
-                'Content-Type' => 'application/pdf',
-                'Content-Disposition' => 'attachment; filename="' . $item->title . '.pdf"',
-            ];
+        $dompdf = new Dompdf($pdfOptions);
 
-            return response()->file($pathToFile, $headers);
-        }
+        $html = view('Products component/item_pdf', compact('item'))->render();
 
-        return redirect()->route('items.index')->with('error', 'Fichier PFE introuvable.');
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+
+        $pdf = $dompdf->output();
+
+        $fileName = 'item_details.pdf';
+
+        return response($pdf)
+            ->header('Content-Type', 'application/pdf')
+            ->header('Content-Disposition', "attachment; filename=\"$fileName\"");
     }
 
 }

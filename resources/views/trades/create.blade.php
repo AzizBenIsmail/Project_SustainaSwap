@@ -23,11 +23,11 @@
                     <div class="form-group mt-3">
                         <label for="tradeEndDate">Trade End Date:</label>
                         <input type="date" name="tradeEndDate" class="form-control" required>
+                        @error('tradeEndDate')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
-                    <div class="form-group mt-3">
-                        <label for="status">Status:</label>
-                        <input type="text" name="status" class="form-control" value="pending" required>
-                    </div>
+                   
                     <div class="form-group mt-3">
                         <label for="offered_item_id">Offered Item:</label>
                         <select name="offered_item_id" class="form-control" required>

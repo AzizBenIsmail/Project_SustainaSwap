@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('css')
-    img {
+    #user_profile_image {
     width: 25px;
     height:25px;
     border-radius: 50%;
@@ -33,7 +33,7 @@
                     <tr>
                         <td>
 
-                            <img src="{{ asset('storage/profile_pictures/' . $user->image) }}" alt="User Image">
+                            <img src="{{ asset('storage/profile_pictures/' . $user->image) }}" alt="User Image" id="user_profile_image">
 
                         </td>
 

@@ -56,7 +56,7 @@
         <img src="{{ asset('uploads/' . $item->picture) }}" alt="Avatar" height="80px" width="80px">
         <div class="user-info">
             <div class="user-names">
-                <p>{{ $item->user->name }}</p>
+                <p>{{ $item->user->name }}</p>  <!-- receiver -->
                 <p><small>Online</small></p>
             </div>
         </div>
@@ -83,22 +83,71 @@
 @include('basic component.footer')
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // JavaScript function to show a notification
+    
+function showAdminMessageNotification(message) {
+  Swal.fire({
+    title: 'New Message from Admin',
+    text: message,
+    icon: 'info', // You can change this to 'success', 'error', 'warning', etc.
+    confirmButtonText: 'OK'
+  });
+}
 
+// Call this function when an admin sends a message
+// You can pass the message content as an argument*
+
+showAdminMessageNotification(message);
+
+</script>
 <script>
     const pusher  = new Pusher('{{config('broadcasting.connections.pusher.key')}}', {cluster: 'eu'});
-    const channel = pusher.subscribe('public');
+  const channel = pusher.subscribe('public');
 
-    //Receive messages
-    channel.bind('chat', function (data) {
-        $.post("/receive", {
-            _token:  '{{csrf_token()}}',
-            message: data.message,
-        })
-            .done(function (res) {
-                $(".messages > .message").last().after(res);
-                $(document).scrollTop($(document).height());
-            });
-    }
+  //Receive messages
+  channel.bind('chat', function (data) {
+    $.post("/receive", {
+      _token:  '{{csrf_token()}}',
+      message: data.message,
+    })
+     .done(function (res) {
+       $(".messages > .message").last().after(res);
+       $(document).scrollTop($(document).height());
+     });
+  });
+  function generateUniqueMessageID() {
+    // You can use a timestamp, a random string, or any method to generate a unique ID
+    return Date.now() + Math.random().toString(36).substring(7);
+}
+
+  //Broadcast messages
+  $("form").submit(function (event) {
+    event.preventDefault();
+
+    $.ajax({
+      url:     "/broadcast",
+      method:  'POST',
+      headers: {
+        'X-Socket-Id': pusher.connection.socket_id
+      },
+      data:    {
+        _token:  '{{csrf_token()}}',
+        message: $("form #message").val(),
+        recipient: {{$recipient}}
+        // message_id: generateUniqueMessageID(),
+  }
+    }).done(function (res) {
+      $(".messages > .message").last().after(res);
+      $("form #message").val('');
+      $(document).scrollTop($(document).height());
+    });
+    // console.log(generateUniqueMessageID());
+
+  });
+
+
 </script>
 
 </html>

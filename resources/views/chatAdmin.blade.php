@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 @section('content')
-
+@if(session('admin_message'))
+    <div class="alert alert-info">
+        {{ session('admin_message') }}
+    </div>
+@endif
 <h1>Messages management</h1>
 
 <div class="card">
@@ -15,12 +19,13 @@
               </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('posts.storeToAdmin') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('pusher.chatAdminSend') }}" enctype="multipart/form-data">
                     @csrf
                     
                     <div class="mb-3">
                         <label for="content" class="form-label">Content</label>
                         <textarea class="form-control" id="content" name="content" rows="4"></textarea>
+
                     </div>
                     
                     <div class="center justify">
@@ -83,6 +88,7 @@
 
     </div>
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
