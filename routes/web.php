@@ -84,8 +84,18 @@ Route::resource('Trade', Controllers\TradeController::class);
 
 
 
+// Route::get('/posts', [Controllers\PostController::class, 'index'])->name('posts.index');
+// //The resource will overwrite the bellow line
+// Route::get('/posts/create', [Controllers\PostController::class, 'create'])->name('posts.create');
+// Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts.store');
+// Route::get('/post/{post}', [Controllers\PostController::class, 'show'])->name('posts.show');
+// Route::get('posts/{post}/edit', [Controllers\PostController::class, 'edit'])->name('posts.edit');
+// Route::delete('/posts/{post}', [Controllers\PostController::class, 'destroy'])->name('posts.destroy');
+// Route::put('/posts/{post}', [Controllers\PostController::class, 'update'])->name('posts.update');
+// Route::get('/posts/create', [Controllers\PostController::class, 'create'])->name('posts.create');
+// Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts.store');
 
-
+Route::get('/post/{post}', [Controllers\PostController::class, 'show'])->name('posts.show');
 
 ### Start Admin Routes ###
 // The Prefix is added after login based on user role - Auth LoginController
@@ -99,20 +109,14 @@ Route::put('/complaints/{complaint}', [Controllers\ComplaintsController::class, 
 Route::delete('/complaints/{complaintId}', [Controllers\ComplaintsController::class, 'destroy'])->name('complaints.delete');
 
 //Please change the resource to individual links
-    Route::resource('Post', Controllers\PostController::class);
-    Route::resource('posts', \App\Http\Controllers\PostController::class)->names([
-        'index' => 'posts.index',
-    ]);
-    //The resource will overwrite the bellow line
-    //Route::get('/posts/create', [Controllers\PostController::class, 'create'])->name('posts.create');
-    Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts.store');
-    //Route::get('/post/{post}', [Controllers\PostController::class, 'show'])->name('posts.show');
+    // Route::resource('Post', Controllers\PostController::class);
+
 
 Route::get('/post', [Controllers\PostController::class, 'allPost'])->name('posts.allPost');
 Route::post('/post', [Controllers\PostController::class, 'storeToAdmin'])->name('posts.storeToAdmin');
-//Route::get('/post/{post}/edit', [Controllers\PostController::class, 'editToAdmin'])->name('posts.editToAdmin');
-//Route::put('/post/{post}', [Controllers\PostController::class, 'updateToAdmin'])->name('posts.updateToAdmin');
-//Route::delete('/posts/{post}',[Controllers\PostController::class, 'destroyAdmin'])->name('posts.destroyAdmin');
+Route::get('/post/{post}/edit', [Controllers\PostController::class, 'editToAdmin'])->name('posts.editToAdmin');
+Route::put('/post/{post}', [Controllers\PostController::class, 'updateToAdmin'])->name('posts.updateToAdmin');
+Route::delete('/posts/{post}',[Controllers\PostController::class, 'destroyAdmin'])->name('posts.destroyAdmin');
 
 
 Route::delete('/commentDelete/{comment}', [Controllers\CommentController::class, 'destroyByAdmin'])->name('comments.destroyByAdmin');
