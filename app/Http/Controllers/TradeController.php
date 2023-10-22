@@ -71,7 +71,7 @@ class TradeController extends Controller
         $message .= "Offered Item: " . $trade->offeredItem->title . "\n";
         $message .= "For more information, please check the trade details.";
 
-        $this->sendSms($trade,$message); // Call the sendSms method
+       // $this->sendSms($trade,$message); // Call the sendSms method
         return redirect()->route('trades.index')->with('success', 'Trade created.');;
     }
 
@@ -211,7 +211,7 @@ class TradeController extends Controller
     $message .= "Offered Item: " . $trade->offeredItem->title . "\n";
     $message .= "For more information, please check the trade details.";
     
-    $this->sendSms($trade,$message); // Call the sendSms method
+   // $this->sendSms($trade,$message); // Call the sendSms method
 
     return redirect()->route('trades.index1')->with('success', 'Trade accepted successfully.');
 }
@@ -227,7 +227,7 @@ public function reject(Trade $trade)
     $message .= "Offered Item: " . $trade->offeredItem->title . "\n";
     $message .= "For more information, please check the trade details.";
     
-    $this->sendSms($trade,$message); // Call the sendSms method
+  //  $this->sendSms($trade,$message); // Call the sendSms method
 
     return redirect()->route('trades.index1')->with('success', 'Trade rejected.');
 }

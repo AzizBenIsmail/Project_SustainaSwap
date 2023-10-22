@@ -48,14 +48,14 @@
                         <p class="card-text">Offered Item: {{ $trade->offeredItem->title }}</p>
                        
                         <div class="mt-3">
-                        <a href="{{ route('trades.show', $trade->id) }}" class="btn btn-info" style="background-color: #FF7F50; color: #fff;">Afficher</a>
-                        <form action="{{ route('trades.accept', $trade) }}" method="post">
+                        <a href="{{ route('trades.show', $trade->id) }}" class="btn btn-info" style="background-color: #F4A460; color: #fff; display: inline;">Afficher</a>
+                        <form action="{{ route('trades.accept', $trade) }}" method="post" style="display: inline;">
                             @csrf
-                            <button type="submit">Accept Trade</button>
+                            <button type="submit" style="background-color: #FF7F50;color: #fff;" >Accept Trade</button>
                         </form>
-                        <form action="{{ route('trades.reject', $trade) }}" method="post">
+                        <form action="{{ route('trades.reject', $trade) }}" method="post" style="display: inline;">
                             @csrf
-                            <button type="submit">Reject Trade</button>
+                            <button type="submit" style="background-color: #FF7F50;color: #fff;">Reject Trade</button>
                         </form>   
                         </div>
                     </div>
