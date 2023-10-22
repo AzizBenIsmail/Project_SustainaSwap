@@ -28,7 +28,7 @@ public function store(Request $request)
     $message->user_id = auth()->id();
     $message->save();
 
-    return redirect()->route('adminChat.index')->with('success', 'Message sent successfully!');
+    return redirect()->route('adminChat.store')->with('success', 'Message sent successfully!');
 }
 
 public function index()

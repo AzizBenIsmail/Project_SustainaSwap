@@ -53,6 +53,7 @@ class PusherController extends Controller
         $message = new Message();
         $message->user_id = auth()->id(); // Assuming you're storing the user ID who sent the message.
         $message->message = $request->input('message');
+        $message->name = auth()->user()->name; 
         $message->save();
         $messageId = $message->id;
         // $message=Message::create([
