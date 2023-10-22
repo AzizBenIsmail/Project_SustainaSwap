@@ -62,6 +62,7 @@
                                 <option value="state" {{ request('sort') == 'state' ? 'selected' : '' }}>State</option>
                                 <option value="category" {{ request('sort') == 'category' ? 'selected' : '' }}>Category</option>
                             </select>
+                             
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -73,11 +74,12 @@
                                     <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                                 @endforeach
                             </select>
+                            <button class="btn btn-primary" type="submit" style="background-color: #E9967A; color: #fff;">Submit</button>
                         </div>
                     </div>
                 </div>
                 <div class="text-center mt-2">
-                    <button class="btn btn-primary" type="submit">Submit</button>
+                   
                 </div>
             </form>
 
@@ -106,11 +108,11 @@
                                 <small class="product-price text-muted ms-auto">{{ $item->state }}</small> . condition
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Send Message</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="background-color: #FF7F50;color: #fff;">Send Message</button>
 
 
-                        <a href="{{ route('chatIndex', $item->id) }}" class="btn btn-primary" style="background-color: #FF7F50; color: #fff;"> Chat</a>
-                        <a href="{{ route('showmain', $item->id) }}" class="btn btn-info">Show</a>
+                        <a href="{{ route('chatIndex', $item->id) }}" class="btn btn-primary" style="background-color: #E9967A; color: #fff;"> Chat</a>
+                        <a href="{{ route('showmain', $item->id) }}" class="btn btn-info" style="background-color: #FFA07A;color: #fff;">Show</a>
                     </div>
                 </div>
 
