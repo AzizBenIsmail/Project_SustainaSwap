@@ -126,11 +126,12 @@ Route::put('/comment/{comment}', [Controllers\CommentController::class, 'updateF
 Route::get('/comment', [Controllers\CommentController::class, 'allComment'])->name('comments.allComment');
 
 //Users Management
-    Route::get('users/all',[Controllers\AdminController::class,'getAll'])->name('users.get-all');
-    Route::post('users/all',[Controllers\AdminController::class,'getAll'])->name('users.create');
-    Route::post('users/{user}/grantAdminPrivileges',[Controllers\AdminController::class,'grantAdminPrivileges'])->name('users.grant-admin-privileges');
-    Route::post('users/{userId}/revokeAdminPrivileges',[Controllers\AdminController::class,'revokeAdminPrivileges'])->name('users.revoke-admin-privileges');
-    Route::delete('users/{userId}/deleteUser',[Controllers\AdminController::class,'deleteUser'])->name('users.delete-user');
+    Route::get('users/',[Controllers\AdminController::class,'index'])->name('users.index');
+    Route::get('users/create',[Controllers\AdminController::class,'create'])->name('users.create');
+    Route::post('users/',[Controllers\AdminController::class,'store'])->name('users.store');
+    Route::post('/{user}/grantAdminPrivileges',[Controllers\AdminController::class,'grantAdminPrivileges'])->name('users.grant-admin-privileges');
+    Route::post('{userId}/revokeAdminPrivileges',[Controllers\AdminController::class,'revokeAdminPrivileges'])->name('users.revoke-admin-privileges');
+    Route::delete('{userId}/deleteUser',[Controllers\AdminController::class,'deleteUser'])->name('users.delete-user');
 
 
 });
