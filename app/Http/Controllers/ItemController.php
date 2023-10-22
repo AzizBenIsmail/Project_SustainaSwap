@@ -225,26 +225,29 @@ class ItemController extends Controller
         $item = Item::find($id);
 
         if (!$item) {
-            return redirect()->route('items.index')->with('error', 'PFE non trouvé.');
+            return redirect()->route('items.index')->with('error', 'Article non trouvé.');
         }
 
-        // Configuration de Dompdf
         $pdfOptions = new Options();
+        $pdfOptions->set('isHtml5ParserEnabled', true);
         $pdfOptions->set('isPhpEnabled', true);
+        $pdfOptions->set('isRemoteEnabled', true);
+
         $dompdf = new Dompdf($pdfOptions);
 
-        // Contenu HTML du PDF (vous devrez générer votre propre contenu)
-        $html = '<html><body><h1>Titre du PDF</h1><p>Contenu du PDF.</p></body></html>';
+        $html = view('Products component/item_pdf', compact('item'))->render();
 
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
 
-        // Nom du fichier PDF
-        $pdfFileName = $item->title . '.pdf';
+        $pdf = $dompdf->output();
 
-        // Téléchargement du PDF
-        return $dompdf->stream($pdfFileName);
+        $fileName = 'item_details.pdf';
+
+        return response($pdf)
+            ->header('Content-Type', 'application/pdf')
+            ->header('Content-Disposition', "attachment; filename=\"$fileName\"");
     }
 
 }
