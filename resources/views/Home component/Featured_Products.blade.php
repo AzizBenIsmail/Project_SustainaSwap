@@ -23,23 +23,23 @@
                 <div class="mb-3">
                     <label for="content" class="form-label">Content</label>
                     <textarea class="form-control" id="content" name="content" rows="4"></textarea>
-                </div>                
-                
+                </div>
+
                 <div class="center justify">
                     <button type="submit" class="btn btn-primary mb-2 px-5" style="background-color: #FC6F00; width: 100%; border: none; ">Send Message</button>
                     <button type="button" class="btn btn-secondary px-5"  data-dismiss="modal">Close</button>
                 </div>
-                
+
             </form>
         </div>
         <div class="modal-footer">
-  
+
         </div>
       </div>
     </div>
   </div>
 <section class="featured-product section-padding">
-    
+
     <div class="container">
         <div class="row">
 
@@ -108,12 +108,12 @@
                         </div>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Send Message</button>
 
-                        
-                        <a href="{{ route('chatIndex', $item->id) }}" class="btn btn-primary" style="background-color: #FF7F50; color: #fff;">{{$item->id}} Chat</a>
+
+                        <a href="{{ route('chatIndex', $item->id) }}" class="btn btn-primary" style="background-color: #FF7F50; color: #fff;"> Chat</a>
                         <a href="{{ route('showmain', $item->id) }}" class="btn btn-info">Show</a>
                     </div>
                 </div>
-                
+
 
             @endforeach
         </div>
@@ -155,14 +155,14 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-    
+
     const actionButtons = document.querySelectorAll('.action-btn');
         const actionMenus = document.querySelectorAll('.action-menu');
-    
+
         actionButtons.forEach((btn, index) => {
             const actionMenu = actionMenus[index];
             actionMenu.style.display = 'none'; // Hide the menu initially
-    
+
             btn.addEventListener('click', () => {
                 actionMenu.style.display = actionMenu.style.display === 'block' ? 'none' : 'block';
             });
@@ -171,14 +171,14 @@
             if (e.target && e.target.classList.contains('delete-post')) {
                 e.preventDefault();
                 const postId = e.target.getAttribute('data-post-id');
-       
+
                     const deleteForm = document.getElementById('delete-post-form');
                     deleteForm.action = `/admin/posts/${postId}`;
                     deleteForm.submit();
-                
+
             }
         });
-    
+
         $('#exampleModal').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget) // Button that triggered the modal
       var recipient = button.data('whatever') // Extract info from data-* attributes
@@ -186,8 +186,8 @@
       modal.find('.modal-title').text('New message')
     })
     </script>
-    
-    
+
+
 </section>
 
 
