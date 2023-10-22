@@ -9,7 +9,7 @@
                     @csrf
                     <div class="form-group mt-3">
                         <label for="title">Title :</label>
-                        <input type="text" name="title" class="form-control" required>
+                        <input type="text" name="title" class="form-control" >
                         @error('title')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -20,7 +20,7 @@
                     </div>
                     <div class="form-group mt-3">
                         <label for="category">Category :</label>
-                        <select name="category" class="form-control" required>
+                        <select name="category" class="form-control" >
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
@@ -30,7 +30,7 @@
 
                     <div class="form-group mt-3">
                         <label for="state">State :</label>
-                        <select name="state" class="form-control" required>
+                        <select name="state" class="form-control" >
                             <option value="Good">Good</option>
                             <option value="Bad">Bad</option>
                             <option value="Medium">Medium</option>
@@ -39,7 +39,7 @@
 
                     <div class="form-group mt-3">
                         <label for="picture">Picture :</label>
-                        <input type="file" name="picture" class="form-control" required>
+                        <input type="file" name="picture" class="form-control" >
                         @error('picture')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
