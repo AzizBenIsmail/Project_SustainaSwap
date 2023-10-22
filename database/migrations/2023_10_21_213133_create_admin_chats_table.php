@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('admin_chat', function (Blueprint $table) {
+        Schema::create('admin_chats', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('email');
             $table->string('content');
+            $table->string('user_id');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin_chat');
+        Schema::dropIfExists('admin_chats');
     }
 };

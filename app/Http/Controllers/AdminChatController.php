@@ -16,19 +16,22 @@ class AdminChatController extends Controller
 public function store(Request $request)
 {
     // Validate the request
-    $request->validate([
-        'content' => 'required|string',
-    ]);
+    // $request->validate([
+    //     'name' => 'required|string|min:2|max:15',
+    //     'email' => 'required|string|email',
+    //     'content' => 'required|string',
+    // ]);
 
     // Create a new message
     $message = new AdminChat();
-    $message->name = auth()->user()->name; // Get the name from the authenticated user
-    // $message->name = $request->input('name');
+    // $message->name = auth()->user()->name; // Get the name from the authenticated user
+    $message->name = $request->input('name');
+    $message->email = $request->input('email');
     $message->content = $request->input('content');
     $message->user_id = auth()->id();
     $message->save();
 
-    return redirect()->route('adminChat.store')->with('success', 'Message sent successfully!');
+    return redirect()->route('/')->with('success', 'Message sent successfully!');
 }
 
 public function index()

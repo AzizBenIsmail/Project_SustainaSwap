@@ -95,7 +95,7 @@
       data:    {
         _token:  '{{csrf_token()}}',
         message: $("form #message").val(),
-        message_id: generateUniqueMessageID(),
+        // message_id: generateUniqueMessageID(),
 
       }
     }).done(function (res) {
@@ -103,7 +103,7 @@
       $("form #message").val('');
       $(document).scrollTop($(document).height());
     });
-    console.log(generateUniqueMessageID());
+    // console.log(generateUniqueMessageID());
 
   });
 

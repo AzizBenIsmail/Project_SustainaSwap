@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AdminChat extends Model
 {
-    protected $fillable = ['name', 'content'];
+    protected $fillable = ['name', 'content', 'email', 'user_id'];
 
 
     
