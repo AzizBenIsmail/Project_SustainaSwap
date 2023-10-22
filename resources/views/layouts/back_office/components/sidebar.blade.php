@@ -49,7 +49,7 @@
             </a>
             <ul aria-expanded="false" class="collapse  first-level">
                 <li class="sidebar-item">
-                    <a href="itemsAdmin" class="sidebar-link">
+                    <a href="{{ route('itemsAdmin.index') }}" class="sidebar-link">
                         <i class="mdi mdi-note-outline"></i>
                         <span class="hide-menu"> Items</span>
                     </a>
@@ -63,7 +63,7 @@
             </a>
             <ul aria-expanded="false" class="collapse  first-level">
                 <li class="sidebar-item">
-                    <a href="categories" class="sidebar-link">
+                    <a href="{{ route('categories.index') }}" class="sidebar-link">
                         <i class="mdi mdi-note-outline"></i>
                         <span class="hide-menu"> Categoriess</span>
                     </a>

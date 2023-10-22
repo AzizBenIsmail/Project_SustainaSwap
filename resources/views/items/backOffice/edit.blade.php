@@ -12,6 +12,9 @@
                     <div class="form-group mt-3">
                         <label for="title">Title :</label>
                         <input type="text" name="title" class="form-control" value="{{ $item->title }}" required>
+                        @error('title')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group mt-3">
                         <label for="description">Description :</label>
