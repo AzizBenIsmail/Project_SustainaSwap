@@ -3,30 +3,37 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateUserRequest;
 use App\Models\Role;
 use App\Models\User;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        //dd('here');
-        return view('Back_office.dashboard');
+        $users = User::orderBy('created_at','desc')->paginate(3);
+        return view('users.index')->with('users',$users);
     }
     public function create()
     {
         return view('users.create')
             ->with('roles',Role::all());
     }
-    public function getAll()
+    public function store(CreateUserRequest $request)
     {
-//        dd('here');
-        $users = User::orderBy('created_at','desc')->paginate(3);
-//        dd(count($users));
-        return view('users.index')->with('users',$users);
+        //dd($request->all());
+        User::Create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role_id' => $request->role_id
+        ]);
+        session()->flash('success','User Created Successfully');
+        return redirect(route('users.index'));
     }
 
     public function grantAdminPrivileges(int $id)
