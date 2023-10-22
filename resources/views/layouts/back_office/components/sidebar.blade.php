@@ -82,7 +82,7 @@
                     </a>
                 </li>
             </ul>
-            <</li>
+            </li>
 
             {{--------}}
         <li class="sidebar-item">
