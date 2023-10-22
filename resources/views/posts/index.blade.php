@@ -40,7 +40,7 @@
         </div>
         @if($post->image_url)
         <div class="text-center mb-3"  >
-            <img src="{{ asset('storage/' . $post->image_url) }}" class="img-fluid" alt="Post Image">
+            <img src="{{ asset('uploads/' . $post->image_url) }}" class="img-fluid" width="500" height="400" alt="Post Image">
         </div>
         @endif
         <div class="card-footer px-2">

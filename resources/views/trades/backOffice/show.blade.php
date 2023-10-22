@@ -46,7 +46,7 @@
                     <!-- Display any other trade details you want -->
                 </div>
                 <br>
-                <a href="{{ route('trades.index') }}" class="btn btn-primary">Back to Trade List</a>
+                <a href="{{ route('tradesAdmin.index') }}" class="btn btn-primary">Back to Trade List</a>
             </div>
         </div>
     </div>

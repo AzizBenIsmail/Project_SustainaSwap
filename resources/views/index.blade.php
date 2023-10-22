@@ -9,7 +9,16 @@
   <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <!-- End JavaScript -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ asset('favicon.png') }}" type="image/x-icon">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/slick.css') }}">
+    <link href="{{ asset('css/tooplate-little-fashion.css') }}" rel="stylesheet">
   <!-- CSS -->
   <link rel="stylesheet" href="/style.css">
   <!-- End CSS -->
@@ -17,6 +26,8 @@
 </head>
 
 <body>
+@include('basic component.navbar')
+
 <div class="chat">
 
   <!-- Header -->
@@ -26,7 +37,7 @@
       <p>{{ Auth::user()->name }}</p>
       <small>Online</small>
     </div>
-    
+
   </div>
   <!-- End Header -->
 
@@ -47,6 +58,8 @@
   <!-- End Footer -->
 
 </div>
+@include('basic component.footer')
+
 </body>
 
 <script>
@@ -82,8 +95,8 @@
       data:    {
         _token:  '{{csrf_token()}}',
         message: $("form #message").val(),
-        message_id: generateUniqueMessageID(), 
-       
+        message_id: generateUniqueMessageID(),
+
       }
     }).done(function (res) {
       $(".messages > .message").last().after(res);
@@ -94,6 +107,7 @@
 
   });
 
- 
+
 </script>
+
 </html>

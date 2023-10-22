@@ -179,10 +179,80 @@ class CommentController extends Controller
      */
     public function allComment()
     {
-    
+        $posts = Post::all();
         $comments = Comment::all();
-        return view('comments.backOffice.index', compact('comments'));
+        
+        return view('comments.backOffice.index', compact('comments', 'posts'));
+    }
+
+
+        /**
+     * Remove the specified comment from storage.
+     *
+     * @param  \App\Models\Comment  $comment
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyByAdmin(Comment $comment)
+    {
+        $comment->delete();
+        return redirect()->route('comments.allComment')->with('success', 'Comment deleted successfully!');
     }
         
+
+
+        /**
+     * Store a newly created comment in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeFromAdmin(Request $request)
+    {
+        $request->validate([
+            'text' => 'required|string',
+            'post_id' => 'required|exists:posts,id',
+        ]);
+
+        $comment = new Comment;
+        $comment->text = $request->input('text');
+        $comment->user_id = Auth::id() ?: 1;
+        $comment->post_id = $request->input('post_id') ?: 1;
+        $comment->save();
+
+        return redirect()->route('comments.allComment')->with('success', 'Comment created successfully!');
+    }
+
+
+
+        /**
+     * Update the specified comment in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Comment  $comment
+     * @return \Illuminate\Http\Response
+     */
+    public function updateFromAdmin(Request $request, Comment $comment)
+    {
+        $request->validate([
+            'text' => 'required|string',
+        ]);
+
+        $comment->text = $request->input('text');
+        $comment->save();
+
+        return redirect()->route('comments.allComment')->with('success', 'Comment updated successfully!');
+    }
+
+
+        /**
+     * Show the form for editing the specified comment.
+     *
+     * @param  \App\Models\Comment  $comment
+     * @return \Illuminate\Http\Response
+     */
+    public function editFromAdmin(Comment $comment)
+    {
+        return view('comments.backOffice.edit', compact('comment'));
+    }
 
 }

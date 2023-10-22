@@ -7,7 +7,7 @@
             <!-- ============================================================== -->
             <a class="navbar-brand" href="index.blade.php">
                 <!-- Logo icon -->
-                <b class="logo-icon ps-2">
+                
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                     <!-- Dark Logo icon -->
                     <img src="{{ asset('back_office/assets/images/logo-icon.png')}}" alt="homepage" class="light-logo" />
@@ -53,18 +53,7 @@
                 <!-- ============================================================== -->
                 <!-- create new -->
                 <!-- ============================================================== -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="d-none d-md-block">Create New <i class="fa fa-angle-down"></i></span>
-                        <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
+                
                 <!-- ============================================================== -->
                 <!-- Search -->
                 <!-- ============================================================== -->
@@ -87,12 +76,7 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="mdi mdi-bell font-24"></i>
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
+                    
                 </li>
                 <!-- ============================================================== -->
                 <!-- End Comment -->
@@ -109,47 +93,15 @@
                             <li>
                                 <div class="">
                                     <!-- Message -->
-                                    <a href="javascript:void(0)" class="link border-top">
-                                        <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-success btn-circle"><i
-                                                            class="ti-calendar"></i></span>
-                                            <div class="ms-2">
-                                                <h5 class="mb-0">Event today</h5>
-                                                <span class="mail-desc">Just a reminder that event</span>
-                                            </div>
-                                        </div>
-                                    </a>
+                                   
                                     <!-- Message -->
-                                    <a href="javascript:void(0)" class="link border-top">
-                                        <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-info btn-circle"><i
-                                                            class="ti-settings"></i></span>
-                                            <div class="ms-2">
-                                                <h5 class="mb-0">Settings</h5>
-                                                <span class="mail-desc">You can customize this template</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <!-- Message -->
-                                    <a href="javascript:void(0)" class="link border-top">
-                                        <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-primary btn-circle"><i
-                                                            class="ti-user"></i></span>
-                                            <div class="ms-2">
-                                                <h5 class="mb-0">Pavan kumar</h5>
-                                                <span class="mail-desc">Just see the my admin!</span>
-                                            </div>
-                                        </div>
-                                    </a>
+                                    
                                     <!-- Message -->
                                     <a href="javascript:void(0)" class="link border-top">
                                         <div class="d-flex no-block align-items-center p-10">
                                                     <span class="btn btn-danger btn-circle"><i
                                                             class="fa fa-link"></i></span>
-                                            <div class="ms-2">
-                                                <h5 class="mb-0">Luanch Admin</h5>
-                                                <span class="mail-desc">Just see the my new admin!</span>
-                                            </div>
+                                           
                                         </div>
                                     </a>
                                 </div>
@@ -171,12 +123,7 @@
                     <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user me-1 ms-1"></i>
                             My Profile</a>
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email me-1 ms-1"></i>
-                            Inbox</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:void(0)"><i
-                                class="ti-settings me-1 ms-1"></i> Account Setting</a>
-                        <div class="dropdown-divider"></div>
+                       
                         <a class="dropdown-item" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();" href="javascript:void(0)">
                             <i class="fa fa-power-off me-1 ms-1"></i>Log out

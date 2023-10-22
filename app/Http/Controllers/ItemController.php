@@ -65,7 +65,7 @@ class ItemController extends Controller
                 ->orderBy('categories.name', 'asc');
         }
 
-        $items = $query->paginate(4);
+        $items = $query->paginate(8);
 
         $categories = Category::all();
 

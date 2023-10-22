@@ -15,7 +15,7 @@
 
                     <h1>
                         <span class="d-block text-primary">Choose your</span>
-                        <span class="d-block text-dark">favorite stuffs</span>
+                        <span class="d-block text-dark">favorite Item</span>
                     </h1>
         </div>
     </header>

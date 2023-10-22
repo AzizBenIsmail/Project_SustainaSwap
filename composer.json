@@ -13,6 +13,7 @@
         "laravel/ui": "^4.2",
         "pusher/pusher-php-server": "^7.2",
         "redot/laravel-toastify": "*",
+        "twilio/sdk": "^7.12",
         "yoeunes/toastr": "^2.3"
     },
     "require-dev": {

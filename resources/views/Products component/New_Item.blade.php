@@ -27,12 +27,12 @@
                             </div>
                         </div>
 
-                        <a href="{{ route('items.show', $item->id) }}" class="btn btn-info">Afficher</a>
-                        <a href="{{ route('items.edit', $item->id) }}" class="btn btn-warning">Modifier</a>
+                        <a href="{{ route('items.show', $item->id) }}" class="btn btn-info">Show</a>
+                        <a href="{{ route('items.edit', $item->id) }}" class="btn btn-warning">Update</a>
                         <form action="{{ route('items.destroy', $item->id) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </div>
                 </div>
