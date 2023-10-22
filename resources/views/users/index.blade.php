@@ -1,4 +1,13 @@
 @extends('layouts.admin')
+@section('css')
+    img {
+    width: 25px;
+    height:25px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    }
+@endsection
 @section('content')
 <div class="card card-default" id="content">
     <div class="card-header">
@@ -24,7 +33,7 @@
                     <tr>
                         <td>
 
-                            <img  src="/storage/profile_images/{{$user->image}}"   alt="User Image" >
+                            <img src="{{ asset('storage/profile_pictures/' . $user->image) }}" alt="User Image">
 
                         </td>
 
@@ -127,6 +136,13 @@
 
 @section('scripts')
     <script>
+
+        $(document).ready(function() {
+            setTimeout(function() {
+                $("#success-alert").fadeOut(1000);
+            }, 5000);
+        });
+
         function handleUpdate($message) {
             Swal.fire($message);
 

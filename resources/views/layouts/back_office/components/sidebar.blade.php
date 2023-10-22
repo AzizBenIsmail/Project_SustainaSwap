@@ -27,50 +27,68 @@
                     </a>
                 </li>
 
- 
+
 
             </ul>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                    class="mdi mdi-receipt"></i><span class="hide-menu">Users Management</span>
+            </a>
+            <ul aria-expanded="false" class="collapse  first-level">
+                <li class="sidebar-item">
+                    <a href="{{ route('users.index') }}" class="sidebar-link">
+                        <i class="mdi mdi-note-outline"></i>
+                        <span class="hide-menu"> List Users</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
             {{-- -- --}}
+        <li class="sidebar-item">
             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
                     class="mdi mdi-receipt"></i><span class="hide-menu">Items Management</span>
             </a>
             <ul aria-expanded="false" class="collapse  first-level">
-
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="itemsAdmin"
-                        aria-expanded="false">
-                        <i class="mdi mdi-view-dashboard"></i>
-                        <span class="hide-menu">Item</span>
+                    <a href="itemsAdmin" class="sidebar-link">
+                        <i class="mdi mdi-note-outline"></i>
+                        <span class="hide-menu"> Items</span>
                     </a>
                 </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="categories"
-                        aria-expanded="false">
-                        <i class="mdi mdi-chart-bar"></i>
-                        <span class="hide-menu">Category</span>
-                    </a>
-                </li>
-
             </ul>
-            {{--------}}
-            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
-                class="mdi mdi-receipt"></i><span class="hide-menu">Trades Management</span>
-        </a>
-        <ul aria-expanded="false" class="collapse  first-level">
-
-            <li class="sidebar-item">
-                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="tradesAdmin"
-                    aria-expanded="false">
-                    <i class="mdi mdi-view-dashboard"></i>
-                    <span class="hide-menu">Trades List</span>
-                </a>
-            </li>
-
-            
-
-        </ul>
         </li>
+  {{-- -- --}}
+        <li class="sidebar-item">
+            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                    class="mdi mdi-receipt"></i><span class="hide-menu">Category Management</span>
+            </a>
+            <ul aria-expanded="false" class="collapse  first-level">
+                <li class="sidebar-item">
+                    <a href="itemsAdmin" class="sidebar-link">
+                        <i class="mdi mdi-note-outline"></i>
+                        <span class="hide-menu"> Categoriess</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+            {{--------}}
+        <li class="sidebar-item">
+            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                    class="mdi mdi-receipt"></i><span class="hide-menu">Trades Management</span>
+            </a>
+            <ul aria-expanded="false" class="collapse  first-level">
+                <li class="sidebar-item">
+                    <a href="tradesAdmin" class="sidebar-link">
+                        <i class="mdi mdi-note-outline"></i>
+                        <span class="hide-menu"> Categoriess</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+
         {{--        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" --}}
         {{--                                     href="pages-buttons.blade.php" aria-expanded="false"><i --}}
         {{--                    class="mdi mdi-relative-scale"></i><span class="hide-menu">Buttons</span></a></li> --}}

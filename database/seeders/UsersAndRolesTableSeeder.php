@@ -30,21 +30,21 @@ class UsersAndRolesTableSeeder extends Seeder
         ]);
 
          User::create([
-            // 'image'=>'default.png',
+             'image'=>'default.png',
             'name' => 'Elyes Boudhina',
             'email' => 'e-boudhina@live.fr',
             'role_id' => $role1->id,
             'password' => Hash::make('superadmin')
         ]);
         User::create([
-            //'image'=>'default.png',
+            'image'=>'default.png',
             'name' => 'SuperAdmin',
             'email' => 'superadmin@admin.com',
             'role_id' => $role1->id,
             'password' => Hash::make('superadmin')
         ]);
         User::create([
-            //'image'=>'default.png',
+            'image'=>'default.png',
             'name' => 'Admin',
             'email' => 'admin@admin.com',
             'role_id' => $role2->id,
@@ -52,7 +52,7 @@ class UsersAndRolesTableSeeder extends Seeder
         ]);
 
          User::create([
-           // 'image'=>'default.png',
+            'image'=>'default.png',
             'name' => 'User',
             'email' => 'user@user.com',
             'role_id' => $role3->id,

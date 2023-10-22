@@ -18,10 +18,19 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    //Old code
+    /*
     protected $fillable = [
         'name',
         'email',
+        'role_id',
         'password',
+    ];
+    */
+    // New code
+    //Imaging using fillable for 10+ fields! In here it would not make sense to write all them, by using guarded the code is much cleaner
+    protected $guarded = [
+        'id'
     ];
 
     /**
