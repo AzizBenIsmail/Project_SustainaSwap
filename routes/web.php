@@ -166,6 +166,7 @@ Route::delete('/commentDelete/{comment}', [Controllers\CommentController::class,
 
 // Routes pour TradeController
     Route::get('/trades', [Controllers\TradeController::class, 'index'])->name('trades.index');
+    Route::get('/tradess', [Controllers\TradeController::class, 'index1'])->name('trades.index1');
     Route::get('/trades/create', [Controllers\TradeController::class, 'create'])->name('trades.create');
     Route::post('/trades', [Controllers\TradeController::class, 'store'])->name('trades.store');
     Route::get('/trades/{id}', [Controllers\TradeController::class, 'show'])->name('trades.show');
@@ -174,7 +175,11 @@ Route::delete('/commentDelete/{comment}', [Controllers\CommentController::class,
     Route::delete('/trades/{id}', [Controllers\TradeController::class, 'destroy'])->name('trades.destroy');
     Route::get('/trades/search/{search}', [Controllers\TradeController::class, 'search'])->name('trades.search');
     Route::get('/calendar', [Controllers\TradeController::class, 'calendar'])->name('trades.calendar');
+    Route::get('/calendarr', [Controllers\TradeController::class, 'calendarr'])->name('trades.calendarr');
 
+    Route::post('/trades/{trade}/accept', [Controllers\TradeController::class, 'accept'])->name('trades.accept');
+    Route::post('/trades/{trade}/reject', [Controllers\TradeController::class, 'reject'])->name('trades.reject');
+    
 
 
 //Route::resource('/trades', Controllers\TradeController::class);

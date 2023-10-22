@@ -10,6 +10,7 @@ return array(
     'Yoeunes\\Toastr\\' => array($vendorDir . '/yoeunes/toastr/src'),
     'Whoops\\' => array($vendorDir . '/filp/whoops/src/Whoops'),
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
+    'Tzsk\\Sms\\' => array($vendorDir . '/tzsk/sms/src'),
     'Twilio\\' => array($vendorDir . '/twilio/sdk/src/Twilio'),
     'TijsVerkoyen\\CssToInlineStyles\\' => array($vendorDir . '/tijsverkoyen/css-to-inline-styles/src'),
     'Tests\\' => array($baseDir . '/tests'),
