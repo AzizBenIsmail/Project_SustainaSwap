@@ -136,6 +136,16 @@ Route::get('/comment', [Controllers\CommentController::class, 'allComment'])->na
     Route::get('itemsAdmin/{id}/edit', [Controllers\ItemAdminController::class, 'edit'])->name('itemsAdmin.edit');
     Route::put('itemsAdmin/{id}', [Controllers\ItemAdminController::class, 'update'])->name('itemsAdmin.update');
     Route::delete('itemsAdmin/{id}', [Controllers\ItemAdminController::class,'destroy'])->name('itemsAdmin.destroy');
+
+    //Category Management
+
+    Route::get('categories', [Controllers\CategoryController::class, 'index'])->name('categories.index');
+    Route::get('categories/create', [Controllers\CategoryController::class, 'create'])->name('categories.create');
+    Route::post('categories', [Controllers\CategoryController::class, 'store'])->name('categories.store');
+    Route::get('categories/{category}/edit', [Controllers\CategoryController::class, 'edit'])->name('categories.edit');
+    Route::put('categories/{category}', [Controllers\CategoryController::class, 'update'])->name('categories.update');
+    Route::delete('categories/{category}', [Controllers\CategoryController::class, 'destroy'])->name('categories.destroy');Route::resource('avis', Controllers\AvisController::class);
+
 });
 ### End Admin Routes ###
 
@@ -173,12 +183,6 @@ Route::delete('/commentDelete/{comment}', [Controllers\CommentController::class,
 
 
 //Route::resource('admin/categories', Controllers\CategoryController::class);
-Route::get('categories', [Controllers\CategoryController::class, 'index'])->name('categories.index');
-Route::get('categories/create', [Controllers\CategoryController::class, 'create'])->name('categories.create');
-Route::post('categories', [Controllers\CategoryController::class, 'store'])->name('categories.store');
-Route::get('categories/{category}/edit', [Controllers\CategoryController::class, 'edit'])->name('categories.edit');
-Route::put('categories/{category}', [Controllers\CategoryController::class, 'update'])->name('categories.update');
-Route::delete('categories/{category}', [Controllers\CategoryController::class, 'destroy'])->name('categories.destroy');Route::resource('avis', Controllers\AvisController::class);
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
