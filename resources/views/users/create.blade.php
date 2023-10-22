@@ -4,7 +4,7 @@
     <div class="container">
         <div class="card card-default">
             <div class="card-header">
-                Create User<a class="btn btn-secondary float-end mr-1  btn-sm " href="{{ route('users.index') }}"> Go Back</a>
+                Create User<a class="btn btn-secondary float-end mr-1  btn-sm " href="#" id="goBackLink"> Go Back</a>
             </div>
 
             <div class="card-body">
@@ -67,4 +67,13 @@
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script>
+        document.getElementById('goBackLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            history.back(); // This will take the user back to the last visited page.
+        });
+
+    </script>
 @endsection
