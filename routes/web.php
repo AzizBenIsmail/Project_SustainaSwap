@@ -46,7 +46,7 @@ Route::delete('/admin_chat/{id}/destroy', 'App\Http\Controllers\AdminChatControl
 
 
 Route::get('/showmain/{id}', [Controllers\ItemController::class, 'showmain'])->name('showmain');
-//Route::resource('/products',Controllers\ItemController::class);
+Route::resource('/products',Controllers\ItemController::class);
 
 //Route::resource('/items', Controllers\ItemController::class);
 Route::get('/items', [Controllers\ItemController::class, 'index'])->name('items.index');
