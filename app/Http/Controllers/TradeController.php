@@ -45,7 +45,9 @@ class TradeController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'tradeStartDate' => 'required|date',
-            'tradeEndDate' => 'required|date',
+            'tradeEndDate' => 'required|date|after:tradeStartDate', // Ensure end date is after start date
+        ], [
+            'tradeEndDate.after' => 'The end date must be greater than the start date.',
         ]);
 
         if ($validator->fails()) {
@@ -54,7 +56,7 @@ class TradeController extends Controller
 
         $ownerId = auth()->user()->id;
         $requestedItemId = $request->input('item_id');
-        $status = $request->input('status', 'pending');
+        $status ='pending';
 
         $trade = Trade::create([
             'tradeStartDate' => $request->input('tradeStartDate'),
@@ -70,7 +72,7 @@ class TradeController extends Controller
         $message .= "For more information, please check the trade details.";
 
         $this->sendSms($trade,$message); // Call the sendSms method
-        return redirect()->route('trades.index');
+        return redirect()->route('trades.index')->with('success', 'Trade created.');;
     }
 
     public function show($id)
@@ -95,8 +97,9 @@ class TradeController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'tradeStartDate' => 'required|date',
-            'tradeEndDate' => 'required|date',
-            'status' => 'required|string|in:pending,accepted,rejected',
+            'tradeEndDate' => 'required|date|after:tradeStartDate', // Ensure end date is after start date
+        ], [
+            'tradeEndDate.after' => 'The end date must be greater than the start date.',
         ]);
 
         if ($validator->fails()) {
@@ -105,7 +108,7 @@ class TradeController extends Controller
 
         $trade = Trade::findOrFail($id);
         $trade->update($request->all());
-        return redirect()->route('trades.index');
+        return redirect()->route('trades.index')->with('success', 'Trade updated.');;
     }
 
     public function destroy($id)

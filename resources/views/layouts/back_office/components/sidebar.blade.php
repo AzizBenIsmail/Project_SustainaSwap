@@ -91,9 +91,9 @@
             </a>
             <ul aria-expanded="false" class="collapse  first-level">
                 <li class="sidebar-item">
-                    <a href="tradesAdmin" class="sidebar-link">
+                    <a href="{{ route('tradesAdmin.index') }}" class="sidebar-link">
                         <i class="mdi mdi-note-outline"></i>
-                        <span class="hide-menu"> Categoriess</span>
+                        <span class="hide-menu"> Trade List</span>
                     </a>
                 </li>
             </ul>
