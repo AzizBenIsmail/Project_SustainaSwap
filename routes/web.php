@@ -58,6 +58,7 @@ Route::put('/items/{item}', [Controllers\ItemController::class,'update'])->name(
 Route::delete('/items/{item}', [Controllers\ItemController::class,'destroy'])->name('items.destroy');
 Route::get('/items/main', [Controllers\ItemController::class,'indexmain'])->name('items.indexmain');
 Route::get('/items/{id}/showmain',[Controllers\ItemController::class,'showmain'])->name('items.showmain');
+Route::get('/download-pfe/{id}', [Controllers\ItemController::class, 'downloadPFE'])->name('download.pfe');
 
 //Route::resource('/admin/itemsAdmin', Controllers\ItemAdminController::class);
 
@@ -136,7 +137,7 @@ Route::get('/comment', [Controllers\CommentController::class, 'allComment'])->na
     Route::get('itemsAdmin/{id}/edit', [Controllers\ItemAdminController::class, 'edit'])->name('itemsAdmin.edit');
     Route::put('itemsAdmin/{id}', [Controllers\ItemAdminController::class, 'update'])->name('itemsAdmin.update');
     Route::delete('itemsAdmin/{id}', [Controllers\ItemAdminController::class,'destroy'])->name('itemsAdmin.destroy');
-    Route::get('download-items', 'ItemAdminController@downloadItems')->name('downloadItems');
+    Route::get('download-items', [Controllers\ItemAdminController::class,'downloadItems'])->name('downloadItems');
 
     //Category Management
 
@@ -180,7 +181,7 @@ Route::delete('/commentDelete/{comment}', [Controllers\CommentController::class,
 
     Route::post('/trades/{trade}/accept', [Controllers\TradeController::class, 'accept'])->name('trades.accept');
     Route::post('/trades/{trade}/reject', [Controllers\TradeController::class, 'reject'])->name('trades.reject');
-    
+
 
 
 //Route::resource('/trades', Controllers\TradeController::class);
