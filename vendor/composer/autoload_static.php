@@ -650,6 +650,7 @@ class ComposerStaticInitcb194ff3be37c609504fe37ec474d449
         'App\\Models\\Conversation' => __DIR__ . '/../..' . '/app/Models/Conversation.php',
         'App\\Models\\Item' => __DIR__ . '/../..' . '/app/Models/Item.php',
         'App\\Models\\Message' => __DIR__ . '/../..' . '/app/Models/Message.php',
+        'App\\Models\\MsgAdmin' => __DIR__ . '/../..' . '/app/Models/MsgAdmin.php',
         'App\\Models\\Post' => __DIR__ . '/../..' . '/app/Models/Post.php',
         'App\\Models\\Role' => __DIR__ . '/../..' . '/app/Models/Role.php',
         'App\\Models\\Trade' => __DIR__ . '/../..' . '/app/Models/Trade.php',

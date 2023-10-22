@@ -57,6 +57,7 @@ return array(
     'App\\Models\\Conversation' => $baseDir . '/app/Models/Conversation.php',
     'App\\Models\\Item' => $baseDir . '/app/Models/Item.php',
     'App\\Models\\Message' => $baseDir . '/app/Models/Message.php',
+    'App\\Models\\MsgAdmin' => $baseDir . '/app/Models/MsgAdmin.php',
     'App\\Models\\Post' => $baseDir . '/app/Models/Post.php',
     'App\\Models\\Role' => $baseDir . '/app/Models/Role.php',
     'App\\Models\\Trade' => $baseDir . '/app/Models/Trade.php',

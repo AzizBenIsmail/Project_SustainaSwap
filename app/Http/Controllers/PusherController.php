@@ -9,6 +9,7 @@ use App\Models\AdminChat;
 use App\Models\Conversation;
 use App\Models\Item;
 use App\Models\Message;
+use App\Models\MsgAdmin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,60 +23,105 @@ class PusherController extends Controller
     }
 
 
+    
+    public function chatAdminSend(Request $request)
+    {      
+        // Validate the request data if needed
+    $request->validate([
+        'content' => 'required|string',
+    ]);
+    $message = new MsgAdmin();
+    $message->content = $request->input('content');
+    $message->save();
 
+    // Pass the message content to the JavaScript function
+    $messageContent = $request->input('content');
+    echo '<script>';
+    echo "showAdminMessageNotification('$messageContent');";
+    echo '</script>';
+    // Optionally, you can flash a success message to the session
+    session()->flash('success', 'Message sent successfully!');
+
+    // Redirect back to the previous page or any other view
+    return redirect()->back();
+    }
+    
 /**
      * Display the specified resource.
      *
      * @param \App\Models\Item $item
      * @return \Illuminate\Http\Response
      */
-    public function index($Id)
+//     public function index($Id)
+// {
+// //    dd($item->name);
+//     $currentUserId = auth()->id();
+//     $item = Item::find($Id);
+//     //     $recipientId = $item->user_id;
+
+//     $messages = Message::where('user_id', $currentUserId)->get();
+//     return view('index', ['messages' => $messages, 'item' => $item]);
+// }
+
+public function index($Id)
 {
-//    dd($item->name);
     $currentUserId = auth()->id();
     $item = Item::find($Id);
-    $messages = Message::where('user_id', $currentUserId)->get();
-    return view('index', ['messages' => $messages, 'item' => $item]);
+    $recipientId = $item->user_id;
+
+    // Retrieve messages sent by the current user (sender)
+    $senderMessages = Message::where('user_id', $currentUserId)
+                            ->where('recipient_id', $recipientId)
+                            ->orderBy('created_at', 'asc')
+                            ->get();
+
+    // Retrieve messages sent by the recipient
+    $recipientMessages = Message::where('user_id', $recipientId)
+                               ->where('recipient_id', $currentUserId)
+                               ->orderBy('created_at', 'asc')
+                               ->get();
+
+    // Merge and sort both sets of messages based on the created_at timestamp
+    $messages = $senderMessages->merge($recipientMessages)
+                 ->sortBy('created_at')
+                 ->values();
+
+    $recipient = User::find($recipientId);
+    // return view('index', ['messages' => $messages, 'item' => $item]);
+    return view('index', compact('recipient', 'messages', 'item'));
 }
+
+
+
+
+
+
+
 
 
 
     public function broadcast(Request $request)
     {
         // Validate the request data as needed.
-        $this->validate($request, [
-            'message' => 'required|string'
-            // 'message_id'=>'required|string'
-        ]);
+        // $this->validate($request, [
+        //     'message' => 'required|string'
+        //     // 'message_id'=>'required|string'
+        // ]);
         // $conversationId = $request->input('conversation_id'); // Replace with your actual input field name
         // $senderUserId = auth()->id();
         // $recipientUserId = $request->input('recipient_id'); // Replace with your actual input field name
         // $messageContent = $request->input('message');
 
-        // // Create a new Message model and save it to the database.
-        // $message = new Message();
-        // $message->conversation_id = $conversationId;
-        // $message->sender_id = $senderUserId;
-        // $message->recipient_id = $recipientUserId;
-        // $message->message = $messageContent;
-        // $message->user_id = auth()->id();
-        // $message->message = $request->input('message');
-        // $message->save();
+      
 
         // Create a new Message model and save it to the database.
         $message = new Message();
         $message->user_id = auth()->id(); // Assuming you're storing the user ID who sent the message.
         $message->message = $request->input('message');
         $message->name = auth()->user()->name;
+        $message->recipient_id= $request->input('recipient');
         $message->save();
         $messageId = $message->id;
-        // $message=Message::create([
-
-        //     'name' => Auth::user()->name,
-        //     'message' => $request->input('message'),
-
-        //     'password' => Hash::make('superadmin')
-        // ]);
         // Broadcast the message to other users.
         broadcast(new PusherBroadcast($request->input('message')))->toOthers();
 

@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Message extends Model
+class MsgAdmin extends Model
 {
     // use HasFactory;
-    protected $fillable = ['name','user_id', 'message','recipient_id'];
+    protected $fillable = ['content'];
 
 
     

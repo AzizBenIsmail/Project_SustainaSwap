@@ -331,11 +331,13 @@ public function allPost()
         $post->title = $request->input('title');
         $post->content = $request->input('content');
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('uploads', 'public'); 
-            $post->image_url = $imagePath;
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads'), $imageName);
+            $post->image_url =$imageName;
         }
+    
         $post->save();
-
         return redirect()->route('posts.allPost')->with('success', 'Post updated successfully!');
     }
 
