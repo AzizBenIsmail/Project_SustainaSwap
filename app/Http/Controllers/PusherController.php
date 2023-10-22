@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Events\MessageDeletedEvent;
 use App\Events\PusherBroadcast;
 use App\Http\Controllers\Controller;
+use App\Models\AdminChat;
 use App\Models\Conversation;
+use App\Models\Item;
 use App\Models\Message;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,18 +17,28 @@ class PusherController extends Controller
 {
     public function indexAdmin()
     {
-        $messages = Message::all();
+        $messages = AdminChat::all();
         return view('chatAdmin', compact('messages'));
     }
 
-    public function index()
-    {
-        $currentUserId = auth()->id();
-        $messages = Message::where('user_id', $currentUserId)->get();
 
-    // Return the view with the messages
-    return view('index', ['messages' => $messages]);
-    }
+
+/**
+     * Display the specified resource.
+     *
+     * @param \App\Models\Item $item
+     * @return \Illuminate\Http\Response
+     */
+    public function index($Id)
+{
+//    dd($item->name);
+    $currentUserId = auth()->id();
+    $item = Item::find($Id);
+    $messages = Message::where('user_id', $currentUserId)->get();
+    return view('index', ['messages' => $messages, 'item' => $item]);
+}
+
+
 
     public function broadcast(Request $request)
     {
@@ -38,14 +51,14 @@ class PusherController extends Controller
         // $senderUserId = auth()->id();
         // $recipientUserId = $request->input('recipient_id'); // Replace with your actual input field name
         // $messageContent = $request->input('message');
-    
+
         // // Create a new Message model and save it to the database.
         // $message = new Message();
         // $message->conversation_id = $conversationId;
         // $message->sender_id = $senderUserId;
         // $message->recipient_id = $recipientUserId;
         // $message->message = $messageContent;
-        // $message->user_id = auth()->id(); 
+        // $message->user_id = auth()->id();
         // $message->message = $request->input('message');
         // $message->save();
 
@@ -53,14 +66,14 @@ class PusherController extends Controller
         $message = new Message();
         $message->user_id = auth()->id(); // Assuming you're storing the user ID who sent the message.
         $message->message = $request->input('message');
-        $message->name = auth()->user()->name; 
+        $message->name = auth()->user()->name;
         $message->save();
         $messageId = $message->id;
         // $message=Message::create([
-            
+
         //     'name' => Auth::user()->name,
         //     'message' => $request->input('message'),
-            
+
         //     'password' => Hash::make('superadmin')
         // ]);
         // Broadcast the message to other users.

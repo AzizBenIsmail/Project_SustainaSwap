@@ -6,6 +6,7 @@
     <div class="card">
         <div class="card-body">
             <a href="{{ route('itemsAdmin.create') }}" class="btn btn-primary">Add Item</a>
+            <a href="{{ route('downloadItems') }}" class="btn btn-success">Télécharger le fichier CSV</a>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
