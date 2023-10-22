@@ -1,26 +1,39 @@
-{{-- @foreach ($messages as $message) --}}
-{{-- <div class="right message">
-    @foreach ($messages as $message)
+ {{-- <div class="right message">
         <form action="{{ route('pusher.destroy', ['message' => $message]) }}" method="POST" style="display: inline;">
             @csrf
             @method('delete')
-            <p>{{ $message->message }}</p>
-            <button type="submit" class="btn btn-danger">Supprimer</button>
+            <p>{{ $message}}</p>
+            <p>{{$message_id}}</p>
+            <button type="submit" >🗑️</button>
         </form>
-    @endforeach
 </div> --}}
 
 
 
-<div class="right message"> 
-    <form >
+<div class="right message" id={{$messageId}}> 
+    <form action="{{ route('deleteMessage', ['id' => $messageId]) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this message?')">
         @csrf
         @method('delete')
     <p>{{ $message}}</p>
-    <p>{{$message_id}}</p>
+    
     <button type="submit" >🗑️</button>
 </form>
 </div>
+
+<script>
+    function deleteMessage(messageId) {
+        const confirmation = confirm("Are you sure you want to delete this message?");
+        
+        if (confirmation) {
+            const messageElement = document.getElementById(messageId);
+            if (messageElement) {
+                messageElement.remove();
+            }
+        }
+    }
+</script>
+
+
 
 
 {{-- @endforeach --}}

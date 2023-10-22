@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Conversation;
 use Illuminate\Http\Request;
 
 class ConversationController extends Controller
@@ -24,8 +25,8 @@ class ConversationController extends Controller
      */
     public function create()
     {
-        $lenderUserId = user_id; // Lender
-        $borrowerUserId = user_id; // Borrower
+        // $lenderUserId = user_id; // Lender
+        // $borrowerUserId = user_id; // Borrower
 
         $conversation = Conversation::create([
             'name' => 'Borrowing a Hammer from Neighbor A',
@@ -33,7 +34,7 @@ class ConversationController extends Controller
         ]);
 
         // Attach the users to the conversation
-        $conversation->users()->attach([$lenderUserId, $borrowerUserId]);
+        // $conversation->users()->attach([$lenderUserId, $borrowerUserId]);
 
         // You can perform additional actions here if needed
 

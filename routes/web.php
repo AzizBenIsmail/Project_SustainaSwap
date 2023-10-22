@@ -25,10 +25,22 @@ Route::get('/sign-up', function () {
     return view('Sign/sign-up');
 });
 
-Route::get('/chat', 'App\Http\Controllers\PusherController@index');
+Route::get('/chat', 'App\Http\Controllers\PusherController@index')->name('chatIndex');
 Route::post('/broadcast', 'App\Http\Controllers\PusherController@broadcast');
 Route::post('/receive', 'App\Http\Controllers\PusherController@receive');
-Route::get('/chat/{message}/delete', [Controllers\PusherController::class, 'destroy'])->name('pusher.index');
+Route::get('/chat/{message_id}/delete', [Controllers\PusherController::class, 'destroy'])->name('pusher.destroy');
+Route::get('/admin/chatAdmin', [Controllers\PusherController::class, 'indexAdmin'])->name('pusher.indexAdmin');
+Route::delete('/delete-message/{id}', 'App\Http\Controllers\PusherController@delete')->name('deleteMessage');
+
+Route::get('/admin_chat/create', 'App\Http\Controllers\AdminChatController@create')->name('adminChat.create');
+Route::post('/admin_chat/store', 'App\Http\Controllers\AdminChatController@store')->name('adminChat.store');
+Route::get('/admin_chat', 'App\Http\Controllers\AdminChatController@index')->name('adminChat.index');
+Route::get('/admin_chat/{id}/edit', 'App\Http\Controllers\AdminChatController@edit')->name('adminChat.edit');
+Route::put('/admin_chat/{id}/update', 'App\Http\Controllers\AdminChatController@update')->name('adminChat.update');
+Route::delete('/admin_chat/{id}/destroy', 'App\Http\Controllers\AdminChatController@destroy')->name('adminChat.destroy');
+
+
+
 Route::get('/showmain/{id}', [Controllers\ItemController::class, 'showmain'])->name('showmain');
 //Route::resource('/products',Controllers\ItemController::class);
 

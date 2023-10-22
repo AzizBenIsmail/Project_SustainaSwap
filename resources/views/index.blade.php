@@ -90,6 +90,8 @@
       $("form #message").val('');
       $(document).scrollTop($(document).height());
     });
+    console.log(generateUniqueMessageID());
+
   });
 
  

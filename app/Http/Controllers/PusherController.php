@@ -8,13 +8,20 @@ use App\Http\Controllers\Controller;
 use App\Models\Conversation;
 use App\Models\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PusherController extends Controller
 {
+    public function indexAdmin()
+    {
+        $messages = Message::all();
+        return view('chatAdmin', compact('messages'));
+    }
+
     public function index()
     {
         $currentUserId = auth()->id();
-    $messages = Message::where('user_id', $currentUserId)->get();
+        $messages = Message::where('user_id', $currentUserId)->get();
 
     // Return the view with the messages
     return view('index', ['messages' => $messages]);
@@ -24,7 +31,8 @@ class PusherController extends Controller
     {
         // Validate the request data as needed.
         $this->validate($request, [
-            'message' => 'required|string',
+            'message' => 'required|string'
+            // 'message_id'=>'required|string'
         ]);
         // $conversationId = $request->input('conversation_id'); // Replace with your actual input field name
         // $senderUserId = auth()->id();
@@ -46,12 +54,19 @@ class PusherController extends Controller
         $message->user_id = auth()->id(); // Assuming you're storing the user ID who sent the message.
         $message->message = $request->input('message');
         $message->save();
-
+        $messageId = $message->id;
+        // $message=Message::create([
+            
+        //     'name' => Auth::user()->name,
+        //     'message' => $request->input('message'),
+            
+        //     'password' => Hash::make('superadmin')
+        // ]);
         // Broadcast the message to other users.
         broadcast(new PusherBroadcast($request->input('message')))->toOthers();
 
         // Return a response indicating the message was saved.
-        return view('broadcast', ['message' => $request->get('message')]);
+        return view('broadcast', ['message' => $request->get('message'),'messageId' => $messageId]);
     }
 
 
@@ -98,11 +113,26 @@ public function deleteMessage(Request $request)
     }
 }
 
-public function destroy(Message $message)
-{
-    
-    $message->delete();
+public function destroy($id) {
+    // Retrieve the message by ID and delete it
+    $message = Message::find($id);
+    if ($message) {
+        $message->delete();
+    }
+
 
     return redirect()->route('pusher.index')->with('success', 'Message supprimé avec succès.');
 }
+
+public function delete($id) {
+    // Retrieve the message by ID and delete it
+    $message = Message::find($id);
+    if ($message) {
+        $message->delete();
+    }
+
+    // Redirect back to the page, or to a specific URL
+    return redirect()->back();
+}
+
 }
