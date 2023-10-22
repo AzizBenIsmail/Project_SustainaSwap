@@ -16,8 +16,12 @@ class CommentController extends Controller
      */
     public function index()
     {
+        if (Auth::check()) {
         $comments = Comment::all();
         return view('comments.index', compact('comments'));
+    }
+
+    return redirect()->route('login');
     }
 
     /**

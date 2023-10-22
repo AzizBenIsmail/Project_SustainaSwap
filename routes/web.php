@@ -89,7 +89,7 @@ Route::delete('/posts/{post}', [Controllers\PostController::class, 'destroy'])->
 Route::put('/posts/{post}', [Controllers\PostController::class, 'update'])->name('posts.update');
 Route::get('/posts/create', [Controllers\PostController::class, 'create'])->name('posts.create');
 Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts.store');
-
+Route::get('/posts/sort-by-date-asc', [Controllers\PostController::class, 'sortByDateAsc'])->name('posts.sortByDateAsc');
 Route::get('/post/{post}', [Controllers\PostController::class, 'show'])->name('posts.show');
 
 ### Start Admin Routes ###
