@@ -62,6 +62,7 @@
                                 <option value="state" {{ request('sort') == 'state' ? 'selected' : '' }}>State</option>
                                 <option value="category" {{ request('sort') == 'category' ? 'selected' : '' }}>Category</option>
                             </select>
+                             
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -73,11 +74,12 @@
                                     <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                                 @endforeach
                             </select>
+                            <button class="btn btn-primary" type="submit" style="background-color: #E9967A; color: #fff;">Submit</button>
                         </div>
                     </div>
                 </div>
                 <div class="text-center mt-2">
-                    <button class="btn btn-primary" type="submit">Submit</button>
+                   
                 </div>
             </form>
 
@@ -106,11 +108,11 @@
                                 <small class="product-price text-muted ms-auto">{{ $item->state }}</small> . condition
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Send Message</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="background-color: #FF7F50;color: #fff;">Send Message</button>
 
 
-                        <a href="{{ route('chatIndex', $item->id) }}" class="btn btn-primary" style="background-color: #FF7F50; color: #fff;"> Chat</a>
-                        <a href="{{ route('showmain', $item->id) }}" class="btn btn-info">Show</a>
+                        <a href="{{ route('chatIndex', $item->id) }}" class="btn btn-primary" style="background-color: #E9967A; color: #fff;"> Chat</a>
+                        <a href="{{ route('showmain', $item->id) }}" class="btn btn-info" style="background-color: #FFA07A;color: #fff;">Show</a>
                     </div>
                 </div>
 
@@ -151,6 +153,21 @@
 
 
         </div>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/6535934ba84dd54dc483f1ac/1hdckeom4';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

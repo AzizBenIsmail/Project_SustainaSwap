@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response; // Assurez-vous d'importer Response de Illuminate
 
 class ItemAdminController extends Controller
 {
@@ -149,6 +150,32 @@ class ItemAdminController extends Controller
         $item->delete();
 
         return redirect()->route('itemsAdmin.index')->with('success', 'Élément supprimé avec succès.');
+    }
+
+    public function downloadItems()
+    {
+        $items = Item::with('user', 'category')->get();
+        $csvFileName = "items.csv";
+
+        $headers = array(
+            "Content-Type" => "text/csv",
+            "Content-Disposition" => "attachment; filename=$csvFileName",
+        );
+
+        $handle = fopen('php://output', 'w');
+        fputcsv($handle, ['ID', 'Picture', 'Title', 'Owner', 'Category']);
+
+        foreach ($items as $item) {
+            fputcsv($handle, [$item->id, $item->picture, $item->title, $item->user->name, $item->category->name]);
+        }
+
+        fclose($handle); // Fermez le fichier CSV après avoir écrit les données
+
+        return new Response(
+            null, // Ne retournez pas de contenu dans la réponse, car le fichier est déjà écrit
+            200,
+            $headers
+        );
     }
 
 }

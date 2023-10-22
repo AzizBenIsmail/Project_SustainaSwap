@@ -77,7 +77,9 @@
                 <input type="hidden" name="trade_id" value="{{ $trade->id }}">
                     <div class="form-floating">
                         <input type="text" name="comment" id="comment" class="form-control" placeholder="Full name" required>
-
+                        @error('comment')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                         <label for="comment">Your feedback/label>
                     </div>
                     <br>

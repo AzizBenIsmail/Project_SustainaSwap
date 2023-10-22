@@ -24,11 +24,24 @@
                         <span class="hide-menu"> List complaints</span>
                     </a>
                 </li>
-
-
-
             </ul>
         </li>
+
+        <li class="sidebar-item">
+            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                    class="mdi mdi-receipt"></i><span class="hide-menu">Conversation Management</span>
+            </a>
+            <ul aria-expanded="false" class="collapse  first-level">
+                <li class="sidebar-item">
+                    <a href="{{ route('pusher.indexAdmin') }}" class="sidebar-link">
+                        <i class="mdi mdi-note-outline"></i>
+                        <span class="hide-menu"> Conversation</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        {{-- -- --}}
+
         <li class="sidebar-item">
             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
                     class="mdi mdi-receipt"></i><span class="hide-menu">Users Management</span>
@@ -56,22 +69,7 @@
                 </li>
             </ul>
         </li>
-  {{-- -- --}}
 
-        <li class="sidebar-item">
-            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
-                    class="mdi mdi-receipt"></i><span class="hide-menu">Conversation Management</span>
-            </a>
-            <ul aria-expanded="false" class="collapse  first-level">
-                <li class="sidebar-item">
-                    <a href="{{ route('pusher.indexAdmin') }}" class="sidebar-link">
-                        <i class="mdi mdi-note-outline"></i>
-                        <span class="hide-menu"> Conversation</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-  {{-- -- --}}
         <li class="sidebar-item">
             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
                     class="mdi mdi-receipt"></i><span class="hide-menu">Category Management</span>
@@ -84,7 +82,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+            </li>
 
             {{--------}}
         <li class="sidebar-item">
@@ -93,14 +91,36 @@
             </a>
             <ul aria-expanded="false" class="collapse  first-level">
                 <li class="sidebar-item">
-                    <a href="tradesAdmin" class="sidebar-link">
+                    <a href="{{ route('tradesAdmin.index') }}" class="sidebar-link">
                         <i class="mdi mdi-note-outline"></i>
-                        <span class="hide-menu"> Categoriess</span>
+                        <span class="hide-menu"> Trade List</span>
+                    </a>
+                </li>
+            </ul>
+
+
+
+
+
+        <li class="sidebar-item">
+            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                    class="mdi mdi-receipt"></i><span class="hide-menu">Posts Management</span>
+            </a>
+            <ul aria-expanded="false" class="collapse  first-level">
+                <li class="sidebar-item">
+                    <a href="{{ route('posts.allPost') }}" class="sidebar-link">
+                        <i class="mdi mdi-note-outline"></i>
+                        <span class="hide-menu"> List Posts</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="{{ route('comments.allComment') }}" class="sidebar-link">
+                        <i class="mdi mdi-note-outline"></i>
+                        <span class="hide-menu"> List Comments</span>
                     </a>
                 </li>
             </ul>
         </li>
-
 
         {{--        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" --}}
         {{--                                     href="pages-buttons.blade.php" aria-expanded="false"><i --}}

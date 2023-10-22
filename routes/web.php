@@ -59,6 +59,7 @@ Route::put('/items/{item}', [Controllers\ItemController::class,'update'])->name(
 Route::delete('/items/{item}', [Controllers\ItemController::class,'destroy'])->name('items.destroy');
 Route::get('/items/main', [Controllers\ItemController::class,'indexmain'])->name('items.indexmain');
 Route::get('/items/{id}/showmain',[Controllers\ItemController::class,'showmain'])->name('items.showmain');
+Route::get('/download-pfe/{id}', [Controllers\ItemController::class, 'downloadPFE'])->name('download.pfe');
 
 //Route::resource('/admin/itemsAdmin', Controllers\ItemAdminController::class);
 
@@ -75,7 +76,7 @@ Route::resource('Comment', Controllers\CommentController::class);
 //Route::resource('Complaint', Controllers\ComplaintsController::class);
 Route::resource('Conversation', Controllers\ConversationController::class);
 Route::resource('Message', Controllers\MessageController::class);
-Route::resource('Trade', Controllers\TradeController::class);
+
 
 
 
@@ -89,7 +90,7 @@ Route::delete('/posts/{post}', [Controllers\PostController::class, 'destroy'])->
 Route::put('/posts/{post}', [Controllers\PostController::class, 'update'])->name('posts.update');
 Route::get('/posts/create', [Controllers\PostController::class, 'create'])->name('posts.create');
 Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts.store');
-
+Route::get('/posts/sort-by-date-asc', [Controllers\PostController::class, 'sortByDateAsc'])->name('posts.sortByDateAsc');
 Route::get('/post/{post}', [Controllers\PostController::class, 'show'])->name('posts.show');
 
 ### Start Admin Routes ###
@@ -127,6 +128,10 @@ Route::get('/comment', [Controllers\CommentController::class, 'allComment'])->na
     Route::post('/{user}/grantAdminPrivileges',[Controllers\AdminController::class,'grantAdminPrivileges'])->name('users.grant-admin-privileges');
     Route::post('{userId}/revokeAdminPrivileges',[Controllers\AdminController::class,'revokeAdminPrivileges'])->name('users.revoke-admin-privileges');
     Route::delete('{userId}/deleteUser',[Controllers\AdminController::class,'deleteUser'])->name('users.delete-user');
+    //Profile
+    Route::get('users/profile',[Controllers\UsersController::class,'edit'])->name('user.edit-profile');
+    Route::put('users/profile',[Controllers\UsersController::class,'update'])->name('user.update-profile');
+    Route::put('users/profile/image/update',[Controllers\UsersController::class,'updateProfileImage'])->name('user.update-profile-image');
 
     //Items Management
 
@@ -137,7 +142,7 @@ Route::get('/comment', [Controllers\CommentController::class, 'allComment'])->na
     Route::get('itemsAdmin/{id}/edit', [Controllers\ItemAdminController::class, 'edit'])->name('itemsAdmin.edit');
     Route::put('itemsAdmin/{id}', [Controllers\ItemAdminController::class, 'update'])->name('itemsAdmin.update');
     Route::delete('itemsAdmin/{id}', [Controllers\ItemAdminController::class,'destroy'])->name('itemsAdmin.destroy');
-
+    Route::get('download-items', [Controllers\ItemAdminController::class, 'downloadItems'])->name('downloadItems');
     //Category Management
 
     Route::get('categories', [Controllers\CategoryController::class, 'index'])->name('categories.index');
@@ -145,16 +150,11 @@ Route::get('/comment', [Controllers\CommentController::class, 'allComment'])->na
     Route::post('categories', [Controllers\CategoryController::class, 'store'])->name('categories.store');
     Route::get('categories/{category}/edit', [Controllers\CategoryController::class, 'edit'])->name('categories.edit');
     Route::put('categories/{category}', [Controllers\CategoryController::class, 'update'])->name('categories.update');
-    Route::delete('categories/{category}', [Controllers\CategoryController::class, 'destroy'])->name('categories.destroy');Route::resource('avis', Controllers\AvisController::class);
+    Route::delete('categories/{category}', [Controllers\CategoryController::class, 'destroy'])->name('categories.destroy');
+   
 
 });
-### End Admin Routes ###
 
-
-// Route::resource('/comments', \App\Http\Controllers\CommentController::class)->names([
-//     'index' => 'comments.index',
-// ]);
-// Show the comment creation form
 Route::get('/comments/create', [Controllers\CommentController::class, 'create'])->name('comments.create');
 
 Route::resource('comments', Controllers\CommentController::class);
@@ -167,6 +167,7 @@ Route::delete('/commentDelete/{comment}', [Controllers\CommentController::class,
 
 // Routes pour TradeController
     Route::get('/trades', [Controllers\TradeController::class, 'index'])->name('trades.index');
+    Route::get('/tradess', [Controllers\TradeController::class, 'index1'])->name('trades.index1');
     Route::get('/trades/create', [Controllers\TradeController::class, 'create'])->name('trades.create');
     Route::post('/trades', [Controllers\TradeController::class, 'store'])->name('trades.store');
     Route::get('/trades/{id}', [Controllers\TradeController::class, 'show'])->name('trades.show');
@@ -175,6 +176,22 @@ Route::delete('/commentDelete/{comment}', [Controllers\CommentController::class,
     Route::delete('/trades/{id}', [Controllers\TradeController::class, 'destroy'])->name('trades.destroy');
     Route::get('/trades/search/{search}', [Controllers\TradeController::class, 'search'])->name('trades.search');
     Route::get('/calendar', [Controllers\TradeController::class, 'calendar'])->name('trades.calendar');
+    Route::get('/calendarr', [Controllers\TradeController::class, 'calendarr'])->name('trades.calendarr');
+
+    Route::post('/trades/{trade}/accept', [Controllers\TradeController::class, 'accept'])->name('trades.accept');
+    Route::post('/trades/{trade}/reject', [Controllers\TradeController::class, 'reject'])->name('trades.reject');
+
+    Route::get('/avis/create', [Controllers\AvisController::class, 'create'])->name('avis.create');
+    Route::post('/avis', [Controllers\AvisController::class, 'store'])->name('avis.store');
+
+    // Edit an existing avis
+    Route::get('/avis/{id}/edit', [Controllers\AvisController::class, 'edit'])->name('avis.edit');
+    Route::put('/avis/{id}', [Controllers\AvisController::class, 'update'])->name('avis.update');
+
+// Delete an avis
+Route::delete('/avis/{id}', [Controllers\AvisController::class, 'destroy'])->name('avis.destroy');
+  
+
 
 
 

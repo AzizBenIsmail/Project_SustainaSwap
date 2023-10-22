@@ -47,4 +47,6 @@
         @method('DELETE')
     </form>
 
+    
+
 @endsection

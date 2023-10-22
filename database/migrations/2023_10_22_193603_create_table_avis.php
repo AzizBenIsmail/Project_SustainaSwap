@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
+     /**
      * Run the migrations.
      *
      * @return void
@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->text('comment'); // Le commentaire de l'avis
             $table->unsignedBigInteger('trade_id'); // Clé étrangère liant l'avis au trade
-            $table->foreign('trade_id')->references('id')->on('trades');
+            $table->foreign('trade_id')->references('id')->on('trades')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

@@ -17,8 +17,13 @@ class AvisController extends Controller
     {
         // Validate the request data
         $validatedData = $request->validate([
-            'comment' => 'required',
+            'comment' => 'required|string|max:20',
             'trade_id' => 'required|exists:trades,id',
+        ], [
+            'comment.required' => 'The comment is required.',
+            'comment.string' => 'The comment must be a string.',
+            'comment.max' => 'The comment must not exceed 20 characters.',
+           
         ]);
 
         // Create a new avis with the validated data
