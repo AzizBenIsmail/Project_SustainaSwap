@@ -61,7 +61,9 @@
 
                         <a href="{{ route('trades.create', ['item_id' => $item->id]) }}" class="btn btn-primary" style="background-color: #FF7F50; color: #fff;">Propose Trade</a>
                         <div class="mt-2">
-                </div>
+                            <a href="{{ route('download.pfe', ['id' => $item->id]) }}" class="btn btn-dark" >Télécharger le PFE</a>
+
+                        </div>
 
             </div>
         </div>

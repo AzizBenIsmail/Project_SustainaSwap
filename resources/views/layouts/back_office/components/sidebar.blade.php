@@ -26,7 +26,6 @@
                 </li>
             </ul>
         </li>
-        {{-- -- --}}
 
         <li class="sidebar-item">
             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
@@ -42,6 +41,7 @@
             </ul>
         </li>
         {{-- -- --}}
+
         <li class="sidebar-item">
             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
                     class="mdi mdi-receipt"></i><span class="hide-menu">Users Management</span>
@@ -82,7 +82,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+            <</li>
 
             {{--------}}
         <li class="sidebar-item">
@@ -97,8 +97,30 @@
                     </a>
                 </li>
             </ul>
-        </li>
 
+
+
+
+
+        <li class="sidebar-item">
+            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                    class="mdi mdi-receipt"></i><span class="hide-menu">Posts Management</span>
+            </a>
+            <ul aria-expanded="false" class="collapse  first-level">
+                <li class="sidebar-item">
+                    <a href="{{ route('posts.allPost') }}" class="sidebar-link">
+                        <i class="mdi mdi-note-outline"></i>
+                        <span class="hide-menu"> List Posts</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="{{ route('comments.allComment') }}" class="sidebar-link">
+                        <i class="mdi mdi-note-outline"></i>
+                        <span class="hide-menu"> List Comments</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
 
         {{--        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" --}}
         {{--                                     href="pages-buttons.blade.php" aria-expanded="false"><i --}}

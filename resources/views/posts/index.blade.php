@@ -161,66 +161,57 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
       
       <script>
-
-
-document.addEventListener("DOMContentLoaded", function() {
-
-    const filterSelect = document.getElementById("filterSelect");
-const searchInput = document.getElementById("searchInput");
-const postCards = document.querySelectorAll(".post-card");
-
-filterSelect.addEventListener("change", handleFilter);
-searchInput.addEventListener("input", handleSearch);
-
-function handleFilter() {
-    const selectedFilter = filterSelect.value;
-
-    postCards.forEach(postCard => {
-        const postUserId = postCard.getAttribute("id");
-
-        if (selectedFilter === "my-posts") {
-            if (postUserId === "1") {
-                postCard.style.display = "block";
-            } else {
-                postCard.style.display = "none";
+        document.addEventListener("DOMContentLoaded", function() {
+            const filterSelect = document.getElementById("filterSelect");
+            const searchInput = document.getElementById("searchInput");
+            const postCards = document.querySelectorAll(".post-card");
+            const authenticatedUserId = {{ auth()->user()->id }};
+            filterSelect.addEventListener("change", handleFilter);
+            searchInput.addEventListener("input", handleSearch);
+        
+            function handleFilter() {
+                const selectedFilter = filterSelect.value;
+        
+                postCards.forEach(postCard => {
+                    const postUserId = postCard.getAttribute("id");
+        
+                    if (selectedFilter === "my-posts") {
+                        if (postUserId == authenticatedUserId) {
+                            postCard.style.display = "block";
+                        } else {
+                            postCard.style.display = "none";
+                        }
+                    } else if (selectedFilter === "search") {
+                        postCard.style.display = "block";
+                    } else if (selectedFilter === "oldest") {
+                        window.location.href = "{{ route('posts.sortByDateAsc') }}";
+                    } else if (selectedFilter === "newest") {
+                        window.location.href = "{{ route('posts.index') }}";
+                    }
+                });
             }
-        } else if (selectedFilter === "search") {
-            postCard.style.display = "block";
+        
+            function handleSearch() {
+                const searchValue = searchInput.value.toLowerCase();
+        
+                postCards.forEach(postCard => {
+                    const postTitle = postCard.querySelector(".card-title").textContent.toLowerCase();
+        
+                    if (postTitle.includes(searchValue) || searchValue === "") {
+                        postCard.style.display = "block";
+                    } else {
+                        postCard.style.display = "none";
+                    }
+                });
+            }
+        });
+        
+        function handleDelete(id) {
+            var form = document.getElementById('deletePostForm');
+            form.action = '/posts/' + id;
+            $('#deleteModel').modal('show');
         }
-    });
-}
-function handleSearch() {
-    
-    const searchValue = searchInput.value.toLowerCase();
-
-    postCards.forEach(postCard => {
-        const postTitle = postCard.querySelector(".card-title").textContent.toLowerCase();
-
-        if (postTitle.includes(searchValue) || searchValue === "") {
-            postCard.style.display = "block";
-            handleFilter();
-        } else {
-            postCard.style.display = "none";
-        }
-    });
-}
-
-});
-
-
-
-
-
-function handleDelete(id){
-
-var form=document.getElementById('deletePostForm')
-form.action='/posts/'+id
-$('#deleteModel').modal('show'); 
-
-}
-
-
-      </script>
-
+        </script>
+        
 </div>
 @endsection

@@ -58,6 +58,7 @@ Route::put('/items/{item}', [Controllers\ItemController::class,'update'])->name(
 Route::delete('/items/{item}', [Controllers\ItemController::class,'destroy'])->name('items.destroy');
 Route::get('/items/main', [Controllers\ItemController::class,'indexmain'])->name('items.indexmain');
 Route::get('/items/{id}/showmain',[Controllers\ItemController::class,'showmain'])->name('items.showmain');
+Route::get('/download-pfe/{id}', [Controllers\ItemController::class, 'downloadPFE'])->name('download.pfe');
 
 //Route::resource('/admin/itemsAdmin', Controllers\ItemAdminController::class);
 
@@ -88,7 +89,7 @@ Route::delete('/posts/{post}', [Controllers\PostController::class, 'destroy'])->
 Route::put('/posts/{post}', [Controllers\PostController::class, 'update'])->name('posts.update');
 Route::get('/posts/create', [Controllers\PostController::class, 'create'])->name('posts.create');
 Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts.store');
-
+Route::get('/posts/sort-by-date-asc', [Controllers\PostController::class, 'sortByDateAsc'])->name('posts.sortByDateAsc');
 Route::get('/post/{post}', [Controllers\PostController::class, 'show'])->name('posts.show');
 
 ### Start Admin Routes ###
@@ -126,6 +127,10 @@ Route::get('/comment', [Controllers\CommentController::class, 'allComment'])->na
     Route::post('/{user}/grantAdminPrivileges',[Controllers\AdminController::class,'grantAdminPrivileges'])->name('users.grant-admin-privileges');
     Route::post('{userId}/revokeAdminPrivileges',[Controllers\AdminController::class,'revokeAdminPrivileges'])->name('users.revoke-admin-privileges');
     Route::delete('{userId}/deleteUser',[Controllers\AdminController::class,'deleteUser'])->name('users.delete-user');
+    //Profile
+    Route::get('users/profile',[Controllers\UsersController::class,'edit'])->name('user.edit-profile');
+    Route::put('users/profile',[Controllers\UsersController::class,'update'])->name('user.update-profile');
+    Route::put('users/profile/image/update',[Controllers\UsersController::class,'updateProfileImage'])->name('user.update-profile-image');
 
     //Items Management
 
