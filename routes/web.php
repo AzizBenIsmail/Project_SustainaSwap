@@ -93,14 +93,18 @@ Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts
 Route::get('/posts/sort-by-date-asc', [Controllers\PostController::class, 'sortByDateAsc'])->name('posts.sortByDateAsc');
 Route::get('/post/{post}', [Controllers\PostController::class, 'show'])->name('posts.show');
 
+Route::get('/complaints', [Controllers\ComplaintsController::class, 'index'])->name('complaints.index');
+Route::post('/complaints', [Controllers\ComplaintsController::class, 'store'])->name('complaints.store');
+
 ### Start Admin Routes ###
 // The Prefix is added after login based on user role - Auth LoginController
 Route::group(['prefix'=>'admin','middleware'=>['admin','auth']], function(){
     //dashboard
     Route::get('/', [Controllers\AdminController::class,'index'])->name('admin-dashboard');;
+
+    
 //Complaints routes
-Route::get('/complaints', [Controllers\ComplaintsController::class, 'index'])->name('complaints.index');
-Route::post('/complaints', [Controllers\ComplaintsController::class, 'store'])->name('complaints.store');
+
 Route::put('/complaints/{complaint}', [Controllers\ComplaintsController::class, 'update'])->name('complaints.update');
 Route::delete('/complaints/{complaintId}', [Controllers\ComplaintsController::class, 'destroy'])->name('complaints.delete');
 
