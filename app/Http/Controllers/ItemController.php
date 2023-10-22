@@ -39,7 +39,10 @@ class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function indexmain(Request $request)
-    {
+    { if (Auth::check()) {
+
+
+
         $search = $request->input('search');
         $sort = $request->input('sort', 'name');
         $categoryId = $request->input('category');
@@ -70,6 +73,9 @@ class ItemController extends Controller
         $categories = Category::all();
 
         return view('Template component/index', compact('items', 'categories'));
+    }
+        // Gérez le cas où aucun utilisateur n'est authentifié, par exemple, redirigez vers la page de connexion.
+        return redirect()->route('login');
     }
 
 

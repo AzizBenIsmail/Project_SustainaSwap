@@ -5,7 +5,7 @@
             <!-- ============================================================== -->
             <!-- Logo -->
             <!-- ============================================================== -->
-            <a class="navbar-brand" href="index.blade.php">
+            <a class="navbar-brand" href="">
                 <!-- Logo icon -->
 
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
