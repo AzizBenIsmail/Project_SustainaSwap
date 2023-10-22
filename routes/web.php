@@ -60,13 +60,13 @@ Route::get('/items/main', [Controllers\ItemController::class,'indexmain'])->name
 Route::get('/items/{id}/showmain',[Controllers\ItemController::class,'showmain'])->name('items.showmain');
 
 //Route::resource('/admin/itemsAdmin', Controllers\ItemAdminController::class);
-Route::get('/admin/itemsAdmin', [Controllers\ItemAdminController::class, 'index'])->name('itemsAdmin.index');
-Route::get('/admin/itemsAdmin/create', [Controllers\ItemAdminController::class, 'create'])->name('itemsAdmin.create');
-Route::post('/admin/itemsAdmin', [Controllers\ItemAdminController::class, 'store'])->name('itemsAdmin.store');
-Route::get('/admin/itemsAdmin/{id}', [Controllers\ItemAdminController::class, 'show'])->name('itemsAdmin.show');
-Route::get('/admin/itemsAdmin/{id}/edit', [Controllers\ItemAdminController::class, 'edit'])->name('itemsAdmin.edit');
-Route::put('/admin/itemsAdmin/{id}', [Controllers\ItemAdminController::class, 'update'])->name('itemsAdmin.update');
-Route::delete('/admin/itemsAdmin/{id}', [Controllers\ItemAdminController::class,'destroy'])->name('itemsAdmin.destroy');
+Route::get('itemsAdmin', [Controllers\ItemAdminController::class, 'index'])->name('itemsAdmin.index');
+Route::get('itemsAdmin/create', [Controllers\ItemAdminController::class, 'create'])->name('itemsAdmin.create');
+Route::post('itemsAdmin', [Controllers\ItemAdminController::class, 'store'])->name('itemsAdmin.store');
+Route::get('itemsAdmin/{id}', [Controllers\ItemAdminController::class, 'show'])->name('itemsAdmin.show');
+Route::get('itemsAdmin/{id}/edit', [Controllers\ItemAdminController::class, 'edit'])->name('itemsAdmin.edit');
+Route::put('itemsAdmin/{id}', [Controllers\ItemAdminController::class, 'update'])->name('itemsAdmin.update');
+Route::delete('itemsAdmin/{id}', [Controllers\ItemAdminController::class,'destroy'])->name('itemsAdmin.destroy');
 
 //Remove this or you'll get banned :( :p
 //Route::resource('/admin/tradesAdmin', App\Http\Controllers\AdminTradeController::class);
@@ -165,8 +165,13 @@ Route::group(['prefix'=>'admin','middleware'=>['admin','auth']], function() {
 
 
 
-Route::resource('admin/categories', Controllers\CategoryController::class);
-Route::resource('avis', Controllers\AvisController::class);
+//Route::resource('admin/categories', Controllers\CategoryController::class);
+Route::get('admin/categories', [Controllers\CategoryController::class, 'index'])->name('categories.index');
+Route::get('admin/categories/create', [Controllers\CategoryController::class, 'create'])->name('categories.create');
+Route::post('admin/categories', [Controllers\CategoryController::class, 'store'])->name('categories.store');
+Route::get('admin/categories/{category}/edit', [Controllers\CategoryController::class, 'edit'])->name('categories.edit');
+Route::put('admin/categories/{category}', [Controllers\CategoryController::class, 'update'])->name('categories.update');
+Route::delete('admin/categories/{category}', [Controllers\CategoryController::class, 'destroy'])->name('categories.destroy');Route::resource('avis', Controllers\AvisController::class);
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
