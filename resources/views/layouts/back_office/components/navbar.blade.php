@@ -121,7 +121,7 @@
                         <img src="{{ asset('storage/profile_pictures/' . auth()->user()->image) }}" alt="user" class="rounded-circle" width="31">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user me-1 ms-1"></i>
+                        <a class="dropdown-item" href="{{route('user.edit-profile')}}"><i class="ti-user me-1 ms-1"></i>
                             My Profile</a>
 
                         <a class="dropdown-item" onclick="event.preventDefault();
