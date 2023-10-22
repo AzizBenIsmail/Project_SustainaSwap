@@ -166,12 +166,6 @@
             const searchInput = document.getElementById("searchInput");
             const postCards = document.querySelectorAll(".post-card");
             const authenticatedUserId = {{ auth()->user()->id }};
-            console.log("🚀 ~ file: index.blade.php:169 ~ document.addEventListener ~ authenticatedUserId:", authenticatedUserId)
-            console.log("🚀 ~ file: index.blade.php:169 ~ document.addEventListener ~ authenticatedUserId:", authenticatedUserId)
-            console.log("🚀 ~ file: index.blade.php:169 ~ document.addEventListener ~ authenticatedUserId:", authenticatedUserId)
-            console.log("🚀 ~ file: index.blade.php:169 ~ document.addEventListener ~ authenticatedUserId:", authenticatedUserId)
-            console.log("🚀 ~ file: index.blade.php:169 ~ document.addEventListener ~ authenticatedUserId:", authenticatedUserId)
-            console.log("🚀 ~ file: index.blade.php:169 ~ document.addEventListener ~ authenticatedUserId:", authenticatedUserId)
             filterSelect.addEventListener("change", handleFilter);
             searchInput.addEventListener("input", handleSearch);
         
