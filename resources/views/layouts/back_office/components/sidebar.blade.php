@@ -59,6 +59,21 @@
             </ul>
         </li>
   {{-- -- --}}
+
+        <li class="sidebar-item">
+            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                    class="mdi mdi-receipt"></i><span class="hide-menu">Conversation Management</span>
+            </a>
+            <ul aria-expanded="false" class="collapse  first-level">
+                <li class="sidebar-item">
+                    <a href="{{ route('pusher.indexAdmin') }}" class="sidebar-link">
+                        <i class="mdi mdi-note-outline"></i>
+                        <span class="hide-menu"> Conversation</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+  {{-- -- --}}
         <li class="sidebar-item">
             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
                     class="mdi mdi-receipt"></i><span class="hide-menu">Category Management</span>
@@ -67,7 +82,7 @@
                 <li class="sidebar-item">
                     <a href="itemsAdmin" class="sidebar-link">
                         <i class="mdi mdi-note-outline"></i>
-                        <span class="hide-menu"> Categoriess</span>
+                        <span class="hide-menu"> Categories</span>
                     </a>
                 </li>
             </ul>
