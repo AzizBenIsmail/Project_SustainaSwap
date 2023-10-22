@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Events\MessageDeletedEvent;
 use App\Events\PusherBroadcast;
 use App\Http\Controllers\Controller;
+use App\Models\AdminChat;
 use App\Models\Conversation;
+use App\Models\Item;
 use App\Models\Message;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,18 +17,32 @@ class PusherController extends Controller
 {
     public function indexAdmin()
     {
-        $messages = Message::all();
+        $messages = AdminChat::all();
         return view('chatAdmin', compact('messages'));
     }
 
-    public function index()
-    {
-        $currentUserId = auth()->id();
-        $messages = Message::where('user_id', $currentUserId)->get();
 
-    // Return the view with the messages
-    return view('index', ['messages' => $messages]);
+
+/**
+     * Display the specified resource.
+     *
+     * @param \App\Models\Item $item
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Item $item)
+{
+    dd($item->name);
+    $currentUserId = auth()->id();
+
+    if (!$item) {
+        abort(404); // Or return a custom error view or message.
     }
+    $messages = Message::where('user_id', $currentUserId)->get();
+    dd($item->user_id);
+    return view('index', ['messages' => $messages, 'item' => $item]);
+}
+    
+
 
     public function broadcast(Request $request)
     {

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 
-<h1>Comment management</h1>
+<h1>Messages management</h1>
 
 <div class="card">
 
@@ -48,7 +48,7 @@
                         <th>id</th>
                         <th>name</th>
                         <th>message</th>
-
+                        <th>email</th>
                         <th>created at</th>
                         <th>action</th>
                     </tr>
@@ -60,9 +60,9 @@
 
                     <tr>
                         <td>{{$message->id}}</td>
-                        <td>{{$message->user_id}}</td>
-                        <td>{{$message->message}}</td>
-
+                        <td>{{$message->name}}</td>
+                        <td>{{$message->content}}</td>
+                        <td>{{$message->email}}</td>
                         <td>{{$message->created_at}}</td>
                         <td>
                             <form action="{{ route('deleteMessage', ['id' => $message->id]) }}" method="POST">

@@ -34,7 +34,8 @@
   <div class="top">
     <img src="{{ asset('images/user.jpg')}}" alt="Avatar" height="80px" width="80px">
     <div>
-      <p>{{ Auth::user()->name }}</p>
+      {{-- <p>{{ Auth::user()->name }}</p> --}}
+      <p> {{ $item->user->name }}</p>
       <small>Online</small>
     </div>
 

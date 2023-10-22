@@ -12,12 +12,12 @@
                 @csrf
                 <div class="mb-3">
                     <label for="content" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="content" name="Name" rows="4">
+                    <input type="text" class="form-control" id="name" name="name" rows="4">
                 </div>
 
                 <div class="mb-3">
                     <label for="content" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="content" name="Email" rows="4">
+                    <input type="email" class="form-control" id="email" name="email" rows="4">
                 </div>
 
                 <div class="mb-3">
@@ -109,7 +109,7 @@
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Send Message</button>
 
                         
-                            <a href="{{ route('chatIndex') }}" class="btn btn-primary" style="background-color: #FF7F50; color: #fff;">Chat</a>
+                        <a href="{{ route('chatIndex', $item->id) }}" class="btn btn-primary" style="background-color: #FF7F50; color: #fff;">{{$item->id}} Chat</a>
                         <a href="{{ route('showmain', $item->id) }}" class="btn btn-info">Show</a>
                     </div>
                 </div>
