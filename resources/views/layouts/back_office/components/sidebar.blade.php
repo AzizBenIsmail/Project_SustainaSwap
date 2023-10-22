@@ -1,6 +1,6 @@
 <nav class="sidebar-nav">
     <ul id="sidebarnav" class="pt-4">
-            
+
         {{--        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" --}}
         {{--                                     href="charts.blade.php" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span --}}
         {{--                    class="hide-menu">Charts</span></a></li> --}}
@@ -63,7 +63,7 @@
             </a>
             <ul aria-expanded="false" class="collapse  first-level">
                 <li class="sidebar-item">
-                    <a href="itemsAdmin" class="sidebar-link">
+                    <a href="categories" class="sidebar-link">
                         <i class="mdi mdi-note-outline"></i>
                         <span class="hide-menu"> Categoriess</span>
                     </a>
