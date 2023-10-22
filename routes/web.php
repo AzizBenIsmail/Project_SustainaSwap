@@ -136,6 +136,7 @@ Route::get('/comment', [Controllers\CommentController::class, 'allComment'])->na
     Route::get('itemsAdmin/{id}/edit', [Controllers\ItemAdminController::class, 'edit'])->name('itemsAdmin.edit');
     Route::put('itemsAdmin/{id}', [Controllers\ItemAdminController::class, 'update'])->name('itemsAdmin.update');
     Route::delete('itemsAdmin/{id}', [Controllers\ItemAdminController::class,'destroy'])->name('itemsAdmin.destroy');
+    Route::get('download-items', 'ItemAdminController@downloadItems')->name('downloadItems');
 
     //Category Management
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response; // Assurez-vous d'importer la classe Response correcte
 
 class ItemAdminController extends Controller
 {
@@ -149,6 +150,44 @@ class ItemAdminController extends Controller
         $item->delete();
 
         return redirect()->route('itemsAdmin.index')->with('success', 'Élément supprimé avec succès.');
+    }
+
+    public function downloadItems()
+    {
+        // Récupérez les éléments avec les relations user et category
+        $items = Item::with('user', 'category')->get();
+
+        // Nom du fichier CSV que vous souhaitez créer
+        $csvFileName = "items.csv";
+
+        // En-têtes de la réponse
+        $headers = array(
+            "Content-Type" => "text/csv",
+            "Content-Disposition" => "attachment; filename=$csvFileName",
+        );
+
+        // Ouvrir un flux vers la sortie
+        $handle = fopen('php://output', 'w');
+
+        // En-tête du fichier CSV
+        fputcsv($handle, ['ID', 'Picture', 'Title', 'Owner', 'Category']);
+
+        // Écrire les données dans le fichier CSV
+        foreach ($items as $item) {
+            fputcsv($handle, [$item->id, $item->picture, $item->title, $item->user->name, $item->category->name]);
+        }
+
+        // Fermer le flux
+        fclose($handle);
+
+        // Retourner la réponse avec le fichier CSV
+        return Response::stream(
+            function () use ($handle) {
+                fclose($handle);
+            },
+            200,
+            $headers
+        );
     }
 
 }
