@@ -26,7 +26,7 @@
    <br> <form method="GET" action="{{ route('trades.search', ['search' => 'pending']) }}">
     <input type="text" name="search" placeholder="Search..." style="margin-left: 20px; padding-left: 10px;">
  
-    <button type="submit" style="background-color: #F4A460; color: #fff; margin-left: 20px; padding-left: 10px;">Search</button>  <a href="/calendar" class="btn btn-primary" style="background-color: #F4A460; color: #fff; margin-left: 1100px; padding-left: 10px;">View Calendar</a>
+    <button type="submit" style="background-color: #F4A460; color: #fff; margin-left: 20px; padding-left: 10px;">Search</button>  <a href="/calendarr" class="btn btn-primary" style="background-color: #F4A460; color: #fff; margin-left: 1100px; padding-left: 10px;">View Calendar</a>
     <div class="text-left">
        
     </div>
@@ -49,7 +49,14 @@
                        
                         <div class="mt-3">
                         <a href="{{ route('trades.show', $trade->id) }}" class="btn btn-info" style="background-color: #FF7F50; color: #fff;">Afficher</a>
-                            
+                        <form action="{{ route('trades.accept', $trade) }}" method="post">
+                            @csrf
+                            <button type="submit">Accept Trade</button>
+                        </form>
+                        <form action="{{ route('trades.reject', $trade) }}" method="post">
+                            @csrf
+                            <button type="submit">Reject Trade</button>
+                        </form>   
                         </div>
                     </div>
                 </div>
