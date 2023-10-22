@@ -101,6 +101,28 @@
                 </tbody>
             </table>
         </div>
+        <div class="container">
+
+            <h1>Posts Analysis :</h1>
+            <div class="text-center mt-3 mb-5">
+                <h2>Total Posts: {{ count($posts) }}</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                            
+            <h2>Posts Created per Hour:</h2>
+                    <!-- Adjust the chart width and height as needed -->
+                    <canvas id="postsPerHourChart" width="200" height="200"></canvas>
+                </div>
+                <div class="col-md-6">
+                    <h2>User with Most Posts:</h2>
+                    <!-- Adjust the chart width and height as needed -->
+                    <canvas id="userWithMostPostsChart" width="200" height="100"></canvas>
+
+                </div>
+            </div>
+          
+        </div>
 
     </div>
 </div>
@@ -108,10 +130,63 @@
     @csrf
     @method('DELETE')
 </form>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
+
+      // Posts Created per Hour Chart
+      var postsPerHourChart = new Chart(document.getElementById('postsPerHourChart'), {
+            type: 'bar',
+            data: {
+                labels: {!! json_encode($postsPerHour->pluck('hour')) !!},
+                datasets: [{
+                    label: 'Post Count',
+                    data: {!! json_encode($postsPerHour->pluck('count')) !!},
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                }],
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        
+        var usersWithMostPostsData = {!! json_encode($users) !!};
+    var userNames = usersWithMostPostsData.map(function(user) {
+        return user.name;
+    });
+    var postCounts = usersWithMostPostsData.map(function(user) {
+        return user.posts_count;
+    });
+
+        // User with Most Posts Chart
+        var userWithMostPostsChart = new Chart(document.getElementById('userWithMostPostsChart'), {
+        type: 'pie',
+        data: {
+            labels: userNames,
+            datasets: [{
+                data: postCounts,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7]',
+                    'rgba(255, 206, 86, 0.7]',
+                    'rgba(75, 192, 192, 0.7]',
+                    'rgba(153, 102, 255, 0.7]',
+                    'rgba(255, 159, 64, 0.7]'
+                ],
+            }],
+        },
+        options: {
+            responsive: true,
+        }
+    });
 
 const actionButtons = document.querySelectorAll('.action-btn');
     const actionMenus = document.querySelectorAll('.action-menu');
