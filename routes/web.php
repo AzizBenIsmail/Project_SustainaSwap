@@ -166,12 +166,12 @@ Route::group(['prefix'=>'admin','middleware'=>['admin','auth']], function() {
 
 
 //Route::resource('admin/categories', Controllers\CategoryController::class);
-Route::get('admin/categories', [Controllers\CategoryController::class, 'index'])->name('categories.index');
-Route::get('admin/categories/create', [Controllers\CategoryController::class, 'create'])->name('categories.create');
-Route::post('admin/categories', [Controllers\CategoryController::class, 'store'])->name('categories.store');
-Route::get('admin/categories/{category}/edit', [Controllers\CategoryController::class, 'edit'])->name('categories.edit');
-Route::put('admin/categories/{category}', [Controllers\CategoryController::class, 'update'])->name('categories.update');
-Route::delete('admin/categories/{category}', [Controllers\CategoryController::class, 'destroy'])->name('categories.destroy');Route::resource('avis', Controllers\AvisController::class);
+Route::get('categories', [Controllers\CategoryController::class, 'index'])->name('categories.index');
+Route::get('categories/create', [Controllers\CategoryController::class, 'create'])->name('categories.create');
+Route::post('categories', [Controllers\CategoryController::class, 'store'])->name('categories.store');
+Route::get('categories/{category}/edit', [Controllers\CategoryController::class, 'edit'])->name('categories.edit');
+Route::put('categories/{category}', [Controllers\CategoryController::class, 'update'])->name('categories.update');
+Route::delete('categories/{category}', [Controllers\CategoryController::class, 'destroy'])->name('categories.destroy');Route::resource('avis', Controllers\AvisController::class);
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
