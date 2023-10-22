@@ -48,6 +48,7 @@
 
             <div class="d-none d-lg-block">
                 @if(auth()->check())
+                    {{ Auth::user()->name }}
                     <a href="{{ route('home') }}" class="bi-person custom-icon"></a>
                     <a href="{{ route('logout') }}"   onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();"
