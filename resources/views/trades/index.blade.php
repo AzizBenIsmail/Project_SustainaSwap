@@ -22,10 +22,14 @@
         </div>
     </header>
 <br>
-    <a href="{{ route('trades.create') }}" class="btn btn-primary" style="background-color: #F4A460; color: #fff; margin-left: 20px; padding-left: 10px;">New Trade</a>
-    <form method="GET" action="{{ route('trades.search', ['search' => 'pending']) }}">
-    <input type="text" name="search" placeholder="Search...">
-    <button type="submit">Search</button>
+    
+   <br> <form method="GET" action="{{ route('trades.search', ['search' => 'pending']) }}">
+    <input type="text" name="search" placeholder="Search..." style="margin-left: 20px; padding-left: 10px;">
+ 
+    <button type="submit" style="background-color: #F4A460; color: #fff; margin-left: 20px; padding-left: 10px;">Search</button>  <a href="/calendar" class="btn btn-primary" style="background-color: #F4A460; color: #fff; margin-left: 1100px; padding-left: 10px;">View Calendar</a>
+    <div class="text-left">
+       
+    </div>
 </form>
 
 

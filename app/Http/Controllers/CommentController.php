@@ -16,8 +16,12 @@ class CommentController extends Controller
      */
     public function index()
     {
+        if (Auth::check()) {
         $comments = Comment::all();
         return view('comments.index', compact('comments'));
+    }
+
+    return redirect()->route('login');
     }
 
     /**
@@ -179,13 +183,13 @@ class CommentController extends Controller
      */
     public function allComment()
     {
+        $mostCommentedPost = Comment::mostCommentedPost();
+        $mostRepeatedWord = Comment::mostRepeatedWord();
         $posts = Post::all();
         $comments = Comment::all();
         
-        return view('comments.backOffice.index', compact('comments', 'posts'));
+        return view('comments.backOffice.index', compact('mostCommentedPost', 'mostRepeatedWord', 'comments','posts'));
     }
-
-
         /**
      * Remove the specified comment from storage.
      *

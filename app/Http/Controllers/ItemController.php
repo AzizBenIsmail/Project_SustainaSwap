@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class ItemController extends Controller
 {
@@ -39,7 +40,10 @@ class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function indexmain(Request $request)
-    {
+    { if (Auth::check()) {
+
+
+
         $search = $request->input('search');
         $sort = $request->input('sort', 'name');
         $categoryId = $request->input('category');
@@ -70,6 +74,9 @@ class ItemController extends Controller
         $categories = Category::all();
 
         return view('Template component/index', compact('items', 'categories'));
+    }
+        // Gérez le cas où aucun utilisateur n'est authentifié, par exemple, redirigez vers la page de connexion.
+        return redirect()->route('login');
     }
 
 
@@ -210,4 +217,33 @@ class ItemController extends Controller
         return redirect()->route('items.index')
             ->with('success', 'Élément supprimé avec succès.');
     }
+
+    /**
+     * Download a PFE file.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function downloadPFE($id)
+    {
+        $item = Item::find($id);
+
+        if (!$item) {
+            return redirect()->route('items.index')->with('error', 'PFE non trouvé.');
+        }
+
+        $pathToFile = public_path('uploads/' . $item->picture);
+
+        if (File::exists($pathToFile)) {
+            $headers = [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'attachment; filename="' . $item->title . '.pdf"',
+            ];
+
+            return response()->file($pathToFile, $headers);
+        }
+
+        return redirect()->route('items.index')->with('error', 'Fichier PFE introuvable.');
+    }
+
 }

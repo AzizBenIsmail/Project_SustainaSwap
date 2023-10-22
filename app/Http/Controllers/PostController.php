@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,8 +17,9 @@ class PostController extends Controller
      */
     public function index()
     {
+        if (Auth::check()) {
         $posts = Post::withCount('comments')
-        ->orderBy('created_at', 'desc') // Order by created_at in descending order
+        ->orderBy('created_at', 'desc') 
         ->get();
 
         $posts->load(['comments' => function ($query) {
@@ -26,6 +28,31 @@ class PostController extends Controller
         
         return view('posts.index', compact('posts'));
     }
+    return redirect()->route('login');
+}
+
+
+    /**
+     * Display a listing of the resource ordered by created_at in ascending order.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function sortByDateAsc()
+    {
+        if (Auth::check()) {
+            $posts = Post::withCount('comments')
+                ->orderBy('created_at', 'asc')
+                ->get();
+
+            $posts->load(['comments' => function ($query) {
+                $query->orderBy('created_at', 'asc');
+            }]);
+
+            return view('posts.index', compact('posts'));
+        }
+        return redirect()->route('login');
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -80,6 +107,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        if (Auth::check()) {
     
         if ($post) {
             $post->load(['comments' => function ($query) {
@@ -90,6 +118,8 @@ class PostController extends Controller
             return abort(404);
         }
     }
+    return redirect()->route('login');
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -99,8 +129,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-
+        if (Auth::check()) {
         return view('posts.edit', compact('post'));
+    }
+    return redirect()->route('login');
     }
 
     /**
@@ -151,14 +183,45 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+/**
+ * Display a listing of the resource.
+ *
+ * @return \Illuminate\Http\Response
+ */
 public function allPost()
 {
+    if (Auth::check()) {
+        // Find the user who has the most posts
+        $userWithMostPosts = Post::select('user_id')
+            ->selectRaw('COUNT(*) as post_count')
+            ->groupBy('user_id')
+            ->orderBy('post_count', 'desc')
+            ->first();
 
-    $posts = Post::withCount('comments')
-    ->orderBy('created_at', 'desc') // Order by created_at in descending order
-    ->get();
-    return view('posts.backOffice.index', compact('posts'));
+        // Fetch the posts with comments count
+        $posts = Post::withCount('comments')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        // Fetch all users
+        $users = User::all();
+
+        // Calculate the post count for each user
+        foreach ($users as $user) {
+            $user->posts_count = $posts->where('user_id', $user->id)->count();
+        }
+
+        // Calculate the number of posts per hour
+        $postsPerHour = Post::selectRaw('HOUR(created_at) as hour, COUNT(*) as count')
+            ->groupBy('hour')
+            ->orderBy('hour')
+            ->get();
+
+        return view('posts.backOffice.index', compact('posts', 'postsPerHour', 'userWithMostPosts', 'users'));
+    }
+    return redirect()->route('login');
 }
+
     
 
     /**

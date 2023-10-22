@@ -51,7 +51,7 @@ class LoginController extends Controller
         } else
             //If role is use
             //redirect to user layout
-            return redirect('/user');
+            return redirect('/');
     }
 
 }

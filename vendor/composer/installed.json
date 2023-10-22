@@ -2075,17 +2075,17 @@
         },
         {
             "name": "league/flysystem",
-            "version": "3.17.0",
-            "version_normalized": "3.17.0.0",
+            "version": "3.18.0",
+            "version_normalized": "3.18.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "bd4c9b26849d82364119c68429541f1631fba94b"
+                "reference": "015633a05aee22490495159237a5944091d8281e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/bd4c9b26849d82364119c68429541f1631fba94b",
-                "reference": "bd4c9b26849d82364119c68429541f1631fba94b",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/015633a05aee22490495159237a5944091d8281e",
+                "reference": "015633a05aee22490495159237a5944091d8281e",
                 "shasum": ""
             },
             "require": {
@@ -2114,11 +2114,11 @@
                 "google/cloud-storage": "^1.23",
                 "microsoft/azure-storage-blob": "^1.1",
                 "phpseclib/phpseclib": "^3.0.14",
-                "phpstan/phpstan": "^0.12.26",
+                "phpstan/phpstan": "^1.10",
                 "phpunit/phpunit": "^9.5.11|^10.0",
                 "sabre/dav": "^4.3.1"
             },
-            "time": "2023-10-05T20:15:05+00:00",
+            "time": "2023-10-20T17:59:40+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -2152,7 +2152,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/3.17.0"
+                "source": "https://github.com/thephpleague/flysystem/tree/3.18.0"
             },
             "funding": [
                 {
@@ -2168,17 +2168,17 @@
         },
         {
             "name": "league/flysystem-local",
-            "version": "3.16.0",
-            "version_normalized": "3.16.0.0",
+            "version": "3.18.0",
+            "version_normalized": "3.18.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem-local.git",
-                "reference": "ec7383f25642e6fd4bb0c9554fc2311245391781"
+                "reference": "e7381ef7643f658b87efb7dbe98fe538fb1bbf32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem-local/zipball/ec7383f25642e6fd4bb0c9554fc2311245391781",
-                "reference": "ec7383f25642e6fd4bb0c9554fc2311245391781",
+                "url": "https://api.github.com/repos/thephpleague/flysystem-local/zipball/e7381ef7643f658b87efb7dbe98fe538fb1bbf32",
+                "reference": "e7381ef7643f658b87efb7dbe98fe538fb1bbf32",
                 "shasum": ""
             },
             "require": {
@@ -2187,7 +2187,7 @@
                 "league/mime-type-detection": "^1.0.0",
                 "php": "^8.0.2"
             },
-            "time": "2023-08-30T10:23:59+00:00",
+            "time": "2023-10-19T20:07:13+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -2215,7 +2215,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem-local/issues",
-                "source": "https://github.com/thephpleague/flysystem-local/tree/3.16.0"
+                "source": "https://github.com/thephpleague/flysystem-local/tree/3.18.0"
             },
             "funding": [
                 {
@@ -8790,6 +8790,107 @@
                 "twilio"
             ],
             "install-path": "../twilio/sdk"
+        },
+        {
+            "name": "tzsk/sms",
+            "version": "7.0.0",
+            "version_normalized": "7.0.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tzsk/sms.git",
+                "reference": "b51545840d366846bb3a4498d557d385a96e6a76"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tzsk/sms/zipball/b51545840d366846bb3a4498d557d385a96e6a76",
+                "reference": "b51545840d366846bb3a4498d557d385a96e6a76",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.0",
+                "illuminate/http": "^8.0|^9.0|^10.0",
+                "illuminate/support": "^8.0|^9.0|^10.0",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "aws/aws-sdk-php": "^3.87",
+                "kavenegar/php": "^1.2",
+                "laravel/legacy-factories": "^1.0",
+                "laravel/pint": "^1.5",
+                "mediaburst/clockworksms": "^2.0",
+                "melipayamak/php": "^1.0.0",
+                "orchestra/testbench": "^6.0|^7.0|^8.0",
+                "phpunit/phpunit": "^9.3",
+                "sms77/api": "^v2.4.0",
+                "smsgatewayme/client": "^0.0.1",
+                "twilio/sdk": "^6.0",
+                "vimeo/psalm": "^5.0"
+            },
+            "time": "2023-02-15T16:41:39+00:00",
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Tzsk\\Sms\\SmsServiceProvider"
+                    ],
+                    "aliases": {
+                        "Sms": "Tzsk\\Sms\\Facades\\Sms"
+                    }
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "files": [
+                    "src/Helper.php"
+                ],
+                "psr-4": {
+                    "Tzsk\\Sms\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kazi Ahmed",
+                    "email": "mailtokmahmed@gmail.com",
+                    "homepage": "https://github.com/tzsk",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel SMS Gateway Integration Package",
+            "homepage": "https://github.com/tzsk/sms",
+            "keywords": [
+                "laravel SMS gateway me",
+                "laravel SmsGateWay24",
+                "laravel farazsms",
+                "laravel kavenegar",
+                "laravel link mobility",
+                "laravel melipayamak",
+                "laravel sms gateway",
+                "laravel smsir",
+                "laravel textlocal",
+                "laravel tsms",
+                "laravel twilio",
+                "sms",
+                "tzsk"
+            ],
+            "support": {
+                "issues": "https://github.com/tzsk/sms/issues",
+                "source": "https://github.com/tzsk/sms/tree/7.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/KMAhmed",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/tzsk",
+                    "type": "github"
+                }
+            ],
+            "install-path": "../tzsk/sms"
         },
         {
             "name": "vlucas/phpdotenv",

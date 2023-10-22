@@ -29,7 +29,7 @@ Route::get('/sign-up', function () {
 });
 ### End Guest Routes ###
 
-Route::get('/chat', 'App\Http\Controllers\PusherController@index')->name('chatIndex');
+Route::get('/chat/{Id}', 'App\Http\Controllers\PusherController@index')->name('chatIndex');
 Route::post('/broadcast', 'App\Http\Controllers\PusherController@broadcast');
 Route::post('/receive', 'App\Http\Controllers\PusherController@receive');
 Route::get('/chat/{message_id}/delete', [Controllers\PusherController::class, 'destroy'])->name('pusher.destroy');
@@ -58,23 +58,18 @@ Route::put('/items/{item}', [Controllers\ItemController::class,'update'])->name(
 Route::delete('/items/{item}', [Controllers\ItemController::class,'destroy'])->name('items.destroy');
 Route::get('/items/main', [Controllers\ItemController::class,'indexmain'])->name('items.indexmain');
 Route::get('/items/{id}/showmain',[Controllers\ItemController::class,'showmain'])->name('items.showmain');
+Route::get('/download-pfe/{id}', [Controllers\ItemController::class, 'downloadPFE'])->name('download.pfe');
 
 //Route::resource('/admin/itemsAdmin', Controllers\ItemAdminController::class);
-Route::get('itemsAdmin', [Controllers\ItemAdminController::class, 'index'])->name('itemsAdmin.index');
-Route::get('itemsAdmin/create', [Controllers\ItemAdminController::class, 'create'])->name('itemsAdmin.create');
-Route::post('itemsAdmin', [Controllers\ItemAdminController::class, 'store'])->name('itemsAdmin.store');
-Route::get('itemsAdmin/{id}', [Controllers\ItemAdminController::class, 'show'])->name('itemsAdmin.show');
-Route::get('itemsAdmin/{id}/edit', [Controllers\ItemAdminController::class, 'edit'])->name('itemsAdmin.edit');
-Route::put('itemsAdmin/{id}', [Controllers\ItemAdminController::class, 'update'])->name('itemsAdmin.update');
-Route::delete('itemsAdmin/{id}', [Controllers\ItemAdminController::class,'destroy'])->name('itemsAdmin.destroy');
+
 
 //Remove this or you'll get banned :( :p
 //Route::resource('/admin/tradesAdmin', App\Http\Controllers\AdminTradeController::class);
-
-Route::get('/admin/tradesAdmin', [Controllers\AdminTradeController::class, 'index'])->name('tradesAdmin.index');
-Route::get('/admin/tradesAdmin/{id}', [Controllers\AdminTradeController::class, 'show'])->name('tradesAdmin.show');
-Route::delete('/admin/tradesAdmin/{id}', [Controllers\AdminTradeController::class,'destroy'])->name('tradesAdmin.destroy');
-
+Route::group(['prefix'=>'admin','middleware'=>['admin','auth']], function() {
+Route::get('/tradesAdmin', [Controllers\AdminTradeController::class, 'index'])->name('tradesAdmin.index');
+Route::get('/tradesAdmin/{id}', [Controllers\AdminTradeController::class, 'show'])->name('tradesAdmin.show');
+Route::delete('/tradesAdmin/{id}', [Controllers\AdminTradeController::class,'destroy'])->name('tradesAdmin.destroy');
+});
 
 Route::resource('Comment', Controllers\CommentController::class);
 //Route::resource('Complaint', Controllers\ComplaintsController::class);
@@ -94,7 +89,7 @@ Route::delete('/posts/{post}', [Controllers\PostController::class, 'destroy'])->
 Route::put('/posts/{post}', [Controllers\PostController::class, 'update'])->name('posts.update');
 Route::get('/posts/create', [Controllers\PostController::class, 'create'])->name('posts.create');
 Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts.store');
-
+Route::get('/posts/sort-by-date-asc', [Controllers\PostController::class, 'sortByDateAsc'])->name('posts.sortByDateAsc');
 Route::get('/post/{post}', [Controllers\PostController::class, 'show'])->name('posts.show');
 
 ### Start Admin Routes ###
@@ -137,6 +132,25 @@ Route::get('/comment', [Controllers\CommentController::class, 'allComment'])->na
     Route::put('users/profile',[Controllers\UsersController::class,'update'])->name('user.update-profile');
     Route::put('users/profile/image/update',[Controllers\UsersController::class,'updateProfileImage'])->name('user.update-profile-image');
 
+    //Items Management
+
+    Route::get('itemsAdmin', [Controllers\ItemAdminController::class, 'index'])->name('itemsAdmin.index');
+    Route::get('itemsAdmin/create', [Controllers\ItemAdminController::class, 'create'])->name('itemsAdmin.create');
+    Route::post('itemsAdmin', [Controllers\ItemAdminController::class, 'store'])->name('itemsAdmin.store');
+    Route::get('itemsAdmin/{id}', [Controllers\ItemAdminController::class, 'show'])->name('itemsAdmin.show');
+    Route::get('itemsAdmin/{id}/edit', [Controllers\ItemAdminController::class, 'edit'])->name('itemsAdmin.edit');
+    Route::put('itemsAdmin/{id}', [Controllers\ItemAdminController::class, 'update'])->name('itemsAdmin.update');
+    Route::delete('itemsAdmin/{id}', [Controllers\ItemAdminController::class,'destroy'])->name('itemsAdmin.destroy');
+    Route::get('download-items', [Controllers\ItemAdminController::class,'downloadItems'])->name('downloadItems');
+
+    //Category Management
+
+    Route::get('categories', [Controllers\CategoryController::class, 'index'])->name('categories.index');
+    Route::get('categories/create', [Controllers\CategoryController::class, 'create'])->name('categories.create');
+    Route::post('categories', [Controllers\CategoryController::class, 'store'])->name('categories.store');
+    Route::get('categories/{category}/edit', [Controllers\CategoryController::class, 'edit'])->name('categories.edit');
+    Route::put('categories/{category}', [Controllers\CategoryController::class, 'update'])->name('categories.update');
+    Route::delete('categories/{category}', [Controllers\CategoryController::class, 'destroy'])->name('categories.destroy');Route::resource('avis', Controllers\AvisController::class);
 
 });
 ### End Admin Routes ###
@@ -155,9 +169,10 @@ Route::delete('/commentDelete/{comment}', [Controllers\CommentController::class,
 
 Route::delete('/commentDelete/{comment}', [Controllers\CommentController::class, 'delete'])->name('comments.delete');
 
-Route::group(['prefix'=>'admin','middleware'=>['admin','auth']], function() {
+
 // Routes pour TradeController
     Route::get('/trades', [Controllers\TradeController::class, 'index'])->name('trades.index');
+    Route::get('/tradess', [Controllers\TradeController::class, 'index1'])->name('trades.index1');
     Route::get('/trades/create', [Controllers\TradeController::class, 'create'])->name('trades.create');
     Route::post('/trades', [Controllers\TradeController::class, 'store'])->name('trades.store');
     Route::get('/trades/{id}', [Controllers\TradeController::class, 'show'])->name('trades.show');
@@ -166,7 +181,11 @@ Route::group(['prefix'=>'admin','middleware'=>['admin','auth']], function() {
     Route::delete('/trades/{id}', [Controllers\TradeController::class, 'destroy'])->name('trades.destroy');
     Route::get('/trades/search/{search}', [Controllers\TradeController::class, 'search'])->name('trades.search');
     Route::get('/calendar', [Controllers\TradeController::class, 'calendar'])->name('trades.calendar');
-});
+    Route::get('/calendarr', [Controllers\TradeController::class, 'calendarr'])->name('trades.calendarr');
+
+    Route::post('/trades/{trade}/accept', [Controllers\TradeController::class, 'accept'])->name('trades.accept');
+    Route::post('/trades/{trade}/reject', [Controllers\TradeController::class, 'reject'])->name('trades.reject');
+
 
 
 //Route::resource('/trades', Controllers\TradeController::class);
@@ -175,12 +194,6 @@ Route::group(['prefix'=>'admin','middleware'=>['admin','auth']], function() {
 
 
 //Route::resource('admin/categories', Controllers\CategoryController::class);
-Route::get('categories', [Controllers\CategoryController::class, 'index'])->name('categories.index');
-Route::get('categories/create', [Controllers\CategoryController::class, 'create'])->name('categories.create');
-Route::post('categories', [Controllers\CategoryController::class, 'store'])->name('categories.store');
-Route::get('categories/{category}/edit', [Controllers\CategoryController::class, 'edit'])->name('categories.edit');
-Route::put('categories/{category}', [Controllers\CategoryController::class, 'update'])->name('categories.update');
-Route::delete('categories/{category}', [Controllers\CategoryController::class, 'destroy'])->name('categories.destroy');Route::resource('avis', Controllers\AvisController::class);
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

@@ -99,6 +99,29 @@
             </table>
         </div>
 
+        <div class="card">
+            <div class="card-body text-center" >
+                <h2 class="mb-3 mt-3" style="font-size: 50px; ">Comments Analysis</h2>
+        
+                <h1 style="font-size: 36px;" >Most Commented Post:</h1>
+                @if ($mostCommentedPost)
+                <p style="font-size: 24px ;">Post's Title: </p>
+                <p style="font-size: 24px; color: blue;"> {{ $mostCommentedPost->title }}</p>
+                <p style="font-size: 24px;">Number of Comments: </p>
+                    <p style="font-size: 24px; color: blue;">{{ $mostCommentedPost->comments->count() }}</p>
+                
+                @else
+                <p>No comments available.</p>
+                @endif
+        
+                <h1 >
+                    <span style="font-size: 30px; margin-right: 10px;">Most Repeated Word is </span>
+                    <span style="font-size: 50px; color: red; margin-right: 10px;">{{ $mostRepeatedWord }}</span>
+                </h1>
+                
+            </div>
+        </div>
+
     </div>
 </div>
 <form id="delete-comment-form" method="POST" style="display: none;">

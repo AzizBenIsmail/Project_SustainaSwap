@@ -34,11 +34,11 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link{{ $currentPage === 'products' ? ' active' : '' }}" href="items">Products</a>
+                    <a class="nav-link{{ $currentPage === 'products' ? ' active' : '' }}" href="{{ route('items.index') }}">Products</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link{{ $currentPage === 'faq' ? ' active' : '' }}" href="faq">FAQs</a>
+                    <a class="nav-link{{ $currentPage === 'faq' ? ' active' : '' }}" href="{{ route('trades.index1') }}">MyTrades</a>
                 </li>
 
                 <li class="nav-item">
@@ -48,6 +48,7 @@
 
             <div class="d-none d-lg-block">
                 @if(auth()->check())
+                    {{ Auth::user()->name }}
                     <a href="{{ route('home') }}" class="bi-person custom-icon"></a>
                     <a href="{{ route('logout') }}"   onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();"

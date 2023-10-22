@@ -14,6 +14,7 @@
         "pusher/pusher-php-server": "^7.2",
         "redot/laravel-toastify": "*",
         "twilio/sdk": "^7.12",
+        "tzsk/sms": "^7.0",
         "yoeunes/toastr": "^2.3"
     },
     "require-dev": {

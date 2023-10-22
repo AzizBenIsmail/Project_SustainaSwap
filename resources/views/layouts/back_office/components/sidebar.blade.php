@@ -1,8 +1,6 @@
 <nav class="sidebar-nav">
     <ul id="sidebarnav" class="pt-4">
-        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.blade.php"
-                aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">SustainaSwap</span></a>
-        </li>
+
         {{--        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" --}}
         {{--                                     href="charts.blade.php" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span --}}
         {{--                    class="hide-menu">Charts</span></a></li> --}}
@@ -31,6 +29,21 @@
 
         <li class="sidebar-item">
             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                    class="mdi mdi-receipt"></i><span class="hide-menu">Conversation Management</span>
+            </a>
+            <ul aria-expanded="false" class="collapse  first-level">
+                <li class="sidebar-item">
+                    <a href="{{ route('pusher.indexAdmin') }}" class="sidebar-link">
+                        <i class="mdi mdi-note-outline"></i>
+                        <span class="hide-menu"> Conversation</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        {{-- -- --}}
+
+        <li class="sidebar-item">
+            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
                     class="mdi mdi-receipt"></i><span class="hide-menu">Users Management</span>
             </a>
             <ul aria-expanded="false" class="collapse  first-level">
@@ -49,23 +62,23 @@
             </a>
             <ul aria-expanded="false" class="collapse  first-level">
                 <li class="sidebar-item">
-                    <a href="itemsAdmin" class="sidebar-link">
+                    <a href="{{ route('itemsAdmin.index') }}" class="sidebar-link">
                         <i class="mdi mdi-note-outline"></i>
                         <span class="hide-menu"> Items</span>
                     </a>
                 </li>
             </ul>
         </li>
-  {{-- -- --}}
+
         <li class="sidebar-item">
             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
                     class="mdi mdi-receipt"></i><span class="hide-menu">Category Management</span>
             </a>
             <ul aria-expanded="false" class="collapse  first-level">
                 <li class="sidebar-item">
-                    <a href="itemsAdmin" class="sidebar-link">
+                    <a href="{{ route('categories.index') }}" class="sidebar-link">
                         <i class="mdi mdi-note-outline"></i>
-                        <span class="hide-menu"> Categoriess</span>
+                        <span class="hide-menu"> Categories</span>
                     </a>
                 </li>
             </ul>
@@ -86,6 +99,28 @@
             </ul>
 
 
+
+
+
+        <li class="sidebar-item">
+            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                    class="mdi mdi-receipt"></i><span class="hide-menu">Posts Management</span>
+            </a>
+            <ul aria-expanded="false" class="collapse  first-level">
+                <li class="sidebar-item">
+                    <a href="{{ route('posts.allPost') }}" class="sidebar-link">
+                        <i class="mdi mdi-note-outline"></i>
+                        <span class="hide-menu"> List Posts</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="{{ route('comments.allComment') }}" class="sidebar-link">
+                        <i class="mdi mdi-note-outline"></i>
+                        <span class="hide-menu"> List Comments</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
 
         {{--        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" --}}
         {{--                                     href="pages-buttons.blade.php" aria-expanded="false"><i --}}
