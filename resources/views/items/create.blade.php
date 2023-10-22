@@ -19,7 +19,7 @@
 
                     <div class="form-group mt-3">
                         <label for="title">Title:</label>
-                        <input type="text" name="title" class="form-control" value="{{ old('title') }}" required>
+                        <input type="text" name="title" class="form-control" value="{{ old('title') }}" >
                         @error('title')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -35,7 +35,7 @@
 
                     <div class="form-group mt-3">
                         <label for="category">Category:</label>
-                        <select name="category" class="form-control" required>
+                        <select name="category" class="form-control" >
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
