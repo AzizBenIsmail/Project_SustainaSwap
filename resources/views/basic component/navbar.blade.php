@@ -34,7 +34,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link{{ $currentPage === 'products' ? ' active' : '' }}" href="items">Products</a>
+                    <a class="nav-link{{ $currentPage === 'products' ? ' active' : '' }}" href="{{ route('items.index') }}">Products</a>
                 </li>
 
                 <li class="nav-item">
