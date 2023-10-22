@@ -132,6 +132,10 @@ Route::get('/comment', [Controllers\CommentController::class, 'allComment'])->na
     Route::post('/{user}/grantAdminPrivileges',[Controllers\AdminController::class,'grantAdminPrivileges'])->name('users.grant-admin-privileges');
     Route::post('{userId}/revokeAdminPrivileges',[Controllers\AdminController::class,'revokeAdminPrivileges'])->name('users.revoke-admin-privileges');
     Route::delete('{userId}/deleteUser',[Controllers\AdminController::class,'deleteUser'])->name('users.delete-user');
+    //Profile
+    Route::get('users/profile',[Controllers\UsersController::class,'edit'])->name('user.edit-profile');
+    Route::put('users/profile',[Controllers\UsersController::class,'update'])->name('user.update-profile');
+    Route::put('users/profile/image/update',[Controllers\UsersController::class,'updateProfileImage'])->name('user.update-profile-image');
 
 
 });
