@@ -84,16 +84,16 @@ Route::resource('Trade', Controllers\TradeController::class);
 
 
 
-// Route::get('/posts', [Controllers\PostController::class, 'index'])->name('posts.index');
-// //The resource will overwrite the bellow line
-// Route::get('/posts/create', [Controllers\PostController::class, 'create'])->name('posts.create');
-// Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts.store');
-// Route::get('/post/{post}', [Controllers\PostController::class, 'show'])->name('posts.show');
-// Route::get('posts/{post}/edit', [Controllers\PostController::class, 'edit'])->name('posts.edit');
-// Route::delete('/posts/{post}', [Controllers\PostController::class, 'destroy'])->name('posts.destroy');
-// Route::put('/posts/{post}', [Controllers\PostController::class, 'update'])->name('posts.update');
-// Route::get('/posts/create', [Controllers\PostController::class, 'create'])->name('posts.create');
-// Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts.store');
+Route::get('/posts', [Controllers\PostController::class, 'index'])->name('posts.index');
+//The resource will overwrite the bellow line
+Route::get('/posts/create', [Controllers\PostController::class, 'create'])->name('posts.create');
+Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts.store');
+Route::get('/post/{post}', [Controllers\PostController::class, 'show'])->name('posts.show');
+Route::get('posts/{post}/edit', [Controllers\PostController::class, 'edit'])->name('posts.edit');
+Route::delete('/posts/{post}', [Controllers\PostController::class, 'destroy'])->name('posts.destroy');
+Route::put('/posts/{post}', [Controllers\PostController::class, 'update'])->name('posts.update');
+Route::get('/posts/create', [Controllers\PostController::class, 'create'])->name('posts.create');
+Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts.store');
 
 Route::get('/post/{post}', [Controllers\PostController::class, 'show'])->name('posts.show');
 
