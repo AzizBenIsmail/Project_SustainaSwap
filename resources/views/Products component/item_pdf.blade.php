@@ -11,5 +11,8 @@
 <p>Propriétaire : {{ $item->user->name }}</p>
 <p>Catégorie : {{ $item->category->name }}</p>
 <p>Description : {{ $item->description }}</p>
+
+<!-- Utilisez asset() pour les images -->
+{{--<img src="{{ asset('uploads/' . $item->picture) }}" alt="Image de l'article">--}}
 </body>
 </html>
