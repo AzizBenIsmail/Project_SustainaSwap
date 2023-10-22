@@ -159,34 +159,41 @@
         });
         
         var usersWithMostPostsData = {!! json_encode($users) !!};
-    var userNames = usersWithMostPostsData.map(function(user) {
-        return user.name;
-    });
-    var postCounts = usersWithMostPostsData.map(function(user) {
-        return user.posts_count;
-    });
+var userNames = usersWithMostPostsData.map(function(user) {
+    return user.name;
+});
+var postCounts = usersWithMostPostsData.map(function(user) {
+    return user.posts_count;
+});
 
-        // User with Most Posts Chart
-        var userWithMostPostsChart = new Chart(document.getElementById('userWithMostPostsChart'), {
-        type: 'pie',
-        data: {
-            labels: userNames,
-            datasets: [{
-                data: postCounts,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.7)',
-                    'rgba(54, 162, 235, 0.7]',
-                    'rgba(255, 206, 86, 0.7]',
-                    'rgba(75, 192, 192, 0.7]',
-                    'rgba(153, 102, 255, 0.7]',
-                    'rgba(255, 159, 64, 0.7]'
-                ],
-            }],
-        },
-        options: {
-            responsive: true,
-        }
-    });
+// Define an array of colors
+var colors = [
+    'rgba(255, 99, 132, 0.7)',
+    'rgba(54, 162, 235, 0.7)',
+    'rgba(255, 206, 86, 0.7)',
+    'rgba(75, 192, 192, 0.7)',
+    'rgba(153, 102, 255, 0.7)',
+    'rgba(255, 159, 64, 0.7)'
+];
+
+// Create an array of unique colors for each user
+var userColors = colors.slice(0, usersWithMostPostsData.length);
+
+// User with Most Posts Chart
+var userWithMostPostsChart = new Chart(document.getElementById('userWithMostPostsChart'), {
+    type: 'pie',
+    data: {
+        labels: userNames,
+        datasets: [{
+            data: postCounts,
+            backgroundColor: userColors,
+        }],
+    },
+    options: {
+        responsive: true,
+    }
+});
+
 
 const actionButtons = document.querySelectorAll('.action-btn');
     const actionMenus = document.querySelectorAll('.action-menu');

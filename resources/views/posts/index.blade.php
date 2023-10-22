@@ -165,7 +165,7 @@
             const filterSelect = document.getElementById("filterSelect");
             const searchInput = document.getElementById("searchInput");
             const postCards = document.querySelectorAll(".post-card");
-        
+            const authenticatedUserId = {{ auth()->user()->id }};
             filterSelect.addEventListener("change", handleFilter);
             searchInput.addEventListener("input", handleSearch);
         
@@ -176,7 +176,7 @@
                     const postUserId = postCard.getAttribute("id");
         
                     if (selectedFilter === "my-posts") {
-                        if (postUserId === "1") {
+                        if (postUserId == authenticatedUserId) {
                             postCard.style.display = "block";
                         } else {
                             postCard.style.display = "none";
