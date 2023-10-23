@@ -174,8 +174,4 @@
     </div>
 </div>
 
-@include('basic component.JAVASCRIPT_FILES')
-
-
-</body>
-</html>
+@include('basic component.JAVASCRIPT_FILES
