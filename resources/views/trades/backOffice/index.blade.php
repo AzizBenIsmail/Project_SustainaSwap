@@ -21,7 +21,7 @@
                     <tbody>
                     @foreach ($trades as $trade)
                         <tr>
-                            <td>{{ $trade->id }}</td>
+                            
                             <td>{{ $trade->tradeStartDate }}</td>
                             <td>{{ $trade->tradeEndDate }}</td>
                             <td>{{ $trade->status }}</td>
