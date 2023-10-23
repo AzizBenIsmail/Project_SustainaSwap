@@ -13,7 +13,7 @@
 
     @include('Contact Component.cover_picture')
 
-    @include('Contact Component.Lets_begin')
+    @include('Contact Component.Complaints')
 
 </main>
 
