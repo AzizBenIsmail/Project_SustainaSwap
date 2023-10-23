@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('userName');
             $table->string('userEmail');
+            $table->string('phoneNumber');
             $table->string('emailSubject');
             $table->text('emailMessage');
             $table->boolean('status')->default(false);
