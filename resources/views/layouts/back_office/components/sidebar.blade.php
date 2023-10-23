@@ -13,6 +13,7 @@
         {{--        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" --}}
         {{--                                     href="grid.blade.php" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span --}}
         {{--                    class="hide-menu">Full Width</span></a></li> --}}
+        @if(auth()->user()->isAdmin())
         <li class="sidebar-item">
             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
                     class="mdi mdi-receipt"></i><span class="hide-menu">Complaints Management</span>
@@ -121,6 +122,31 @@
                 </li>
             </ul>
         </li>
+        @else
+
+            <li class="sidebar-item">
+                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                        class="mdi mdi-receipt"></i><span class="hide-menu">User actions</span>
+                </a>
+                <ul aria-expanded="false" class="collapse  first-level">
+                    <li class="sidebar-item">
+                        <a href="{{ route('indexmain') }}" class="sidebar-link">
+                            <i class="mdi mdi-note-outline"></i>
+                            <span class="hide-menu">Go back Home</span>
+                        </a>
+                    </li>
+{{--                    <li class="sidebar-item">--}}
+{{--                        <a href="{{ route('complaints.index') }}" class="sidebar-link">--}}
+{{--                            <i class="mdi mdi-note-outline"></i>--}}
+{{--                            <span class="hide-menu"> List complaints</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+                </ul>
+            </li>
+
+
+
+        @endif
 
         {{--        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" --}}
         {{--                                     href="pages-buttons.blade.php" aria-expanded="false"><i --}}
