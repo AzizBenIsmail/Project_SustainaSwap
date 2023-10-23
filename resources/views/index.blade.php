@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Chat Laravel Pusher | Edlin App</title>
-    <link rel="icon" href="https://assets.edlin.app/favicon/favicon.ico"/>
+    <title>Sustaina Swap Chat</title>
+    <link rel="icon" src="{{ asset('back_office/assets/images/logo-icon.png')}}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- JavaScript -->
@@ -53,20 +53,24 @@
 
     <!-- Header -->
     <div class="top">
-        <img src="{{ asset('uploads/' . $item->picture) }}" alt="Avatar" height="80px" width="80px">
-        <div class="user-info">
-            <div class="user-names">
-                <p>{{ $item->user->name }}</p>  <!-- receiver -->
-                <p><small>Online</small></p>
-            </div>
-        </div>
-    </div>
+      <div class="user-info">
+          <img src="{{ asset('uploads/' . $item->picture) }}" alt="Avatar" height="200px" width="200px">
+          <div class="user-names">
+              <p>{{ $item->user->name }}</p>  <!-- receiver -->
+              <span style="color: green; font-weight: bold;">Online</span>              
+              <li class="my-paragraph">{{ $item->title }}</li>
+              <li class="my-paragraph">{{ $item->description }}</li>
+              <li class="my-paragraph">{{ $item->state }}</li>
+          </div>
+      </div>
+  </div>
+  
     <!-- End Header -->
 
     <!-- Chat -->
     <div class="messages">
         @include('receive', ['message' => "Hey! What's up! 👋"])
-        @include('receive', ['message' => "Ask a friend to open this link and you can chat with them!"])
+        
     </div>
     <!-- End Chat -->
 
@@ -83,34 +87,35 @@
 @include('basic component.footer')
 
 </body>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     // JavaScript function to show a notification
     
-function showAdminMessageNotification(message) {
-  Swal.fire({
-    title: 'New Message from Admin',
-    text: message,
-    icon: 'info', // You can change this to 'success', 'error', 'warning', etc.
-    confirmButtonText: 'OK'
-  });
-}
+    function showAdminMessageNotification(message) {
+    console.log("showAdminMessageNotification called with message: " + message);
 
-// Call this function when an admin sends a message
-// You can pass the message content as an argument*
+    Swal.fire({
+      title: 'New Message from Admin',
+      text: message,
+      icon: 'info',
+      confirmButtonText: 'OK'
+    });
+  }
 
-showAdminMessageNotification(message);
-
-</script>
+  // Call this function when an admin sends a message
+  // You can pass the message content as an argument
+  showAdminMessageNotification('{{ $messageContent }}'); --}}
+{{-- </script> --}}
 <script>
-    const pusher  = new Pusher('{{config('broadcasting.connections.pusher.key')}}', {cluster: 'eu'});
+  const pusher  = new Pusher('{{config('broadcasting.connections.pusher.key')}}', {cluster: 'eu'});
   const channel = pusher.subscribe('public');
 
   //Receive messages
   channel.bind('chat', function (data) {
     $.post("/receive", {
       _token:  '{{csrf_token()}}',
-      message: data.message,
+      message: data.message ,
+      
     })
      .done(function (res) {
        $(".messages > .message").last().after(res);
@@ -135,7 +140,6 @@ showAdminMessageNotification(message);
       data:    {
         _token:  '{{csrf_token()}}',
         message: $("form #message").val(),
-        recipient: {{$recipient}}
         // message_id: generateUniqueMessageID(),
   }
     }).done(function (res) {

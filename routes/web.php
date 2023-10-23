@@ -32,9 +32,10 @@ Route::get('/sign-up', function () {
 Route::get('/chat/{Id}', 'App\Http\Controllers\PusherController@index')->name('chatIndex');
 Route::post('/broadcast', 'App\Http\Controllers\PusherController@broadcast');
 Route::post('/receive', 'App\Http\Controllers\PusherController@receive');
-Route::get('/chat/{message_id}/delete', [Controllers\PusherController::class, 'destroy'])->name('pusher.destroy');
+Route::delete('/chat/{id}', 'App\Http\Controllers\PusherController@destroy')->name('deleteMessages');
 Route::get('/admin/chatAdmin', [Controllers\PusherController::class, 'indexAdmin'])->name('pusher.indexAdmin');
 Route::post('/admin/chatAdminSend', [Controllers\PusherController::class, 'chatAdminSend'])->name('pusher.chatAdminSend');
+Route::put('/messages/{id}', 'App\Http\Controllers\AdminChatController@update')->name('updateMessage');
 Route::delete('/delete-message/{id}', 'App\Http\Controllers\PusherController@delete')->name('deleteMessage');
 
 Route::get('/admin_chat/create', 'App\Http\Controllers\AdminChatController@create')->name('adminChat.create');

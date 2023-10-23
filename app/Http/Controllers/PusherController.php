@@ -25,72 +25,84 @@ class PusherController extends Controller
 
     
     public function chatAdminSend(Request $request)
-    {      
+    {
         // Validate the request data if needed
-    $request->validate([
-        'content' => 'required|string',
-    ]);
-    $message = new MsgAdmin();
-    $message->content = $request->input('content');
-    $message->save();
-
-    // Pass the message content to the JavaScript function
-    $messageContent = $request->input('content');
-    echo '<script>';
-    echo "showAdminMessageNotification('$messageContent');";
-    echo '</script>';
-    // Optionally, you can flash a success message to the session
-    session()->flash('success', 'Message sent successfully!');
-
-    // Redirect back to the previous page or any other view
-    return redirect()->back();
-    }
+        $request->validate([
+            'content' => 'required|string',
+        ]);
     
+        $message = new MsgAdmin();
+        $message->content = $request->input('content');
+        $message->save();
+    
+        // Pass the message content to the JavaScript function
+        $messageContent = 'test';
+    
+        // Flash the messageContent to the session
+        session()->flash('messageContent', $messageContent);
+    
+        // Optionally, you can flash a success message to the session
+        session()->flash('success', 'Message sent successfully!');
+    
+        // Redirect back to the previous page with the flashed messageContent
+        return redirect()->back();
+    }
 /**
      * Display the specified resource.
      *
      * @param \App\Models\Item $item
      * @return \Illuminate\Http\Response
      */
-//     public function index($Id)
-// {
-// //    dd($item->name);
-//     $currentUserId = auth()->id();
-//     $item = Item::find($Id);
-//     //     $recipientId = $item->user_id;
-
-//     $messages = Message::where('user_id', $currentUserId)->get();
-//     return view('index', ['messages' => $messages, 'item' => $item]);
-// }
-
-public function index($Id)
+    public function index($Id)
 {
+//    dd($item->name);
     $currentUserId = auth()->id();
     $item = Item::find($Id);
-    $recipientId = $item->user_id;
 
-    // Retrieve messages sent by the current user (sender)
-    $senderMessages = Message::where('user_id', $currentUserId)
-                            ->where('recipient_id', $recipientId)
-                            ->orderBy('created_at', 'asc')
-                            ->get();
-
-    // Retrieve messages sent by the recipient
-    $recipientMessages = Message::where('user_id', $recipientId)
-                               ->where('recipient_id', $currentUserId)
-                               ->orderBy('created_at', 'asc')
-                               ->get();
-
-    // Merge and sort both sets of messages based on the created_at timestamp
-    $messages = $senderMessages->merge($recipientMessages)
-                 ->sortBy('created_at')
-                 ->values();
-
-    $recipient = User::find($recipientId);
-    // return view('index', ['messages' => $messages, 'item' => $item]);
-    return view('index', compact('recipient', 'messages', 'item'));
+    $messages = Message::where('user_id', $currentUserId)->get();
+    return view('index', ['messages' => $messages, 'item' => $item]);
 }
 
+// public function index($Id)
+// {
+//     $currentUserId = auth()->id();
+//     $item = Item::find($Id);
+//     $recipientId = $item->user_id;
+
+//     // Retrieve the last message from the database
+//     $lastMessage = Message::where(function ($query) use ($currentUserId, $recipientId) {
+//         $query->where('user_id', $currentUserId)
+//             ->where('recipient_id', $recipientId);
+//     })->orWhere(function ($query) use ($currentUserId, $recipientId) {
+//         $query->where('user_id', $recipientId)
+//             ->where('recipient_id', $currentUserId);
+//     })->orderBy('created_at', 'desc')->first();
+
+//     // Extract the content of the last message
+//     $messageContent = $lastMessage ? $lastMessage->content : '';
+
+//     // Retrieve messages sent by the current user (sender)
+//     $senderMessages = Message::where('user_id', $currentUserId)
+//         ->where('recipient_id', $recipientId)
+//         ->orderBy('created_at', 'asc')
+//         ->get();
+
+//     // Retrieve messages sent by the recipient
+//     $recipientMessages = Message::where('user_id', $recipientId)
+//         ->where('recipient_id', $currentUserId)
+//         ->orderBy('created_at', 'asc')
+//         ->get();
+
+//     // Merge and sort both sets of messages based on the created_at timestamp
+//     $messages = $senderMessages->merge($recipientMessages)
+//         ->sortBy('created_at')
+//         ->values();
+
+//     $recipient = User::find($recipientId);
+
+//     // Pass the messageContent to the view along with other data
+//     return view('index', compact('recipient', 'messages', 'item', 'messageContent'));
+// }
 
 
 
@@ -119,7 +131,6 @@ public function index($Id)
         $message->user_id = auth()->id(); // Assuming you're storing the user ID who sent the message.
         $message->message = $request->input('message');
         $message->name = auth()->user()->name;
-        $message->recipient_id= $request->input('recipient');
         $message->save();
         $messageId = $message->id;
         // Broadcast the message to other users.
@@ -132,6 +143,7 @@ public function index($Id)
 
     public function receive(Request $request)
     {
+       
         return view('receive', ['message' => $request->get('message')]);
     }
 //     public function showConversation($conversationId)
@@ -181,12 +193,12 @@ public function destroy($id) {
     }
 
 
-    return redirect()->route('pusher.index')->with('success', 'Message supprimé avec succès.');
+    return redirect()->back();
 }
 
 public function delete($id) {
     // Retrieve the message by ID and delete it
-    $message = Message::find($id);
+    $message = AdminChat::find($id);
     if ($message) {
         $message->delete();
     }
