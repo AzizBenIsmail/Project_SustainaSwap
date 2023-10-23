@@ -5,6 +5,8 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+ /* External CSS file (style.css) */
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -131,6 +133,15 @@ h2, .h2 {
     font-size: 2rem;
   }
 }
+/* Define a custom CSS class */
+.my-paragraph {
+  font-size: 16px;
+  color: #333;
+  margin: 0px 20px;
+  line-height: 1.5;
+}
+
+/* Add additional CSS rules for styling */
 
 h3, .h3 {
   font-size: calc(1.3rem + 0.6vw);

@@ -23,9 +23,23 @@
                     @csrf
                     
                     <div class="mb-3">
+                        <label for="content" class="form-label">Product name</label>
+                        <input type="text" class="form-control" id="product_name" name="product_name" rows="4">
+                    </div>
+    
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" rows="4">
+                    </div>
+    
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" rows="4">
+                    </div>
+    
+                    <div class="mb-3">
                         <label for="content" class="form-label">Content</label>
                         <textarea class="form-control" id="content" name="content" rows="4"></textarea>
-
                     </div>
                     
                     <div class="center justify">
@@ -51,11 +65,12 @@
                 <thead>
                     <tr>
                         <th>id</th>
-                        <th>name</th>
-                        <th>message</th>
-                        <th>email</th>
-                        <th>created at</th>
-                        <th>action</th>
+                        <th>Name</th>
+                        <td>Item</td>
+                        <th>Message</th>
+                        <th>Email</th>
+                        <th>Created at</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,6 +81,9 @@
                     <tr>
                         <td>{{$message->id}}</td>
                         <td>{{$message->name}}</td>
+                        <td>{{$message->product_name}}</td>
+
+                        
                         <td>{{$message->content}}</td>
                         <td>{{$message->email}}</td>
                         <td>{{$message->created_at}}</td>
@@ -75,8 +93,9 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Send Message</button>
-                            {{-- <a href="{{ route('comments.edit', $message->id) }}" class="btn btn-primary">Responde</a> --}}
+                            <br>
+                            
+                            
 
                         </td>
                     </tr>

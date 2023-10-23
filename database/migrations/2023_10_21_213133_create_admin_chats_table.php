@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('admin_chats', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('product_name');
             $table->string('email');
             $table->string('content');
             $table->string('user_id');

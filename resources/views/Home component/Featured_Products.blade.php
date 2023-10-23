@@ -10,6 +10,12 @@
         <div class="modal-body">
             <form method="POST" action="{{ route('adminChat.store') }}" enctype="multipart/form-data">
                 @csrf
+
+                <div class="mb-3">
+                    <label for="content" class="form-label">Product name</label>
+                    <input type="text" class="form-control" id="product_name" name="product_name" rows="4">
+                </div>
+
                 <div class="mb-3">
                     <label for="content" class="form-label">Name</label>
                     <input type="text" class="form-control" id="name" name="name" rows="4">
@@ -26,6 +32,7 @@
                 </div>
 
                 <div class="center justify">
+
                     <button type="submit" class="btn btn-primary mb-2 px-5" style="background-color: #FC6F00; width: 100%; border: none; ">Send Message</button>
                     <button type="button" class="btn btn-secondary px-5"  data-dismiss="modal">Close</button>
                 </div>
@@ -108,10 +115,10 @@
                                 <small class="product-price text-muted ms-auto">{{ $item->state }}</small> . condition
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="background-color: #FF7F50;color: #fff;">Send Message</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="background-color: #fa0000;color: #fff;"> URG MSG </button>
 
 
-                        <a href="{{ route('chatIndex', $item->id) }}" class="btn btn-primary" style="background-color: #E9967A; color: #fff;"> Chat</a>
+                        <a href="{{ route('chatIndex', $item->id) }}" class="btn btn-primary" style="background-color: #FFA07A;color: #fff;"> Chat</a>
                         <a href="{{ route('showmain', $item->id) }}" class="btn btn-info" style="background-color: #FFA07A;color: #fff;">Show</a>
                     </div>
                 </div>
