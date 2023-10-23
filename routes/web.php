@@ -93,8 +93,13 @@ Route::post('/posts', [Controllers\PostController::class, 'store'])->name('posts
 Route::get('/posts/sort-by-date-asc', [Controllers\PostController::class, 'sortByDateAsc'])->name('posts.sortByDateAsc');
 Route::get('/post/{post}', [Controllers\PostController::class, 'show'])->name('posts.show');
 
-Route::get('/complaints', [Controllers\ComplaintsController::class, 'index'])->name('complaints.index');
+
+Route::get('/complaints/create', [Controllers\ComplaintsController::class, 'goToComplaintPage'])->name('complaints.create');
 Route::post('/complaints', [Controllers\ComplaintsController::class, 'store'])->name('complaints.store');
+
+Route::get('/user/profile',[Controllers\UsersController::class,'edit'])->name('edit-profile');
+Route::put('/user/profile',[Controllers\UsersController::class,'update'])->name('update-profile');
+Route::put('/user/profile/image/update',[Controllers\UsersController::class,'updateProfileImage'])->name('update-profile-image');
 
 ### Start Admin Routes ###
 // The Prefix is added after login based on user role - Auth LoginController
@@ -102,9 +107,9 @@ Route::group(['prefix'=>'admin','middleware'=>['admin','auth']], function(){
     //dashboard
     Route::get('/', [Controllers\AdminController::class,'index'])->name('admin-dashboard');;
 
-    
-//Complaints routes
 
+//Complaint routes
+Route::get('/complaints', [Controllers\ComplaintsController::class, 'index'])->name('complaints.index');
 Route::put('/complaints/{complaint}', [Controllers\ComplaintsController::class, 'update'])->name('complaints.update');
 Route::delete('/complaints/{complaintId}', [Controllers\ComplaintsController::class, 'destroy'])->name('complaints.delete');
 
@@ -155,7 +160,7 @@ Route::get('/comment', [Controllers\CommentController::class, 'allComment'])->na
     Route::get('categories/{category}/edit', [Controllers\CategoryController::class, 'edit'])->name('categories.edit');
     Route::put('categories/{category}', [Controllers\CategoryController::class, 'update'])->name('categories.update');
     Route::delete('categories/{category}', [Controllers\CategoryController::class, 'destroy'])->name('categories.destroy');
-   
+
 
 });
 
@@ -194,7 +199,7 @@ Route::delete('/commentDelete/{comment}', [Controllers\CommentController::class,
 
 // Delete an avis
 Route::delete('/avis/{id}', [Controllers\AvisController::class, 'destroy'])->name('avis.destroy');
-  
+
 
 
 
