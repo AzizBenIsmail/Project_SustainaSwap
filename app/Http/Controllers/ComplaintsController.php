@@ -30,7 +30,9 @@ class ComplaintsController extends Controller
     {
         //
     }
-
+    public function goToComplaintPage(){
+        return view('Complaints/create');
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -43,10 +45,12 @@ class ComplaintsController extends Controller
         $complaint = Complaint::create([
             'userName' => $request->name,
             'userEmail' => $request->email,
+            'phoneNumber' => $request->phoneNumber,
             'emailSubject' => $request->subject,
             'emailMessage' => $request->message
         ]);
         if ($complaint) {
+            session()->flash('success', 'Complaint Submitted Successfully');
             return redirect()->back();
         }
 
