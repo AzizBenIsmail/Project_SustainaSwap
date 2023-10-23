@@ -22,6 +22,7 @@
                         <th scope="col">Received</th>
                         <th scope="col">Name</th>
                         <th scope="col">E-mail</th>
+                        <th scope="col">Phone Number</th>
                         <th scope="col">Subject</th>
                         <th scope="col">Message</th>
                         <th scope="col">Mark as Solved</th>
@@ -35,6 +36,7 @@
                             <td>{{$complaint->created_at->diffForHumans()}}</td>
                             <td>{{$complaint->userName }}</td>
                             <td>{{$complaint->userEmail}}</td>
+                            <td>{{$complaint->phoneNumber}}</td>
                             <td>{{$complaint->emailSubject}}</td>
 {{--                            <td><span style="display: block;width: 100px;overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">{{$complaint->emailMessage}} </span><a href="javascript:void(0);" onclick="handleUpdate('{{$complaint->emailMessage}}')" >Continue reading</a></td>--}}
                             <td><span style="display: block;width: 100px;overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">{{$complaint->emailMessage}} </span><a href="javascript:void(0);" onclick="handleUpdate('{{$complaint->emailMessage}}')" data-toggle="modal" data-target="#readUpdateModal">Continue reading</a></td>

@@ -1,6 +1,16 @@
-@extends('layouts.app')
 
-@section('content')
+<!doctype html>
+<html lang="en">
+
+@include('basic component.head')
+
+<body>
+
+<main>
+    @include('basic component.navbar')
+
+
+        <section class="contact section-padding">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -62,4 +72,9 @@
         </div>
     </div>
 </div>
-@endsection
+
+        </section>
+        @include('basic component.footer')
+</main>
+</body>
+</html>

@@ -1,3 +1,14 @@
+
+<!doctype html>
+<html lang="en">
+
+@include('basic component.head')
+
+<body>
+
+<main>
+    @include('basic component.navbar')
+
 <section class="contact section-padding">
     <div class="container">
         <div class="row">
@@ -84,3 +95,7 @@
         </div>
     </div>
 </section>
+@include('basic component.footer')
+</main>
+</body>
+</html>
