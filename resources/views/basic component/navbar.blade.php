@@ -42,14 +42,14 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link{{ $currentPage === 'contact' ? ' active' : '' }}" href="contact">Contact</a>
+                    <a class="nav-link{{ $currentPage === 'complaint' ? ' active' : '' }}" href="{{route('complaints.create')}}">Complaints</a>
                 </li>
             </ul>
 
             <div class="d-none d-lg-block">
                 @if(auth()->check())
                     {{ Auth::user()->name }}
-                    <a href="{{ route('home') }}" class="bi-person custom-icon"></a>
+                    <a href="{{ route('edit-profile') }}" class="bi-person custom-icon"></a>
                     <a href="{{ route('logout') }}"   onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();"
                     class="bi-door-open custom-icon">
