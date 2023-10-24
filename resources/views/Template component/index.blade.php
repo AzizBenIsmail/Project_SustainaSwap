@@ -14,7 +14,7 @@
 <main>
     @include('basic component.navbar', ['currentPage' => 'home'])
 
-    @include("Home component.cover_picture")
+{{--    @include("Home component.cover_picture")--}}
 
 {{--    @include("Home component.Get_started")--}}
 

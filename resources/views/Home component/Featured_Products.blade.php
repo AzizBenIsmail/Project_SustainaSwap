@@ -1,57 +1,10 @@
-<div class="modal fade"    id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form method="POST" action="{{ route('adminChat.store') }}" enctype="multipart/form-data">
-                @csrf
-
-                <div class="mb-3">
-                    <label for="content" class="form-label">Product name</label>
-                    <input type="text" class="form-control" id="product_name" name="product_name" rows="4">
-                </div>
-
-                <div class="mb-3">
-                    <label for="content" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" rows="4">
-                </div>
-
-                <div class="mb-3">
-                    <label for="content" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" rows="4">
-                </div>
-
-                <div class="mb-3">
-                    <label for="content" class="form-label">Content</label>
-                    <textarea class="form-control" id="content" name="content" rows="4"></textarea>
-                </div>
-
-                <div class="center justify">
-
-                    <button type="submit" class="btn btn-primary mb-2 px-5" style="background-color: #FC6F00; width: 100%; border: none; ">Send Message</button>
-                    <button type="button" class="btn btn-secondary px-5"  data-dismiss="modal">Close</button>
-                </div>
-
-            </form>
-        </div>
-        <div class="modal-footer">
-
-        </div>
-      </div>
-    </div>
-  </div>
 <section class="featured-product section-padding">
 
     <div class="container">
         <div class="row">
 
             <div class="col-12 text-center">
-                <h2 class="mb-5">Featured Item</h2>
+                <h2 >Featured Item</h2>
             </div>
 
             <form action="{{ route('indexmain') }}" method="GET" class="my-4">
@@ -69,7 +22,7 @@
                                 <option value="state" {{ request('sort') == 'state' ? 'selected' : '' }}>State</option>
                                 <option value="category" {{ request('sort') == 'category' ? 'selected' : '' }}>Category</option>
                             </select>
-                             
+
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -86,7 +39,7 @@
                     </div>
                 </div>
                 <div class="text-center mt-2">
-                   
+
                 </div>
             </form>
 
