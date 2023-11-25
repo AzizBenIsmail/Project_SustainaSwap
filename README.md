@@ -20,60 +20,17 @@
 6. php artisan optimize
 7. php artisan serve
 
-## About Laravel
+## SustainaSwap 
+est bien plus qu'une simple plateforme en ligne ; c'est une communauté engagée dans le partage et la réduction de l'empreinte environnementale. Notre plateforme web a pour objectif de transformer la manière dont nous accédons aux biens et articles du quotidien, en favorisant un système d'emprunt entre voisins et utilisateurs.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Imaginez une bibliothèque vivante, mais au lieu de livres, vous pouvez emprunter des objets utiles, des appareils électroménagers, des outils de jardinage, des équipements sportifs, ou même des instruments de musique. Tout utilisateur peut prêter des objets pour une durée définie, permettant ainsi à d'autres de les utiliser avant de les retourner, promouvant ainsi la réutilisation et limitant les achats inutiles.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Notre vision repose sur la réduction du gaspillage et la préservation de notre planète. En mutualisant l'utilisation des biens, nous réduisons la production excessive et contribuons à limiter les déchets générés par la surconsommation. Pourquoi posséder individuellement des objets rarement utilisés alors que nous pourrions les partager efficacement ?
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+CommunPartage vise à créer des quartiers plus durables, à encourager la solidarité entre les membres de la communauté et à protéger l'environnement. Rejoignez-nous pour faire partie de ce mouvement de partage et contribuer à un avenir plus écologique.
 
-## Learning Laravel
+Ensemble, empruntons, partageons et préservons notre planète pour les générations futures.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
