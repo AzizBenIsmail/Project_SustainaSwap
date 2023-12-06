@@ -57,5 +57,3 @@ Ensemble, empruntons, partageons et préservons notre planète pour les généra
 ![itemdetails](https://github.com/AzizBenIsmail/Project_SustainaSwap_Laravel9/assets/61393700/8ce430c6-9b26-4659-a8cf-ead4dd56acec)
 ![AddNewTrade](https://github.com/AzizBenIsmail/Project_SustainaSwap_Laravel9/assets/61393700/d84d8047-e9e8-4a94-9643-02d747260229)
 ![AddPost](https://github.com/AzizBenIsmail/Project_SustainaSwap_Laravel9/assets/61393700/fa9b5130-43a4-42ac-be57-757da50b2e07)
-
-
